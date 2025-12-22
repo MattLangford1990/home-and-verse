@@ -501,6 +501,11 @@ export default function App() {
 
   return (
     <div style={{minHeight: '100vh', display: 'flex', flexDirection: 'column'}}>
+      {/* Christmas Banner */}
+      <div style={{background: '#1a472a', color: '#fff', padding: '10px 20px', fontSize: 13, textAlign: 'center'}}>
+        🎄 Merry Christmas! Orders will be dispatched from 5th January 2026 🎄
+      </div>
+      
       {/* Announcement Bar */}
       <div style={{background: '#222', color: '#fff', padding: '8px 20px', fontSize: 12, textAlign: 'center'}}>
         Free UK delivery on orders over £30 · 30-day returns
