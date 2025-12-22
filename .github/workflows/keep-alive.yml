@@ -1,0 +1,16 @@
+name: Keep Alive
+
+on:
+  schedule:
+    # Run every 10 minutes
+    - cron: '*/10 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping site
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" https://homeandverse.co.uk
+          curl -s -o /dev/null -w "%{http_code}" https://home-and-verse.onrender.com
