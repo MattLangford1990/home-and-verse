@@ -14,11 +14,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Email configuration
-SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
+SMTP_HOST = os.getenv("SMTP_HOST", "smtp.office365.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 SMTP_USER = os.getenv("SMTP_USER", "")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
-FROM_EMAIL = os.getenv("FROM_EMAIL", "orders@homeandverse.com")
+FROM_EMAIL = os.getenv("FROM_EMAIL", "orders@homeandverse.co.uk")
 FROM_NAME = os.getenv("FROM_NAME", "Home & Verse")
 
 
@@ -65,7 +65,7 @@ def get_base_template(content: str, preview_text: str = "") -> str:
                     <tr>
                         <td style="padding: 30px 40px; background: #fafafa; border-top: 1px solid #eee;">
                             <p style="margin: 0 0 10px; font-size: 13px; color: #666; text-align: center;">
-                                Questions? Reply to this email or contact us at <a href="mailto:hello@homeandverse.com" style="color: #222;">hello@homeandverse.com</a>
+                                Questions? Reply to this email or contact us at <a href="mailto:hello@homeandverse.co.uk" style="color: #222;">hello@homeandverse.co.uk</a>
                             </p>
                             <p style="margin: 0; font-size: 12px; color: #999; text-align: center;">
                                 Home & Verse · Luxury European Homeware<br>
@@ -205,7 +205,7 @@ What happens next?
 We're preparing your order now. Most orders are dispatched within 1-2 business days. 
 You'll receive a shipping confirmation email with tracking details once your order is on its way.
 
-Questions? Reply to this email or contact us at hello@homeandverse.com
+Questions? Reply to this email or contact us at hello@homeandverse.co.uk
 
 Home & Verse
 Luxury European Homeware
@@ -320,7 +320,7 @@ DELIVERY INFORMATION
 Standard delivery typically takes 2-3 working days. If you're not in when delivery is attempted, 
 the carrier will leave a card with collection/redelivery options.
 
-Questions? Reply to this email or contact us at hello@homeandverse.com
+Questions? Reply to this email or contact us at hello@homeandverse.co.uk
 
 Home & Verse
 Luxury European Homeware
