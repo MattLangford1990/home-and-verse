@@ -248,6 +248,45 @@
         .img-zoom { overflow: hidden; }
         .img-zoom img { transition: transform 0.6s ease; }
         .img-zoom:hover img { transform: scale(1.05); }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .desktop-nav { display: none !important; }
+            .mobile-menu-btn { display: flex !important; }
+            .desktop-spacer { display: none !important; }
+            .category-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+            .editorial-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+            .editorial-text { padding-right: 0 !important; }
+            .product-grid-4 { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+            .product-grid-3 { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 24px !important; }
+            .footer-bottom { flex-direction: column !important; gap: 12px !important; text-align: center !important; }
+            .brand-bar { font-size: 11px !important; padding: 16px 12px !important; }
+            .section-title { font-size: 28px !important; }
+            .hero-title { font-size: 32px !important; }
+            .checkout-grid { grid-template-columns: 1fr !important; }
+            .section-padding { padding: 60px 16px !important; }
+            .hero-section { min-height: 500px !important; height: 70vh !important; }
+            .cart-drawer { width: 100% !important; max-width: 100% !important; }
+            .checkout-form-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+            .checkout-name-grid { grid-template-columns: 1fr !important; }
+            .checkout-city-grid { grid-template-columns: 1fr !important; }
+            .order-summary { order: -1 !important; }
+            .product-detail-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+            .product-thumbs { flex-wrap: wrap !important; }
+        }
+        
+        @media (max-width: 480px) {
+            .category-grid { grid-template-columns: 1fr !important; }
+            .product-grid-4 { grid-template-columns: 1fr !important; }
+            .product-grid-3 { grid-template-columns: 1fr !important; }
+            .footer-grid { grid-template-columns: 1fr !important; }
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-menu-btn { display: none !important; }
+            .mobile-menu { display: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -334,6 +373,7 @@ function App() {
   const [view, setView] = React.useState('home');
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [checkoutView, setCheckoutView] = React.useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   
   React.useEffect(() => { fetchData(); }, []);
   React.useEffect(() => { filterProducts(); }, [allProducts, activeCategory, activeBrand, searchQuery, sortBy, priceRange]);
@@ -752,7 +792,19 @@ function App() {
         <div style={{maxWidth: 1400, margin: '0 auto', padding: '0 20px'}}>
           {/* Logo Row */}
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60}}>
-            <div style={{width: 100}} />
+            <button 
+              className="mobile-menu-btn"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+              style={{...iconBtn, display: 'none', width: 40}}
+              aria-label="Menu"
+            >
+              {mobileMenuOpen ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+              )}
+            </button>
+            <div className="desktop-spacer" style={{width: 100}}/>
             <div onClick={goHome} style={{fontSize: 18, fontWeight: 600, letterSpacing: '0.5px', cursor: 'pointer'}} role="banner" aria-label="Home & Verse - Go to homepage">
               HOME & VERSE
             </div>
@@ -770,8 +822,8 @@ function App() {
             </div>
           </div>
           
-          {/* Navigation */}
-          <nav aria-label="Main navigation" style={{display: 'flex', justifyContent: 'center', gap: 28, borderTop: '1px solid #f0f0f0', paddingTop: 12, paddingBottom: 12}}>
+          {/* Navigation - Desktop */}
+          <nav className="desktop-nav" aria-label="Main navigation" style={{display: 'flex', justifyContent: 'center', gap: 28, borderTop: '1px solid #f0f0f0', paddingTop: 12, paddingBottom: 12}}>
             <button onClick={() => { setActiveCategory(null); setActiveBrand(null); setView('products'); }} style={navBtn(activeCategory === null && activeBrand === null && view === 'products')}>
               New In
             </button>
@@ -848,6 +900,51 @@ function App() {
           </div>
         )}
       </header>
+      
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu" style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: '#fff',
+          zIndex: 99,
+          paddingTop: 80,
+          overflowY: 'auto'
+        }}>
+          <nav style={{padding: '20px'}}>
+            <button 
+              onClick={() => { setActiveCategory(null); setActiveBrand(null); setView('products'); setMobileMenuOpen(false); }} 
+              style={{display: 'block', width: '100%', padding: '16px 0', border: 'none', borderBottom: '1px solid #eee', background: 'none', fontSize: 16, textAlign: 'left', cursor: 'pointer'}}
+            >
+              New In
+            </button>
+            {NAV_CATEGORIES.map(cat => (
+              <button 
+                key={cat.slug}
+                onClick={() => { navigateTo(cat.slug); setMobileMenuOpen(false); }} 
+                style={{display: 'block', width: '100%', padding: '16px 0', border: 'none', borderBottom: '1px solid #eee', background: 'none', fontSize: 16, textAlign: 'left', cursor: 'pointer'}}
+              >
+                {cat.name}
+              </button>
+            ))}
+            <div style={{padding: '16px 0', borderBottom: '1px solid #eee'}}>
+              <p style={{fontSize: 12, color: '#888', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '1px'}}>Brands</p>
+              {BRANDS.map(brand => (
+                <button 
+                  key={brand}
+                  onClick={() => { navigateToBrand(brand); setMobileMenuOpen(false); }} 
+                  style={{display: 'block', width: '100%', padding: '12px 0', border: 'none', background: 'none', fontSize: 15, textAlign: 'left', cursor: 'pointer', color: '#444'}}
+                >
+                  {brand}
+                </button>
+              ))}
+            </div>
+          </nav>
+        </div>
+      )}
 
       {/* Main Content */}
       <main style={{flex: 1}}>
@@ -947,7 +1044,7 @@ function App() {
       {/* Footer */}
       <footer role="contentinfo" style={{background: '#f5ede3', borderTop: '1px solid #e5e5e5', padding: '48px 20px 32px'}}>
         <div style={{maxWidth: 1200, margin: '0 auto'}}>
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 40, marginBottom: 40}}>
+          <div className="footer-grid" style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 40, marginBottom: 40}}>
             <div>
               <h4 style={footerHeading}>Shop</h4>
               {NAV_CATEGORIES.map(cat => (
@@ -975,7 +1072,7 @@ function App() {
               </div>
             </div>
           </div>
-          <div style={{borderTop: '1px solid #e5e5e5', paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#999'}}>
+          <div className="footer-bottom" style={{borderTop: '1px solid #e5e5e5', paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#999'}}>
             <span>© 2024 Home & Verse. DM Brands Ltd.</span>
             <div style={{display: 'flex', gap: 20}}>
               <span onClick={() => { setView('privacy'); window.scrollTo(0, 0); }} style={{cursor: 'pointer'}}>Privacy Policy</span>
@@ -1119,7 +1216,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
       </section>
 
       {/* Brand Promise Bar */}
-      <section style={{
+      <section className="brand-bar" style={{
         background: '#2c2c2c',
         padding: '20px',
         textAlign: 'center'
@@ -1158,7 +1255,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
             </h2>
           </div>
           
-          <div style={{
+          <div className="category-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
             gap: 24
@@ -1233,7 +1330,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
         background: '#f9f3eb',
         padding: '120px 20px'
       }}>
-        <div style={{
+        <div className="editorial-grid" style={{
           maxWidth: 1200,
           margin: '0 auto',
           display: 'grid',
@@ -1241,7 +1338,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
           gap: 80,
           alignItems: 'center'
         }}>
-          <div style={{paddingRight: 40}}>
+          <div className="editorial-text" style={{paddingRight: 40}}>
             <p style={{
               fontSize: 12,
               letterSpacing: '3px',
@@ -1337,7 +1434,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
                 Best Sellers
               </h2>
             </div>
-            <div style={{
+            <div className="product-grid-4" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',
               gap: 30
@@ -1518,7 +1615,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
 
       {/* Trust Bar - Refined */}
       <section style={{padding: '60px 20px', background: '#fff'}}>
-        <div style={{
+        <div className="product-grid-4" style={{
           maxWidth: 1000,
           margin: '0 auto',
           display: 'grid',
@@ -2273,7 +2370,7 @@ function ProductsPage({ products, allProducts, loading, category, brand, sortBy,
       ) : products.length === 0 ? (
         <div style={{textAlign: 'center', padding: 60, color: '#888'}}>No products found</div>
       ) : (
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20}}>
+        <div className="product-grid-4" style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20}}>
           {products.map(product => (
             <ProductCard key={product.sku} product={product} onClick={() => onProductClick(product)} onAdd={onAdd} />
           ))}
@@ -2453,7 +2550,7 @@ function ProductPage({ product, onBack, onAdd }) {
         Back
       </button>
       
-      <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60}}>
+      <div className="product-detail-grid" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60}}>
         {/* Image Gallery */}
         <div>
           {/* Main Image */}
@@ -2489,7 +2586,7 @@ function ProductPage({ product, onBack, onAdd }) {
           
           {/* Thumbnail Strip */}
           {images.length > 1 && (
-            <div style={{display: 'flex', gap: 8}}>
+            <div className="product-thumbs" style={{display: 'flex', gap: 8}}>
               {images.map((img, idx) => (
                 <button
                   key={idx}
@@ -2831,7 +2928,7 @@ function CheckoutPage({ cart, cartTotal, onBack, updateQuantity, onOrderComplete
       
       <h1 style={{fontSize: 24, fontWeight: 500, marginBottom: 40}}>Checkout</h1>
       
-      <div style={{display: 'grid', gridTemplateColumns: '1fr 380px', gap: 60}}>
+      <div className="checkout-form-grid" style={{display: 'grid', gridTemplateColumns: '1fr 380px', gap: 60}}>
         {/* Form */}
         <form onSubmit={handleSubmit}>
           <div style={{marginBottom: 32}}>
@@ -2841,12 +2938,12 @@ function CheckoutPage({ cart, cartTotal, onBack, updateQuantity, onOrderComplete
           
           <div style={{marginBottom: 32}}>
             <h3 style={{fontSize: 14, fontWeight: 500, marginBottom: 16}}>Delivery Address</h3>
-            <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12}}>
+            <div className="checkout-name-grid" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12}}>
               <input name="firstName" placeholder="First name" value={formData.firstName} onChange={handleChange} required style={inputStyle} />
               <input name="lastName" placeholder="Last name" value={formData.lastName} onChange={handleChange} required style={inputStyle} />
             </div>
             <input name="address" placeholder="Address" value={formData.address} onChange={handleChange} required style={{...inputStyle, marginBottom: 12}} />
-            <div style={{display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 12, marginBottom: 12}}>
+            <div className="checkout-city-grid" style={{display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 12, marginBottom: 12}}>
               <input name="city" placeholder="City" value={formData.city} onChange={handleChange} required style={inputStyle} />
               <input name="postcode" placeholder="Postcode / ZIP" value={formData.postcode} onChange={handleChange} required style={inputStyle} />
             </div>
@@ -2886,7 +2983,7 @@ function CheckoutPage({ cart, cartTotal, onBack, updateQuantity, onOrderComplete
         </form>
         
         {/* Order Summary */}
-        <div>
+        <div className="order-summary">
           <div style={{background: '#fafafa', padding: 24, border: '1px solid #eee'}}>
             <h3 style={{fontSize: 14, fontWeight: 500, marginBottom: 20}}>Order Summary</h3>
             
@@ -2950,7 +3047,7 @@ function CartDrawer({ cart, cartOpen, setCartOpen, cartTotal, freeShipping, ship
   return (
     <div style={{position: 'fixed', inset: 0, zIndex: 200}}>
       <div onClick={() => setCartOpen(false)} style={{position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)'}} />
-      <div style={{position: 'absolute', right: 0, top: 0, bottom: 0, width: 400, maxWidth: '100%', background: '#fff', display: 'flex', flexDirection: 'column'}}>
+      <div className="cart-drawer" style={{position: 'absolute', right: 0, top: 0, bottom: 0, width: 400, maxWidth: '100%', background: '#fff', display: 'flex', flexDirection: 'column'}}>
         {/* Header */}
         <div style={{padding: '16px 20px', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
           <h2 style={{fontSize: 14, fontWeight: 500}}>Your Bag ({cart.length})</h2>
