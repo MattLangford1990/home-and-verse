@@ -1,0 +1,21 @@
+# robots.txt for Home & Verse
+# https://www.homeandverse.co.uk
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.homeandverse.co.uk/sitemap.xml
+
+# Disallow admin/api paths
+Disallow: /api/
+Disallow: /admin/
+
+# Allow search engines to crawl all public pages
+Allow: /category/
+Allow: /product/
+Allow: /brand/
+Allow: /about
+
+# Crawl-delay (optional, be nice to servers)
+Crawl-delay: 1

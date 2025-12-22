@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env files (contain secrets)
+.env
+.env.local
+.env.*.local
+
+# Temporary/processed files
+processed-*/
+mood-images-to-review/
+
+# Large image directories (images served from Cloudinary)
+backend/data/images/

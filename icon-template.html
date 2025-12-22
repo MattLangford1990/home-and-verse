@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>App Icons - Screenshot these</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=DM+Sans:wght@600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 40px;
+            background: #888;
+            font-family: sans-serif;
+        }
+        h2 { color: #fff; margin-bottom: 10px; }
+        
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #2a1215 0%, #1a0a0c 100%);
+            border-radius: 22%;
+        }
+        
+        .icon-512 {
+            width: 512px;
+            height: 512px;
+        }
+        
+        .icon-192 {
+            width: 192px;
+            height: 192px;
+        }
+        
+        .icon-content {
+            text-align: center;
+            color: #fff;
+        }
+        
+        .icon-512 .logo {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 72px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+        
+        .icon-512 .ampersand {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 80px;
+        }
+        
+        .icon-192 .logo {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .icon-192 .ampersand {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 32px;
+        }
+        
+        .instructions {
+            color: #fff;
+            font-size: 14px;
+            max-width: 500px;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <strong>Instructions:</strong><br>
+        1. Right-click each icon → "Save image as..."<br>
+        2. Save as icon-512.png and icon-192.png<br>
+        3. Place in home-and-verse folder
+    </div>
+    
+    <div>
+        <h2>512x512 (icon-512.png)</h2>
+        <div class="icon icon-512">
+            <div class="icon-content">
+                <div class="logo">H <span class="ampersand">&</span> V</div>
+            </div>
+        </div>
+    </div>
+    
+    <div>
+        <h2>192x192 (icon-192.png)</h2>
+        <div class="icon icon-192">
+            <div class="icon-content">
+                <div class="logo">H <span class="ampersand">&</span> V</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

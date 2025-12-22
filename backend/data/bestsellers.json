@@ -1,0 +1,640 @@
+{
+  "bestsellers": [
+    {
+      "sku": "11ZBX0201004",
+      "name": "Relaxound Zwitscherbox Oak",
+      "quantity_sold": 424,
+      "revenue": 13387.76,
+      "order_count": 126,
+      "brand": "Relaxound",
+      "price": 59.95,
+      "categories": [
+        "Gifts",
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/11ZBX0201004.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This innovative oak birdsong box from Relaxound brings the sounds of nature indoors. Made in Germany, it reflects nature indoors. Bring the calming sounds of nature into your home. Free UK delivery."
+    },
+    {
+      "sku": "18086",
+      "name": "Rader The Blooming Life Scattered",
+      "quantity_sold": 180,
+      "revenue": 354.6,
+      "order_count": 4,
+      "brand": "R\u00e4der",
+      "price": 4.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/18086.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This minimalist red piece from R\u00e4der adds style to your home. Made in Germany, it reflects Scandinavian-inspired simplicity. A beautiful accent for any room."
+    },
+    {
+      "sku": "LP03",
+      "name": "Paper lamp Anna 'blocks'",
+      "quantity_sold": 157,
+      "revenue": 2569.41,
+      "order_count": 16,
+      "brand": "Remember",
+      "price": 39.95,
+      "categories": [
+        "Lighting"
+      ],
+      "has_image": true,
+      "image_url": "/images/LP03.jpg",
+      "in_stock": false,
+      "in_catalog": true,
+      "description": "This bold piece from Remember adds style to your home. Made in Germany, it reflects playful sophistication. A beautiful accent for any room. Free UK delivery."
+    },
+    {
+      "sku": "11ZBX0101001",
+      "name": "Relaxound Zwitscherbox White",
+      "quantity_sold": 146,
+      "revenue": 4528.44,
+      "order_count": 78,
+      "brand": "Relaxound",
+      "price": 49.95,
+      "categories": [
+        "Gifts",
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/11ZBX0101001.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This natural white birdsong box from Relaxound brings the sounds of nature indoors. Made in Germany, it reflects nature indoors. Bring the calming sounds of nature into your home. Free UK delivery."
+    },
+    {
+      "sku": "11ZBX0701004",
+      "name": "Relaxound Zwitscherbox Forest",
+      "quantity_sold": 118,
+      "revenue": 3549.43,
+      "order_count": 70,
+      "brand": "Relaxound",
+      "price": 49.95,
+      "categories": [
+        "Gifts",
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/11ZBX0701004.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This innovative birdsong box from Relaxound brings the sounds of nature indoors. Made in Germany, it reflects nature indoors. Bring the calming sounds of nature into your home. Free UK delivery."
+    },
+    {
+      "sku": "89866",
+      "name": "Rader LED Mini light fir tree medium 4x4x9.5cm",
+      "quantity_sold": 102,
+      "revenue": 507.06,
+      "order_count": 22,
+      "brand": "R\u00e4der",
+      "price": 8.95,
+      "categories": [
+        "Christmas",
+        "Lighting"
+      ],
+      "has_image": true,
+      "image_url": "/images/89866.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This elegant piece from R\u00e4der adds style to your home. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    },
+    {
+      "sku": "18367",
+      "name": "Birthday vases 4 designs a 3 St\ufffdck",
+      "quantity_sold": 96,
+      "revenue": 199.68,
+      "order_count": 6,
+      "brand": "R\u00e4der",
+      "price": 4.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/18367.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This elegant vase from R\u00e4der showcases flowers beautifully. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    },
+    {
+      "sku": "89865",
+      "name": "Rader LED Mini light fir tree small Diameter4cm Height.7.5cm",
+      "quantity_sold": 93,
+      "revenue": 348.9,
+      "order_count": 17,
+      "brand": "R\u00e4der",
+      "price": 7.95,
+      "categories": [
+        "Christmas",
+        "Lighting"
+      ],
+      "has_image": true,
+      "image_url": "/images/89865.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This elegant piece from R\u00e4der adds style to your home. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    },
+    {
+      "sku": "89867",
+      "name": "Rader LED Mini light fir tree large Diameter4cm Height.11cm",
+      "quantity_sold": 92,
+      "revenue": 590.2,
+      "order_count": 20,
+      "brand": "R\u00e4der",
+      "price": 11.95,
+      "categories": [
+        "Christmas",
+        "Lighting"
+      ],
+      "has_image": true,
+      "image_url": "/images/89867.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This elegant piece from R\u00e4der adds style to your home. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    },
+    {
+      "sku": "89805",
+      "name": "Rader Mini light house dreamhouse 6x6x13cm",
+      "quantity_sold": 91,
+      "revenue": 880.35,
+      "order_count": 43,
+      "brand": "R\u00e4der",
+      "price": 15.95,
+      "categories": [
+        "Lighting"
+      ],
+      "has_image": true,
+      "image_url": "/images/89805.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This minimalist porcelain light house from R\u00e4der casts a warm, atmospheric glow. Made in Germany, it reflects Scandinavian-inspired simplicity. Creates the perfect ambiance for relaxed evenings."
+    },
+    {
+      "sku": "14277",
+      "name": "Rader Mini vases heart Set of 2pcs silver Diameter3.5cm Height.9cm",
+      "quantity_sold": 74,
+      "revenue": 464.68,
+      "order_count": 12,
+      "brand": "R\u00e4der",
+      "price": 12.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/14277.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This elegant silver vase from R\u00e4der showcases flowers beautifully. Made in Germany, it reflects Scandinavian-inspired simplicity. A beautiful accent for any room."
+    },
+    {
+      "sku": "15354",
+      "name": "Rader Mini paste vases Set of 4pcs Set green D.4cm Height.4.5-8cm",
+      "quantity_sold": 74,
+      "revenue": 711.44,
+      "order_count": 22,
+      "brand": "R\u00e4der",
+      "price": 18.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/15354.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This minimalist green vase from R\u00e4der showcases flowers beautifully. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    },
+    {
+      "sku": "11ZBX0200002",
+      "name": "Relaxound Zwitscherbox Bamboo",
+      "quantity_sold": 72,
+      "revenue": 2324.79,
+      "order_count": 29,
+      "brand": "Relaxound",
+      "price": 59.95,
+      "categories": [
+        "Gifts",
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/11ZBX0200002.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This innovative birdsong box from Relaxound brings the sounds of nature indoors. Made in Germany, it reflects mindful living. Bring the calming sounds of nature into your home. Free UK delivery."
+    },
+    {
+      "sku": "18226",
+      "name": "Little lucky charm 24 St\ufffdck International",
+      "quantity_sold": 72,
+      "revenue": 299.52,
+      "order_count": 3,
+      "brand": "R\u00e4der",
+      "price": 9.95,
+      "categories": [
+        "Gifts"
+      ],
+      "has_image": true,
+      "image_url": "/images/18226.jpg",
+      "in_stock": false,
+      "in_catalog": true,
+      "description": "This elegant piece from R\u00e4der adds style to your home. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    },
+    {
+      "sku": "14475",
+      "name": "Rader Mini Pastel Vases Set of 4pcs Diameter4cm Height.4.5-8cm",
+      "quantity_sold": 70,
+      "revenue": 557.9,
+      "order_count": 10,
+      "brand": "R\u00e4der",
+      "price": 18.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/14475.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This poetic vase from R\u00e4der showcases flowers beautifully. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    },
+    {
+      "sku": "13615",
+      "name": "Rader Mini pastel vases Set of 4pcs grey Diameter4cm Height.4.5-8cm",
+      "quantity_sold": 66,
+      "revenue": 578.16,
+      "order_count": 15,
+      "brand": "R\u00e4der",
+      "price": 18.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/13615.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This minimalist grey vase from R\u00e4der showcases flowers beautifully. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    },
+    {
+      "sku": "SK30",
+      "name": "Dinner Candle Set 'Osaka'",
+      "quantity_sold": 64,
+      "revenue": 397.44,
+      "order_count": 8,
+      "brand": "Remember",
+      "price": 14.95,
+      "categories": [
+        "Candles & Fragrance"
+      ],
+      "has_image": true,
+      "image_url": "/images/SK30.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This bold candle from Remember fills your space with beautiful fragrance. Made in Germany, it reflects playful sophistication. Perfect for creating a cosy atmosphere."
+    },
+    {
+      "sku": "14276",
+      "name": "Rader Mini vases heart Set of 2pcs gold Diameter3.5cm Height.9cm",
+      "quantity_sold": 64,
+      "revenue": 356.48,
+      "order_count": 11,
+      "brand": "R\u00e4der",
+      "price": 12.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/14276.jpg",
+      "in_stock": false,
+      "in_catalog": true,
+      "description": "This elegant gold vase from R\u00e4der showcases flowers beautifully. Made in Germany, it reflects Scandinavian-inspired simplicity. A beautiful accent for any room."
+    },
+    {
+      "sku": "LO01",
+      "name": "Light Ole blue",
+      "quantity_sold": 63,
+      "revenue": 916.02,
+      "order_count": 20,
+      "brand": "Remember",
+      "price": 34.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/LO01.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This bold blue piece from Remember adds style to your home. Made in Germany, it reflects playful sophistication. A beautiful accent for any room. Free UK delivery."
+    },
+    {
+      "sku": "LB30",
+      "name": "Table lamp 'Bobbi' yellow",
+      "quantity_sold": 61,
+      "revenue": 809.9,
+      "order_count": 22,
+      "brand": "Remember",
+      "price": 29.95,
+      "categories": [
+        "Lighting"
+      ],
+      "has_image": true,
+      "image_url": "/images/LB30.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This playful piece from Remember adds style to your home. Made in Germany, it reflects playful sophistication. A beautiful accent for any room."
+    },
+    {
+      "sku": "15152",
+      "name": "Rader Angel keyring gold 4x3cm",
+      "quantity_sold": 60,
+      "revenue": 289.2,
+      "order_count": 8,
+      "brand": "R\u00e4der",
+      "price": 11.95,
+      "categories": [
+        "Christmas",
+        "Gifts",
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/15152.jpg",
+      "in_stock": false,
+      "in_catalog": true,
+      "description": "This poetic gold piece from R\u00e4der adds style to your home. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    },
+    {
+      "sku": "LB31",
+      "name": "Table lamp 'Bobbi' blue",
+      "quantity_sold": 58,
+      "revenue": 784.98,
+      "order_count": 21,
+      "brand": "Remember",
+      "price": 29.95,
+      "categories": [
+        "Lighting"
+      ],
+      "has_image": true,
+      "image_url": "/images/LB31.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This bold blue piece from Remember adds style to your home. Made in Germany, it reflects playful sophistication. A beautiful accent for any room."
+    },
+    {
+      "sku": "LO04",
+      "name": "Light Ole sand",
+      "quantity_sold": 58,
+      "revenue": 843.32,
+      "order_count": 16,
+      "brand": "Remember",
+      "price": 34.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/LO04.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This vibrant piece from Remember adds style to your home. Made in Germany, it reflects playful sophistication. A beautiful accent for any room. Free UK delivery."
+    },
+    {
+      "sku": "MTCH.SND",
+      "name": "My Flame Lifestyle Matches in glass bottle Thank you very match Sand",
+      "quantity_sold": 58,
+      "revenue": 241.28,
+      "order_count": 4,
+      "brand": "My Flame",
+      "price": 9.95,
+      "categories": [
+        "Candles & Fragrance",
+        "Gifts",
+        "Tableware"
+      ],
+      "has_image": true,
+      "image_url": "/images/MTCH_SND.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This meaningful piece from My Flame adds style to your home. Made in the Netherlands, it reflects meaningful gifting. A beautiful accent for any room."
+    },
+    {
+      "sku": "LO02",
+      "name": "Light Ole lilac",
+      "quantity_sold": 57,
+      "revenue": 828.78,
+      "order_count": 17,
+      "brand": "Remember",
+      "price": 34.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/LO02.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This vibrant piece from Remember adds style to your home. Made in Germany, it reflects playful sophistication. A beautiful accent for any room. Free UK delivery."
+    },
+    {
+      "sku": "90318",
+      "name": "Rader Gingerbread house small 9x8.5x14cm",
+      "quantity_sold": 55,
+      "revenue": 567.3,
+      "order_count": 24,
+      "brand": "R\u00e4der",
+      "price": 18.95,
+      "categories": [
+        "Christmas"
+      ],
+      "has_image": true,
+      "image_url": "/images/90318.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This elegant piece from R\u00e4der adds style to your home. Made in Germany, it reflects Scandinavian-inspired simplicity. A beautiful accent for any room."
+    },
+    {
+      "sku": "GD20",
+      "name": "Glass jar set 'Cosima'",
+      "quantity_sold": 55,
+      "revenue": 685.3,
+      "order_count": 8,
+      "brand": "Remember",
+      "price": 29.95,
+      "categories": [
+        "Home D\u00e9cor",
+        "Tableware"
+      ],
+      "has_image": true,
+      "image_url": "/images/GD20.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This bold piece from Remember adds style to your home. Made in Germany, it reflects joyful colour. A beautiful accent for any room."
+    },
+    {
+      "sku": "11ZBX0202007",
+      "name": "Relaxound Zwitscherbox Walnut Dark",
+      "quantity_sold": 52,
+      "revenue": 1649.86,
+      "order_count": 19,
+      "brand": "Relaxound",
+      "price": 59.95,
+      "categories": [
+        "Gifts",
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/11ZBX0202007.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This innovative walnut birdsong box from Relaxound brings the sounds of nature indoors. Made in Germany, it reflects nature indoors. Bring the calming sounds of nature into your home. Free UK delivery."
+    },
+    {
+      "sku": "LO03",
+      "name": "Light Ole green",
+      "quantity_sold": 50,
+      "revenue": 727.0,
+      "order_count": 15,
+      "brand": "Remember",
+      "price": 34.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/LO03.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This playful green piece from Remember adds style to your home. Made in Germany, it reflects playful sophistication. A beautiful accent for any room. Free UK delivery."
+    },
+    {
+      "sku": "LB33",
+      "name": "Table lamp 'Bobbi' coral",
+      "quantity_sold": 50,
+      "revenue": 623.0,
+      "order_count": 17,
+      "brand": "Remember",
+      "price": 29.95,
+      "categories": [
+        "Lighting"
+      ],
+      "has_image": true,
+      "image_url": "/images/LB33.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This playful piece from Remember adds style to your home. Made in Germany, it reflects playful sophistication. A beautiful accent for any room."
+    },
+    {
+      "sku": "13802",
+      "name": "Rader Love Mini vases Set of 4pcs Diameter3.5cm Height.9cm",
+      "quantity_sold": 49,
+      "revenue": 461.72,
+      "order_count": 11,
+      "brand": "R\u00e4der",
+      "price": 21.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/13802.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This poetic vase from R\u00e4der showcases flowers beautifully. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    },
+    {
+      "sku": "17714",
+      "name": "Rader Mini-Ballvase Heart Gold",
+      "quantity_sold": 49,
+      "revenue": 255.78,
+      "order_count": 8,
+      "brand": "R\u00e4der",
+      "price": 12.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/17714.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This poetic gold vase from R\u00e4der showcases flowers beautifully. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    },
+    {
+      "sku": "GL10",
+      "name": "Drinking glasses, set of 2",
+      "quantity_sold": 47,
+      "revenue": 498.23,
+      "order_count": 11,
+      "brand": "Remember",
+      "price": 24.95,
+      "categories": [
+        "Tableware"
+      ],
+      "has_image": true,
+      "image_url": "/images/GL10.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This bold piece from Remember adds style to your home. Made in Germany, it reflects joyful colour. A beautiful accent for any room."
+    },
+    {
+      "sku": "15583",
+      "name": "Rader Love vases heart gold Diameter5.5cm H.17cm",
+      "quantity_sold": 44,
+      "revenue": 275.72,
+      "order_count": 9,
+      "brand": "R\u00e4der",
+      "price": 13.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/15583.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This poetic gold vase from R\u00e4der showcases flowers beautifully. Made in Germany, it reflects Scandinavian-inspired simplicity. A beautiful accent for any room."
+    },
+    {
+      "sku": "LB21",
+      "name": "Table light 'Bob' mint",
+      "quantity_sold": 44,
+      "revenue": 914.76,
+      "order_count": 9,
+      "brand": "Remember",
+      "price": 49.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/LB21.jpg",
+      "in_stock": false,
+      "in_catalog": true,
+      "description": "This vibrant piece from Remember adds style to your home. Made in Germany, it reflects joyful colour. A beautiful accent for any room. Free UK delivery."
+    },
+    {
+      "sku": "18229",
+      "name": "Mini bottle vases green Set 5-8,5x3,5-4,5cm",
+      "quantity_sold": 44,
+      "revenue": 366.52,
+      "order_count": 11,
+      "brand": "R\u00e4der",
+      "price": 19.95,
+      "categories": [
+        "Home D\u00e9cor"
+      ],
+      "has_image": true,
+      "image_url": "/images/18229.jpg",
+      "in_stock": true,
+      "in_catalog": true,
+      "description": "This elegant green vase from R\u00e4der showcases flowers beautifully. Made in Germany, it reflects understated elegance. A beautiful accent for any room."
+    }
+  ],
+  "generated_at": "2025-12-15T04:17:05.718230",
+  "date_range": {
+    "start": "2025-09-16",
+    "end": "2025-12-15",
+    "days": 90
+  },
+  "stats": {
+    "orders_processed": 996,
+    "unique_items_sold": 1287,
+    "bestsellers_count": 36
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "elvang": {
+    "name": "Elvang",
+    "slug": "elvang",
+    "logo": "/images/brands/elvang-logo.png",
+    "country": "Denmark",
+    "founded": "1988",
+    "tagline": "Danish Design. Timeless Comfort.",
+    "description": "Elvang Denmark creates luxurious throws, cushions and scarves using the finest natural materials. Founded in 1988, the brand combines traditional Scandinavian craftsmanship with contemporary design. Their collections feature alpaca wool, merino and organic cotton, offering warmth, softness and enduring style for the modern home.",
+    "meta_title": "Elvang Denmark | Luxury Throws, Cushions & Scarves | Home & Verse",
+    "meta_description": "Shop Elvang Denmark's collection of premium throws, cushions and scarves. Danish-designed home textiles crafted from alpaca wool and natural materials. Free UK delivery.",
+    "seo_keywords": ["elvang", "danish design", "luxury throws", "alpaca wool", "scandinavian cushions", "wool scarves", "elvang denmark", "danish home textiles"],
+    "hero_image": "/images/brands/elvang-hero.jpg",
+    "featured_collections": ["Classic", "Basket", "Manhattan", "Amsterdam"],
+    "materials": ["Alpaca Wool", "Baby Alpaca", "Merino Wool", "Organic Cotton"],
+    "categories": ["Throws & Blankets", "Cushions & Pillows", "Fashion Accessories"],
+    "price_range": {"min": 9.99, "max": 154.99},
+    "sustainability": "Elvang is committed to sustainable production, using natural, renewable fibres and environmentally responsible manufacturing processes.",
+    "care_instructions": "Most Elvang products can be machine washed at 30°C on a wool cycle. Always check the care label for specific instructions."
+  },
+  "rader": {
+    "name": "Räder",
+    "slug": "rader",
+    "logo": "/images/brands/rader-logo.png",
+    "country": "Germany",
+    "tagline": "Poetry for Your Home",
+    "description": "Räder creates poetic home accessories and gifts with a distinctly German aesthetic. Their collections feature beautiful porcelain, candles, and decorative items that bring warmth and meaning to everyday moments.",
+    "meta_title": "Räder | German Home Accessories & Gifts | Home & Verse",
+    "meta_description": "Discover Räder's poetic collection of German-designed home accessories, porcelain and gifts. Beautiful pieces that add meaning to everyday moments. Free UK delivery.",
+    "seo_keywords": ["rader", "german design", "porcelain", "home accessories", "gifts", "candles"],
+    "categories": ["Home Décor", "Gifts", "Candles & Fragrance"]
+  },
+  "remember": {
+    "name": "Remember",
+    "slug": "remember",
+    "logo": "/images/brands/remember-logo.png",
+    "country": "Germany",
+    "tagline": "Colourful Design for Modern Living",
+    "description": "Remember brings bold colours and playful designs to everyday objects. The German brand creates vibrant home accessories, games and gifts that spark joy and conversation.",
+    "meta_title": "Remember | Colourful German Design | Home & Verse",
+    "meta_description": "Shop Remember's colourful collection of German-designed home accessories, games and gifts. Bold designs that bring joy to modern living. Free UK delivery.",
+    "seo_keywords": ["remember", "colourful design", "german", "games", "gifts", "home accessories"],
+    "categories": ["Home Décor", "Gifts", "Tableware"]
+  },
+  "my-flame": {
+    "name": "My Flame",
+    "slug": "my-flame",
+    "logo": "/images/brands/my-flame-logo.png",
+    "country": "Netherlands",
+    "tagline": "Candles with a Message",
+    "description": "My Flame Lifestyle creates beautiful soy candles with hidden messages inside. Each candle reveals a special bracelet or necklace as it burns, making them perfect gifts.",
+    "meta_title": "My Flame | Candles with Hidden Jewellery | Home & Verse",
+    "meta_description": "Discover My Flame's unique soy candles with hidden jewellery inside. Beautiful scented candles that reveal a special surprise. Perfect gifts. Free UK delivery.",
+    "seo_keywords": ["my flame", "candles", "hidden jewellery", "soy candles", "gift candles"],
+    "categories": ["Candles & Fragrance", "Gifts"]
+  },
+  "relaxound": {
+    "name": "Relaxound",
+    "slug": "relaxound",
+    "logo": "/images/brands/relaxound-logo.png",
+    "country": "Germany",
+    "tagline": "Natural Sounds for Modern Spaces",
+    "description": "Relaxound creates innovative sound boxes that bring the calming sounds of nature into your home. Their Zwitscherbox and other products use motion sensors to play bird songs and other relaxing sounds.",
+    "meta_title": "Relaxound | Nature Sound Boxes | Home & Verse",
+    "meta_description": "Shop Relaxound's innovative sound boxes featuring bird songs and nature sounds. German-designed relaxation products for home and office. Free UK delivery.",
+    "seo_keywords": ["relaxound", "zwitscherbox", "bird sounds", "nature sounds", "relaxation", "sound box"],
+    "categories": ["Home Décor", "Gifts"]
+  }
+}
