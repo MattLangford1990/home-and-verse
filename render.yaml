@@ -2,9 +2,11 @@ services:
   - type: web
     name: home-and-verse
     runtime: python
-    buildCommand: pip install -r backend/requirements.txt
+    buildCommand: npm install && npm run build && pip install -r backend/requirements.txt
     startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
         value: "3.11"
+      - key: NODE_VERSION
+        value: "20"
     autoDeploy: true

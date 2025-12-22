@@ -49,55 +49,77 @@ app.add_middleware(
 if (DATA_DIR / "images").exists():
     app.mount("/images", StaticFiles(directory=DATA_DIR / "images"), name="images")
 
-# Serve PWA static files from parent directory
-PARENT_DIR = Path(__file__).parent.parent
-if PARENT_DIR.exists():
-    # Serve individual PWA files
-    @app.get("/manifest.json")
-    async def get_manifest():
-        from fastapi.responses import FileResponse
-        return FileResponse(PARENT_DIR / "manifest.json", media_type="application/manifest+json")
-    
-    @app.get("/sw.js")
-    async def get_service_worker():
-        from fastapi.responses import FileResponse
-        return FileResponse(PARENT_DIR / "sw.js", media_type="application/javascript")
-    
-    @app.get("/icon-192.png")
-    async def get_icon_192():
-        from fastapi.responses import FileResponse
-        return FileResponse(PARENT_DIR / "icon-192.png", media_type="image/png")
-    
-    @app.get("/icon-512.png")
-    async def get_icon_512():
-        from fastapi.responses import FileResponse
-        return FileResponse(PARENT_DIR / "icon-512.png", media_type="image/png")
-    
-    @app.get("/og-image.png")
-    async def get_og_image():
-        from fastapi.responses import FileResponse
-        return FileResponse(PARENT_DIR / "og-image.png", media_type="image/png")
-    
-    @app.get("/logo.png")
-    async def get_logo():
-        from fastapi.responses import FileResponse
-        return FileResponse(PARENT_DIR / "logo.png", media_type="image/png")
-    
-    @app.get("/robots.txt")
-    async def get_robots():
-        from fastapi.responses import FileResponse
-        return FileResponse(PARENT_DIR / "robots.txt", media_type="text/plain")
-    
-    @app.get("/sitemap.xml")
-    async def get_sitemap():
-        from fastapi.responses import FileResponse
-        return FileResponse(PARENT_DIR / "sitemap.xml", media_type="application/xml")
-    
-    # Serve main HTML at root
-    @app.get("/")
-    async def get_index():
-        from fastapi.responses import FileResponse
-        return FileResponse(PARENT_DIR / "preview.html", media_type="text/html")
+# Serve Vite dist folder (frontend)
+DIST_DIR = Path(__file__).parent.parent / "dist"
+PUBLIC_DIR = Path(__file__).parent.parent / "public"
+
+# Mount Vite assets folder
+if (DIST_DIR / "assets").exists():
+    app.mount("/assets", StaticFiles(directory=DIST_DIR / "assets"), name="assets")
+
+# Serve static files from public folder and dist
+@app.get("/manifest.json")
+async def get_manifest():
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "manifest.json").exists():
+            return FileResponse(dir / "manifest.json", media_type="application/manifest+json")
+    raise HTTPException(status_code=404)
+
+@app.get("/sw.js")
+async def get_service_worker():
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "sw.js").exists():
+            return FileResponse(dir / "sw.js", media_type="application/javascript")
+    raise HTTPException(status_code=404)
+
+@app.get("/favicon.svg")
+async def get_favicon_svg():
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "favicon.svg").exists():
+            return FileResponse(dir / "favicon.svg", media_type="image/svg+xml")
+    raise HTTPException(status_code=404)
+
+@app.get("/icon-192.png")
+async def get_icon_192():
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "icon-192.png").exists():
+            return FileResponse(dir / "icon-192.png", media_type="image/png")
+    raise HTTPException(status_code=404)
+
+@app.get("/icon-512.png")
+async def get_icon_512():
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "icon-512.png").exists():
+            return FileResponse(dir / "icon-512.png", media_type="image/png")
+    raise HTTPException(status_code=404)
+
+@app.get("/og-image.png")
+async def get_og_image():
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "og-image.png").exists():
+            return FileResponse(dir / "og-image.png", media_type="image/png")
+    raise HTTPException(status_code=404)
+
+@app.get("/logo.png")
+async def get_logo():
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "logo.png").exists():
+            return FileResponse(dir / "logo.png", media_type="image/png")
+    raise HTTPException(status_code=404)
+
+@app.get("/robots.txt")
+async def get_robots():
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "robots.txt").exists():
+            return FileResponse(dir / "robots.txt", media_type="text/plain")
+    raise HTTPException(status_code=404)
+
+@app.get("/sitemap.xml")
+async def get_sitemap():
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "sitemap.xml").exists():
+            return FileResponse(dir / "sitemap.xml", media_type="application/xml")
+    raise HTTPException(status_code=404)
 
 
 def load_products() -> list[dict]:
@@ -137,29 +159,19 @@ def load_bestsellers() -> dict:
 
 @app.get("/")
 async def serve_frontend():
-    """Serve the main frontend"""
-    html_file = PROJECT_ROOT / "preview.html"
-    if html_file.exists():
-        return FileResponse(html_file)
-    return {"status": "ok", "service": "Home & Verse API", "note": "preview.html not found"}
+    """Serve the main frontend from Vite dist"""
+    # Try dist/index.html first (production build)
+    dist_html = PROJECT_ROOT / "dist" / "index.html"
+    if dist_html.exists():
+        return FileResponse(dist_html, media_type="text/html")
+    # Fallback to preview.html for legacy
+    preview_html = PROJECT_ROOT / "preview.html"
+    if preview_html.exists():
+        return FileResponse(preview_html, media_type="text/html")
+    return {"status": "ok", "service": "Home & Verse API", "note": "No frontend found - run npm run build"}
 
 
-@app.get("/robots.txt")
-async def robots_txt():
-    """Serve robots.txt for SEO"""
-    robots_file = STATIC_DIR / "robots.txt"
-    if robots_file.exists():
-        return FileResponse(robots_file, media_type="text/plain")
-    raise HTTPException(status_code=404, detail="robots.txt not found")
 
-
-@app.get("/sitemap.xml")
-async def sitemap_xml():
-    """Serve sitemap.xml for SEO"""
-    sitemap_file = STATIC_DIR / "sitemap.xml"
-    if sitemap_file.exists():
-        return FileResponse(sitemap_file, media_type="application/xml")
-    raise HTTPException(status_code=404, detail="sitemap.xml not found")
 
 
 @app.get("/api/products")
