@@ -253,7 +253,7 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
-const API_BASE = 'http://localhost:8000';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
 
 // Cloudinary image helper - HIGH RES for website (quality customer experience)
 const CLOUDINARY_BASE = 'https://res.cloudinary.com/dcfbgveei/image/upload';
