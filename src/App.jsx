@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
 
-// Stripe instance - lazy loaded only when needed
+// Stripe instance - truly lazy loaded (only on checkout)
 let stripePromise = null;
-const getStripe = () => {
+const getStripe = async () => {
   if (!stripePromise) {
+    // Dynamic import - only loads when checkout is accessed
+    const { loadStripe } = await import('@stripe/stripe-js');
     stripePromise = loadStripe('pk_live_51QSVBJGaQyfTCKrLFj4BvIl9U3uyEfqOSNY5q7VZXOVGuxH6Vt50H2qiEadrJINCFcbq2oHVUzuhTHKC09sVBP3m001FdB3VE2');
   }
   return stripePromise;
@@ -940,7 +941,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
         textAlign: 'center'
       }}>
         <p style={{
-          color: '#b8a089',
+          color: '#8a7561',
           fontSize: 13,
           letterSpacing: '3px',
           textTransform: 'uppercase',
@@ -957,7 +958,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
             <p style={{
               fontSize: 12,
               letterSpacing: '3px',
-              color: '#b8a089',
+              color: '#8a7561',
               marginBottom: 16,
               textTransform: 'uppercase'
             }}>
@@ -1060,7 +1061,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
             <p style={{
               fontSize: 12,
               letterSpacing: '3px',
-              color: '#b8a089',
+              color: '#8a7561',
               marginBottom: 24,
               textTransform: 'uppercase'
             }}>
@@ -1137,7 +1138,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
               <p style={{
                 fontSize: 12,
                 letterSpacing: '3px',
-                color: '#b8a089',
+                color: '#8a7561',
                 marginBottom: 16,
                 textTransform: 'uppercase'
               }}>
@@ -1251,7 +1252,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
               <p style={{
                 fontSize: 12,
                 letterSpacing: '3px',
-                color: '#b8a089',
+                color: '#8a7561',
                 marginBottom: 16,
                 textTransform: 'uppercase'
               }}>

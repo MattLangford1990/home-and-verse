@@ -4,10 +4,11 @@ Home & Verse - Backend API
 Serves products from local JSON files (fast, no API calls for browsing).
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
+from starlette.middleware.base import BaseHTTPMiddleware
 from pydantic import BaseModel
 from typing import Optional, List
 import json
@@ -15,6 +16,28 @@ import os
 import stripe
 from pathlib import Path
 from dotenv import load_dotenv
+
+
+# Cache control middleware
+class CacheControlMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        response = await call_next(request)
+        path = request.url.path
+        
+        # Vite assets have hashed filenames - cache forever
+        if path.startswith('/assets/'):
+            response.headers['Cache-Control'] = 'public, max-age=31536000, immutable'
+        # Product images - cache for 1 day
+        elif path.startswith('/images/'):
+            response.headers['Cache-Control'] = 'public, max-age=86400'
+        # Static files (icons, manifest) - cache for 1 hour
+        elif any(path.endswith(ext) for ext in ['.png', '.ico', '.svg', '.json', '.xml', '.txt']):
+            response.headers['Cache-Control'] = 'public, max-age=3600'
+        # HTML - no cache
+        elif path == '/' or path.endswith('.html'):
+            response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        
+        return response
 
 # Load environment variables
 load_dotenv()
@@ -35,6 +58,9 @@ RANKINGS_FILE = DATA_DIR / "rankings.json"
 BESTSELLERS_FILE = DATA_DIR / "bestsellers.json"
 
 app = FastAPI(title="Home & Verse API", version="1.0")
+
+# Add cache control middleware
+app.add_middleware(CacheControlMiddleware)
 
 # CORS for frontend
 app.add_middleware(
