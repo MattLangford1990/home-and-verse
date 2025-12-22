@@ -1,11 +1,11 @@
 # robots.txt for Home & Verse
-# https://www.homeandverse.co.uk
+# https://homeandverse.co.uk
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.homeandverse.co.uk/sitemap.xml
+Sitemap: https://homeandverse.co.uk/sitemap.xml
 
 # Crawl-delay (optional - be gentle on server)
 Crawl-delay: 1
