@@ -1,0 +1,40 @@
+# Home & Verse - llms.txt
+# https://homeandverse.co.uk
+
+> Home & Verse is a UK-based luxury European homeware retailer, the consumer brand of DM Brands Ltd.
+
+## About
+Home & Verse curates beautiful homeware from Europe's finest design houses. We are the official UK distributor for Räder, Remember, My Flame, Relaxound, Ideas4Seasons, and Elvang Denmark.
+
+## Brands We Carry
+- **Räder** (Germany): Poetic porcelain, atmospheric lighting, iconic light houses since 1990
+- **Remember** (Germany): Bold, colourful homeware celebrating pattern and playful sophistication  
+- **My Flame** (Netherlands): Hand-poured soy candles with hidden messages
+- **Relaxound** (Germany): Original Zwitscherbox birdsong boxes and nature soundboxes
+- **Ideas4Seasons** (Netherlands): Seasonal decorations and festive homeware
+- **Elvang Denmark**: Luxurious throws, cushions & scarves in premium alpaca wool
+
+## Product Categories
+- Christmas decorations and gifts
+- Candles & home fragrance
+- Lighting and light houses
+- Tableware and dining
+- Home décor and ornaments
+- Gifts for all occasions
+
+## Shipping & Returns
+- Free UK delivery on orders over £30
+- International shipping to EU, USA, Canada
+- 30-day returns policy
+- Same day dispatch before 2pm
+
+## Contact
+- Email: hello@homeandverse.co.uk
+- Phone: +44 1905 616006
+- Trade enquiries: sales@dmbrands.co.uk
+
+## Technical
+This is a React single-page application with server-side product data. Product information is loaded dynamically via API. For the most accurate product data, please refer to the live website.
+
+## Sitemap
+https://homeandverse.co.uk/sitemap.xml

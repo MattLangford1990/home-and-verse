@@ -100,9 +100,9 @@ export default function App() {
   // SEO: Update page title and meta based on current view
   useEffect(() => {
     const baseTitle = 'Home & Verse';
-    const baseSuffix = ' | Luxury European Homeware';
+    const baseSuffix = ' | Luxury European Homeware & Scandi Gifts UK';
     let newTitle = baseTitle + baseSuffix;
-    let newDescription = 'Discover our curated collection of luxury European homeware from Räder, Remember, My Flame and Relaxound.';
+    let newDescription = 'Shop luxury European homeware from Räder, Remember, My Flame, Relaxound & Elvang. German porcelain, Danish throws & Dutch candles. Free UK delivery over £30.';
     
     if (view === 'product' && selectedProduct) {
       newTitle = `${selectedProduct.name} by ${selectedProduct.brand} | ${baseTitle}`;
@@ -790,14 +790,26 @@ export default function App() {
             <div>
               <h4 style={footerHeading}>Newsletter</h4>
               <p style={{fontSize: 13, color: '#666', marginBottom: 12}}>Sign up for 10% off your first order</p>
-              <div style={{display: 'flex'}}>
+              <div style={{display: 'flex', marginBottom: 20}}>
                 <input type="email" placeholder="Email" style={{flex: 1, padding: '10px 12px', border: '1px solid #ddd', borderRight: 'none', fontSize: 13, outline: 'none'}} />
                 <button style={{padding: '10px 16px', background: '#222', color: '#fff', border: 'none', fontSize: 12}}>→</button>
+              </div>
+              <h4 style={{...footerHeading, marginTop: 24}}>Follow Us</h4>
+              <div style={{display: 'flex', gap: 16}}>
+                <a href="https://www.instagram.com/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{color: '#666'}}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </a>
+                <a href="https://www.facebook.com/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{color: '#666'}}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://www.pinterest.co.uk/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" style={{color: '#666'}}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M8 12a4 4 0 1 1 8 0c0 2.5-1.5 5-4 6.5"/><path d="M12 12v6.5"/><circle cx="12" cy="10" r="8"/></svg>
+                </a>
               </div>
             </div>
           </div>
           <div className="footer-bottom" style={{borderTop: '1px solid #e5e5e5', paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#999'}}>
-            <span>© 2024 Home & Verse. DM Brands Ltd.</span>
+            <span>© 2025 Home & Verse. DM Brands Ltd.</span>
             <div style={{display: 'flex', gap: 20}}>
               <span onClick={() => { setView('privacy'); window.scrollTo(0, 0); }} style={{cursor: 'pointer'}}>Privacy Policy</span>
               <span onClick={() => { setView('terms'); window.scrollTo(0, 0); }} style={{cursor: 'pointer'}}>Terms & Conditions</span>
@@ -1366,6 +1378,70 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
             <div style={{fontSize: 24, marginBottom: 12}}>🎁</div>
             <p style={{fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 16, marginBottom: 4}}>Gift Ready</p>
             <p style={{fontSize: 12, color: '#888'}}>Beautifully packaged</p>
+          </div>
+        </div>
+      </section>
+
+      {/* SEO Content Section */}
+      <section style={{padding: '80px 20px', background: '#fff', borderTop: '1px solid #f0f0f0'}}>
+        <div style={{maxWidth: 900, margin: '0 auto'}}>
+          <h2 style={{
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontSize: 32,
+            fontWeight: 300,
+            color: '#2c2c2c',
+            textAlign: 'center',
+            marginBottom: 40
+          }}>
+            Your Destination for Luxury European Homeware in the UK
+          </h2>
+          
+          <div style={{fontSize: 15, color: '#555', lineHeight: 1.9, columnCount: 2, columnGap: 48}}>
+            <p style={{marginBottom: 20}}>
+              Welcome to Home & Verse, the UK's premier destination for thoughtfully curated European homeware. 
+              As the official UK distributor for some of Europe's most celebrated design houses, we bring you 
+              exceptional pieces that transform everyday moments into something special.
+            </p>
+            
+            <p style={{marginBottom: 20}}>
+              Discover <strong>Räder's iconic porcelain light houses</strong> from Germany, beloved for their 
+              delicate craftsmanship and atmospheric glow. Each piece is designed in their Essen studio, where 
+              they've been creating poetic homeware since 1990. From seasonal decorations to timeless tableware, 
+              Räder brings warmth and wonder to homes across the UK.
+            </p>
+            
+            <p style={{marginBottom: 20}}>
+              Our collection of <strong>My Flame candles from the Netherlands</strong> features hand-poured soy 
+              candles with hidden messages revealed as they burn. These thoughtful gifts combine beautiful fragrance 
+              with meaningful moments of connection, making them perfect for birthdays, housewarmings, or a treat 
+              for yourself.
+            </p>
+            
+            <p style={{marginBottom: 20}}>
+              The <strong>Relaxound Zwitscherbox</strong> has become a modern classic. This ingenious German-designed 
+              birdsong box brings the calming sounds of nature indoors at the wave of a hand. Whether you choose the 
+              original forest birdsong, peaceful ocean waves, or tropical jungle sounds, these soundboxes offer a 
+              simple antidote to the noise of modern life.
+            </p>
+            
+            <p style={{marginBottom: 20}}>
+              For bold colour and playful pattern, explore <strong>Remember's vibrant homeware</strong>. This German 
+              design house believes life is too short for beige, creating everything from storage solutions to 
+              kitchenware that celebrates joyful, colourful living.
+            </p>
+            
+            <p style={{marginBottom: 20}}>
+              Complete your home with <strong>Elvang Denmark's luxurious throws and cushions</strong>. Crafted from 
+              premium alpaca wool and baby llama, these Scandinavian textiles bring timeless Nordic elegance and 
+              exceptional warmth to any room.
+            </p>
+            
+            <p>
+              Whether you're searching for <strong>Christmas decorations</strong>, <strong>unique gifts</strong>, 
+              <strong>home fragrance</strong>, or <strong>decorative lighting</strong>, Home & Verse offers carefully 
+              selected pieces that bring beauty into everyday life. With <strong>free UK delivery over £30</strong> 
+              and a hassle-free 30-day returns policy, shopping for luxury homeware has never been easier.
+            </p>
           </div>
         </div>
       </section>

@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Meta Tags -->
-  <title>Home & Verse | Luxury European Homeware</title>
-  <meta name="description" content="Discover our curated collection of luxury European homeware from Räder, Remember, My Flame and Relaxound. Free UK delivery over £30.">
+  <title>Home & Verse | Luxury European Homeware & Scandi Gifts UK</title>
+  <meta name="description" content="Shop luxury European homeware from Räder, Remember, My Flame, Relaxound & Elvang. German porcelain, Danish throws & Dutch candles. Free UK delivery over £30.">
   <meta name="keywords" content="homeware, European homeware, Räder, Remember, My Flame, Relaxound, candles, lighting, home decor, gifts">
   <link rel="canonical" href="https://www.homeandverse.co.uk/">
   
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.homeandverse.co.uk/">
-  <meta property="og:title" content="Home & Verse | Luxury European Homeware">
-  <meta property="og:description" content="Discover our curated collection of luxury European homeware from Räder, Remember, My Flame and Relaxound.">
+  <meta property="og:title" content="Home & Verse | Luxury European Homeware & Scandi Gifts UK">
+  <meta property="og:description" content="Shop luxury European homeware from Räder, Remember, My Flame, Relaxound & Elvang. German porcelain, Danish throws & Dutch candles. Free UK delivery over £30.">
   <meta property="og:image" content="https://res.cloudinary.com/dcfbgveei/image/upload/v1/og/home-and-verse-og.jpg">
   <meta property="og:site_name" content="Home & Verse">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Home & Verse | Luxury European Homeware">
-  <meta name="twitter:description" content="Discover our curated collection of luxury European homeware from Räder, Remember, My Flame and Relaxound.">
+  <meta name="twitter:title" content="Home & Verse | Luxury European Homeware & Scandi Gifts UK">
+  <meta name="twitter:description" content="Shop luxury European homeware from Räder, Remember, My Flame, Relaxound & Elvang. German porcelain, Danish throws & Dutch candles. Free UK delivery over £30.">
   <meta name="twitter:image" content="https://res.cloudinary.com/dcfbgveei/image/upload/v1/og/home-and-verse-og.jpg">
   
   <!-- Favicon -->
@@ -73,7 +73,11 @@
       "email": "hello@homeandverse.co.uk",
       "contactType": "customer service"
     },
-    "sameAs": []
+    "sameAs": [
+      "https://www.instagram.com/homeandverse",
+      "https://www.facebook.com/homeandverse",
+      "https://www.pinterest.co.uk/homeandverse"
+    ]
   }
   </script>
   
@@ -95,6 +99,7 @@
   <!-- Google Analytics 4 - Defer to not block render -->
   <script>
     // Load GA after page is interactive
+    // TODO: Replace G-XXXXXXXXXX with actual GA4 measurement ID from Google Analytics
     window.addEventListener('load', function() {
       setTimeout(function() {
         var s = document.createElement('script');
@@ -110,6 +115,26 @@
       }, 2000); // Delay GA by 2s to prioritize content
     });
   </script>
+  
+  <!-- Facebook Pixel - Defer to not block render -->
+  <script>
+    // TODO: Replace XXXXXXXXXXXXXXX with actual Facebook Pixel ID from Meta Business Suite
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'XXXXXXXXXXXXXXX');
+        fbq('track', 'PageView');
+      }, 2500); // Delay FB Pixel slightly after GA
+    });
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
   <div id="root"></div>
