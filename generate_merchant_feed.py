@@ -12,7 +12,7 @@ OUTPUT_FILE = Path("/Users/matt/Desktop/home-and-verse/public/google-products.xm
 OUTPUT_CSV = Path("/Users/matt/Desktop/home-and-verse/public/google-products.csv")
 
 SITE_URL = "https://www.homeandverse.co.uk"
-CLOUDINARY_BASE = "https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products"
+CLOUDINARY_BASE = "https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_jpg/products"
 
 def generate_feed():
     # Load products
