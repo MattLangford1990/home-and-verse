@@ -13,6 +13,16 @@ const getStripe = async () => {
 
 const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
 
+// Valentine's Theme Colours
+const THEME = {
+  burgundy: '#8b2942',
+  blush: '#f5e1e4',
+  rose: '#b76e79',
+  cream: '#faf6f2',
+  text: '#4a3035',
+  textLight: '#6d5459',
+};
+
 // Cloudinary image helper - HIGH RES for website (quality customer experience)
 const CLOUDINARY_BASE = 'https://res.cloudinary.com/dcfbgveei/image/upload';
 
@@ -511,11 +521,11 @@ export default function App() {
 
   if (error && !allProducts.length) {
     return (
-      <div style={{minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 40}}>
+      <div style={{minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 40, background: THEME.cream}}>
         <div style={{textAlign: 'center', maxWidth: 420}}>
-          <h1 style={{fontSize: 20, fontWeight: 500, marginBottom: 16}}>Home & Verse</h1>
-          <p style={{color: '#666', marginBottom: 20}}>Start the backend server to view products</p>
-          <code style={{display: 'block', background: '#f5f5f5', padding: 16, borderRadius: 4, fontSize: 12, textAlign: 'left'}}>
+          <h1 style={{fontSize: 20, fontWeight: 500, marginBottom: 16, color: THEME.text}}>Home & Verse</h1>
+          <p style={{color: THEME.textLight, marginBottom: 20}}>Start the backend server to view products</p>
+          <code style={{display: 'block', background: THEME.blush, padding: 16, borderRadius: 4, fontSize: 12, textAlign: 'left', color: THEME.text}}>
             cd ~/Desktop/home-and-verse/backend<br/>
             python3 -m uvicorn main:app --port 8000
           </code>
@@ -525,19 +535,19 @@ export default function App() {
   }
 
   return (
-    <div style={{minHeight: '100vh', display: 'flex', flexDirection: 'column'}}>
+    <div style={{minHeight: '100vh', display: 'flex', flexDirection: 'column', background: THEME.cream}}>
       {/* Valentine's Banner */}
-      <div style={{background: '#8b2942', color: '#fff', padding: '10px 20px', fontSize: 13, textAlign: 'center'}}>
+      <div style={{background: THEME.burgundy, color: '#fff', padding: '10px 20px', fontSize: 13, textAlign: 'center'}}>
         ❤️ Valentine's Day Gifts — Order by 10th February for guaranteed delivery ❤️
       </div>
       
       {/* Announcement Bar */}
-      <div style={{background: '#222', color: '#fff', padding: '8px 20px', fontSize: 12, textAlign: 'center'}}>
+      <div style={{background: THEME.rose, color: '#fff', padding: '8px 20px', fontSize: 12, textAlign: 'center'}}>
         Free UK delivery on orders over £30 · 30-day returns
       </div>
       
       {/* Header */}
-      <header style={{borderBottom: '1px solid #e5e5e5', background: '#fff', position: 'sticky', top: 0, zIndex: 100}}>
+      <header style={{borderBottom: `1px solid ${THEME.blush}`, background: THEME.cream, position: 'sticky', top: 0, zIndex: 100}}>
         <div style={{maxWidth: 1400, margin: '0 auto', padding: '0 20px'}}>
           {/* Logo Row */}
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60}}>
@@ -572,7 +582,7 @@ export default function App() {
           </div>
           
           {/* Navigation - Desktop */}
-          <nav className="desktop-nav" aria-label="Main navigation" style={{display: 'flex', justifyContent: 'center', gap: 28, borderTop: '1px solid #f0f0f0', paddingTop: 12, paddingBottom: 12}}>
+          <nav className="desktop-nav" aria-label="Main navigation" style={{display: 'flex', justifyContent: 'center', gap: 28, borderTop: `1px solid ${THEME.blush}`, paddingTop: 12, paddingBottom: 12}}>
             <button onClick={() => { setActiveCategory(null); setActiveBrand(null); setView('products'); }} style={navBtn(activeCategory === null && activeBrand === null && view === 'products')}>
               New In
             </button>
@@ -599,9 +609,9 @@ export default function App() {
                   top: '100%',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  background: '#fff',
-                  border: '1px solid #e5e5e5',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  background: THEME.cream,
+                  border: `1px solid ${THEME.blush}`,
+                  boxShadow: '0 4px 12px rgba(139,41,66,0.1)',
                   padding: '8px 0',
                   minWidth: 160,
                   zIndex: 50
@@ -614,15 +624,15 @@ export default function App() {
                         display: 'block',
                         width: '100%',
                         padding: '10px 20px',
-                        background: activeBrand === brand ? '#f5f5f5' : 'none',
+                        background: activeBrand === brand ? THEME.blush : 'none',
                         border: 'none',
                         textAlign: 'left',
                         fontSize: 13,
                         cursor: 'pointer',
-                        color: '#222'
+                        color: THEME.text
                       }}
-                      onMouseOver={e => e.currentTarget.style.background = '#f5f5f5'}
-                      onMouseOut={e => e.currentTarget.style.background = activeBrand === brand ? '#f5f5f5' : 'none'}
+                      onMouseOver={e => e.currentTarget.style.background = THEME.blush}
+                      onMouseOut={e => e.currentTarget.style.background = activeBrand === brand ? THEME.blush : 'none'}
                     >
                       {brand}
                     </button>
@@ -635,7 +645,7 @@ export default function App() {
         
         {/* Search Dropdown */}
         {searchOpen && (
-          <div style={{borderTop: '1px solid #e5e5e5', padding: '16px 20px', background: '#fafafa'}}>
+          <div style={{borderTop: `1px solid ${THEME.blush}`, padding: '16px 20px', background: THEME.blush}}>
             <div style={{maxWidth: 500, margin: '0 auto'}}>
               <input
                 type="text" placeholder="Search for products..."
@@ -643,7 +653,7 @@ export default function App() {
                 value={searchQuery}
                 onChange={(e) => { setSearchQuery(e.target.value); if (view !== 'products') setView('products'); }}
                 autoFocus
-                style={{width: '100%', padding: '12px 16px', border: '1px solid #ddd', fontSize: 14, outline: 'none'}}
+                style={{width: '100%', padding: '12px 16px', border: `1px solid ${THEME.rose}`, fontSize: 14, outline: 'none', background: THEME.cream}}
               />
             </div>
           </div>
@@ -658,7 +668,7 @@ export default function App() {
           left: 0,
           right: 0,
           bottom: 0,
-          background: '#fff',
+          background: THEME.cream,
           zIndex: 99,
           paddingTop: 80,
           overflowY: 'auto'
@@ -666,7 +676,7 @@ export default function App() {
           <nav style={{padding: '20px'}}>
             <button 
               onClick={() => { setActiveCategory(null); setActiveBrand(null); setView('products'); setMobileMenuOpen(false); }} 
-              style={{display: 'block', width: '100%', padding: '16px 0', border: 'none', borderBottom: '1px solid #eee', background: 'none', fontSize: 16, textAlign: 'left', cursor: 'pointer'}}
+              style={{display: 'block', width: '100%', padding: '16px 0', border: 'none', borderBottom: `1px solid ${THEME.blush}`, background: 'none', fontSize: 16, textAlign: 'left', cursor: 'pointer', color: THEME.text}}
             >
               New In
             </button>
@@ -674,18 +684,18 @@ export default function App() {
               <button 
                 key={cat.slug}
                 onClick={() => { navigateTo(cat.slug); setMobileMenuOpen(false); }} 
-                style={{display: 'block', width: '100%', padding: '16px 0', border: 'none', borderBottom: '1px solid #eee', background: 'none', fontSize: 16, textAlign: 'left', cursor: 'pointer'}}
+                style={{display: 'block', width: '100%', padding: '16px 0', border: 'none', borderBottom: `1px solid ${THEME.blush}`, background: 'none', fontSize: 16, textAlign: 'left', cursor: 'pointer', color: THEME.text}}
               >
                 {cat.name}
               </button>
             ))}
-            <div style={{padding: '16px 0', borderBottom: '1px solid #eee'}}>
-              <p style={{fontSize: 12, color: '#888', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '1px'}}>Brands</p>
+            <div style={{padding: '16px 0', borderBottom: `1px solid ${THEME.blush}`}}>
+              <p style={{fontSize: 12, color: THEME.rose, marginBottom: 12, textTransform: 'uppercase', letterSpacing: '1px'}}>Brands</p>
               {BRANDS.map(brand => (
                 <button 
                   key={brand}
                   onClick={() => { navigateToBrand(brand); setMobileMenuOpen(false); }} 
-                  style={{display: 'block', width: '100%', padding: '12px 0', border: 'none', background: 'none', fontSize: 15, textAlign: 'left', cursor: 'pointer', color: '#444'}}
+                  style={{display: 'block', width: '100%', padding: '12px 0', border: 'none', background: 'none', fontSize: 15, textAlign: 'left', cursor: 'pointer', color: THEME.textLight}}
                 >
                   {brand}
                 </button>
@@ -794,7 +804,7 @@ export default function App() {
       <EmailPopup />
 
       {/* Footer */}
-      <footer role="contentinfo" style={{background: '#f5ede3', borderTop: '1px solid #e5e5e5', padding: '48px 20px 32px'}}>
+      <footer role="contentinfo" style={{background: THEME.blush, borderTop: `1px solid ${THEME.rose}`, padding: '48px 20px 32px'}}>
         <div style={{maxWidth: 1200, margin: '0 auto'}}>
           <div className="footer-grid" style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 40, marginBottom: 40}}>
             <div>
@@ -817,23 +827,23 @@ export default function App() {
             </div>
             <div>
               <h4 style={footerHeading}>Newsletter</h4>
-              <p style={{fontSize: 13, color: '#666', marginBottom: 12}}>Sign up for 10% off your first order</p>
+              <p style={{fontSize: 13, color: THEME.textLight, marginBottom: 12}}>Sign up for 10% off your first order</p>
               <FooterNewsletterForm />
               <h4 style={{...footerHeading, marginTop: 24}}>Follow Us</h4>
               <div style={{display: 'flex', gap: 16}}>
-                <a href="https://www.instagram.com/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{color: '#666'}}>
+                <a href="https://www.instagram.com/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{color: THEME.textLight}}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                 </a>
-                <a href="https://www.facebook.com/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{color: '#666'}}>
+                <a href="https://www.facebook.com/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{color: THEME.textLight}}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                 </a>
-                <a href="https://www.pinterest.co.uk/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" style={{color: '#666'}}>
+                <a href="https://www.pinterest.co.uk/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" style={{color: THEME.textLight}}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M8 12a4 4 0 1 1 8 0c0 2.5-1.5 5-4 6.5"/><path d="M12 12v6.5"/><circle cx="12" cy="10" r="8"/></svg>
                 </a>
               </div>
             </div>
           </div>
-          <div className="footer-bottom" style={{borderTop: '1px solid #e5e5e5', paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#999'}}>
+          <div className="footer-bottom" style={{borderTop: `1px solid ${THEME.rose}`, paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontSize: 12, color: THEME.textLight}}>
             <span>© 2025 Home & Verse. DM Brands Ltd.</span>
             <div style={{display: 'flex', gap: 20}}>
               <span onClick={() => { setView('privacy'); window.scrollTo(0, 0); }} style={{cursor: 'pointer'}}>Privacy Policy</span>
@@ -848,11 +858,11 @@ export default function App() {
 }
 
 // Styles
-const iconBtn = { background: 'none', border: 'none', padding: 6, color: '#222' };
-const cartBadge = { position: 'absolute', top: -2, right: -2, background: '#222', color: '#fff', fontSize: 9, width: 16, height: 16, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' };
-const navBtn = (active) => ({ background: 'none', border: 'none', fontSize: 13, fontWeight: active ? 500 : 400, color: '#222', padding: '4px 0', borderBottom: active ? '1px solid #222' : '1px solid transparent' });
-const footerHeading = { fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 16 };
-const footerLink = { fontSize: 13, color: '#666', marginBottom: 10, cursor: 'pointer' };
+const iconBtn = { background: 'none', border: 'none', padding: 6, color: THEME.text };
+const cartBadge = { position: 'absolute', top: -2, right: -2, background: THEME.burgundy, color: '#fff', fontSize: 9, width: 16, height: 16, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' };
+const navBtn = (active) => ({ background: 'none', border: 'none', fontSize: 13, fontWeight: active ? 500 : 400, color: THEME.text, padding: '4px 0', borderBottom: active ? `1px solid ${THEME.burgundy}` : '1px solid transparent' });
+const footerHeading = { fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 16, color: THEME.text };
+const footerLink = { fontSize: 13, color: THEME.textLight, marginBottom: 10, cursor: 'pointer' };
 
 function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAdd, getCategoryCount }) {
   const newProducts = products.slice(0, 8);
@@ -978,12 +988,12 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
 
       {/* Brand Promise Bar */}
       <section className="brand-bar" style={{
-        background: '#2c2c2c',
+        background: THEME.burgundy,
         padding: '20px',
         textAlign: 'center'
       }}>
         <p style={{
-          color: '#8a7561',
+          color: THEME.blush,
           fontSize: 13,
           letterSpacing: '3px',
           textTransform: 'uppercase',
@@ -994,13 +1004,13 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
       </section>
 
       {/* Category Grid with Images */}
-      <section style={{padding: '100px 20px'}}>
+      <section style={{padding: '100px 20px', background: THEME.cream}}>
         <div style={{maxWidth: 1400, margin: '0 auto'}}>
           <div style={{textAlign: 'center', marginBottom: 60}}>
             <p style={{
               fontSize: 12,
               letterSpacing: '3px',
-              color: '#8a7561',
+              color: THEME.rose,
               marginBottom: 16,
               textTransform: 'uppercase'
             }}>
@@ -1010,7 +1020,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
               fontFamily: "'Cormorant Garamond', Georgia, serif",
               fontSize: 40,
               fontWeight: 300,
-              color: '#2c2c2c'
+              color: THEME.text
             }}>
               Explore Our Collections
             </h2>
@@ -1039,7 +1049,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
                   style={{
                     position: 'relative',
                     aspectRatio: '4/3',
-                    background: '#f9f3eb',
+                    background: THEME.blush,
                     border: 'none',
                     cursor: 'pointer',
                     overflow: 'hidden'
@@ -1090,7 +1100,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
 
       {/* Editorial Section - Brand Story */}
       <section style={{
-        background: '#f9f3eb',
+        background: THEME.blush,
         padding: '120px 20px'
       }}>
         <div className="editorial-grid" style={{
@@ -1105,7 +1115,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
             <p style={{
               fontSize: 12,
               letterSpacing: '3px',
-              color: '#8a7561',
+              color: THEME.rose,
               marginBottom: 24,
               textTransform: 'uppercase'
             }}>
@@ -1115,7 +1125,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
               fontFamily: "'Cormorant Garamond', Georgia, serif",
               fontSize: 42,
               fontWeight: 300,
-              color: '#2c2c2c',
+              color: THEME.text,
               lineHeight: 1.2,
               marginBottom: 24
             }}>
@@ -1124,7 +1134,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
             </h2>
             <p style={{
               fontSize: 16,
-              color: '#666',
+              color: THEME.textLight,
               lineHeight: 1.8,
               marginBottom: 24
             }}>
@@ -1134,7 +1144,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
             </p>
             <p style={{
               fontSize: 16,
-              color: '#666',
+              color: THEME.textLight,
               lineHeight: 1.8,
               marginBottom: 32
             }}>
@@ -1146,20 +1156,20 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
               style={{
                 padding: '14px 36px',
                 background: 'transparent',
-                color: '#2c2c2c',
-                border: '1px solid #2c2c2c',
+                color: THEME.burgundy,
+                border: `1px solid ${THEME.burgundy}`,
                 fontSize: 12,
                 letterSpacing: '2px',
                 cursor: 'pointer',
                 textTransform: 'uppercase'
               }}
               onMouseOver={e => { 
-                e.currentTarget.style.background = '#2c2c2c'; 
+                e.currentTarget.style.background = THEME.burgundy; 
                 e.currentTarget.style.color = '#fff'; 
               }}
               onMouseOut={e => { 
                 e.currentTarget.style.background = 'transparent'; 
-                e.currentTarget.style.color = '#2c2c2c'; 
+                e.currentTarget.style.color = THEME.burgundy; 
               }}
             >
               Our Story
@@ -1176,13 +1186,13 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
 
       {/* Best Sellers */}
       {bestsellers.length > 0 && (
-        <section style={{padding: '100px 20px'}}>
+        <section style={{padding: '100px 20px', background: THEME.cream}}>
           <div style={{maxWidth: 1400, margin: '0 auto'}}>
             <div style={{textAlign: 'center', marginBottom: 60}}>
               <p style={{
                 fontSize: 12,
                 letterSpacing: '3px',
-                color: '#8a7561',
+                color: THEME.rose,
                 marginBottom: 16,
                 textTransform: 'uppercase'
               }}>
@@ -1192,7 +1202,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
                 fontSize: 40,
                 fontWeight: 300,
-                color: '#2c2c2c'
+                color: THEME.text
               }}>
                 Best Sellers
               </h2>
@@ -2811,7 +2821,7 @@ function CheckoutPage({ cart, cartTotal, onBack, updateQuantity, onOrderComplete
   );
 }
 
-const inputStyle = { width: '100%', padding: '14px 16px', border: '1px solid #ddd', fontSize: 14, outline: 'none' };
+const inputStyle = { width: '100%', padding: '14px 16px', border: `1px solid ${THEME.blush}`, fontSize: 14, outline: 'none', background: THEME.cream, color: THEME.text };
 
 function CartDrawer({ cart, cartOpen, setCartOpen, cartTotal, freeShipping, shippingCost, orderTotal, updateQuantity, onCheckout }) {
   if (!cartOpen) return null;
@@ -2825,18 +2835,18 @@ function CartDrawer({ cart, cartOpen, setCartOpen, cartTotal, freeShipping, ship
       <div onClick={() => setCartOpen(false)} style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)', zIndex: 200}} />
       
       {/* Drawer */}
-      <div className="cart-drawer" style={{position: 'fixed', top: 0, right: 0, bottom: 0, width: 420, background: '#fff', zIndex: 201, display: 'flex', flexDirection: 'column'}}>
-        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px', borderBottom: '1px solid #eee'}}>
-          <h2 style={{fontSize: 16, fontWeight: 500}}>Shopping Bag ({cart.reduce((sum, item) => sum + item.quantity, 0)})</h2>
+      <div className="cart-drawer" style={{position: 'fixed', top: 0, right: 0, bottom: 0, width: 420, background: THEME.cream, zIndex: 201, display: 'flex', flexDirection: 'column'}}>
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px', borderBottom: `1px solid ${THEME.blush}`}}>
+          <h2 style={{fontSize: 16, fontWeight: 500, color: THEME.text}}>Shopping Bag ({cart.reduce((sum, item) => sum + item.quantity, 0)})</h2>
           <button onClick={() => setCartOpen(false)} style={{background: 'none', border: 'none', fontSize: 24, cursor: 'pointer'}}>×</button>
         </div>
         
         {/* Free shipping progress */}
         {!freeShipping && cartTotal > 0 && (
-          <div style={{padding: '16px 20px', background: '#f8f8f8', borderBottom: '1px solid #eee'}}>
-            <p style={{fontSize: 12, marginBottom: 8}}>Add £{amountToFree.toFixed(2)} more for free delivery</p>
-            <div style={{height: 4, background: '#e5e5e5', borderRadius: 2}}>
-              <div style={{height: '100%', width: `${progressToFree}%`, background: '#22c55e', borderRadius: 2, transition: 'width 0.3s'}} />
+          <div style={{padding: '16px 20px', background: THEME.blush, borderBottom: `1px solid ${THEME.rose}`}}>
+            <p style={{fontSize: 12, marginBottom: 8, color: THEME.text}}>Add £{amountToFree.toFixed(2)} more for free delivery</p>
+            <div style={{height: 4, background: THEME.cream, borderRadius: 2}}>
+              <div style={{height: '100%', width: `${progressToFree}%`, background: THEME.rose, borderRadius: 2, transition: 'width 0.3s'}} />
             </div>
           </div>
         )}
@@ -2844,16 +2854,16 @@ function CartDrawer({ cart, cartOpen, setCartOpen, cartTotal, freeShipping, ship
         {/* Items */}
         <div style={{flex: 1, overflowY: 'auto', padding: 20}}>
           {cart.length === 0 ? (
-            <p style={{color: '#888', textAlign: 'center', marginTop: 40}}>Your bag is empty</p>
+            <p style={{color: THEME.textLight, textAlign: 'center', marginTop: 40}}>Your bag is empty</p>
           ) : (
             cart.map(item => (
-              <div key={item.sku} style={{display: 'flex', gap: 16, marginBottom: 20, paddingBottom: 20, borderBottom: '1px solid #eee'}}>
-                <div style={{width: 80, height: 80, background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                  {item.has_image ? <img src={getImageUrl(item.image_url, 'thumb')} alt={item.name} style={{maxWidth: '90%', maxHeight: '90%'}} /> : <span style={{color: '#ddd', fontSize: 24}}>✦</span>}
+              <div key={item.sku} style={{display: 'flex', gap: 16, marginBottom: 20, paddingBottom: 20, borderBottom: `1px solid ${THEME.blush}`}}>
+                <div style={{width: 80, height: 80, background: THEME.blush, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                  {item.has_image ? <img src={getImageUrl(item.image_url, 'thumb')} alt={item.name} style={{maxWidth: '90%', maxHeight: '90%'}} /> : <span style={{color: THEME.rose, fontSize: 24}}>✦</span>}
                 </div>
                 <div style={{flex: 1}}>
-                  <p style={{fontSize: 13, marginBottom: 4}}>{item.name}</p>
-                  <p style={{fontSize: 14, fontWeight: 500, marginBottom: 8}}>£{item.price.toFixed(2)}</p>
+                  <p style={{fontSize: 13, marginBottom: 4, color: THEME.text}}>{item.name}</p>
+                  <p style={{fontSize: 14, fontWeight: 500, marginBottom: 8, color: THEME.text}}>£{item.price.toFixed(2)}</p>
                   <div style={{display: 'flex', alignItems: 'center', gap: 8}}>
                     <button onClick={() => updateQuantity(item.sku, item.quantity - 1)} style={qtyBtn}>−</button>
                     <span style={{fontSize: 13, minWidth: 20, textAlign: 'center'}}>{item.quantity}</span>
@@ -2868,16 +2878,16 @@ function CartDrawer({ cart, cartOpen, setCartOpen, cartTotal, freeShipping, ship
         
         {/* Footer */}
         {cart.length > 0 && (
-          <div style={{padding: 20, borderTop: '1px solid #eee'}}>
-            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: 8, fontSize: 13}}>
+          <div style={{padding: 20, borderTop: `1px solid ${THEME.blush}`}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: 8, fontSize: 13, color: THEME.text}}>
               <span>Subtotal</span>
               <span>£{cartTotal.toFixed(2)}</span>
             </div>
-            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: 16, fontSize: 13, color: freeShipping ? '#22c55e' : '#666'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: 16, fontSize: 13, color: freeShipping ? THEME.rose : THEME.textLight}}>
               <span>Shipping</span>
               <span>{freeShipping ? 'Free' : `£${shippingCost.toFixed(2)}`}</span>
             </div>
-            <button onClick={onCheckout} style={{width: '100%', padding: '14px 24px', background: '#222', color: '#fff', border: 'none', fontSize: 13}}>Checkout · £{orderTotal.toFixed(2)}</button>
+            <button onClick={onCheckout} style={{width: '100%', padding: '14px 24px', background: THEME.burgundy, color: '#fff', border: 'none', fontSize: 13}}>Checkout · £{orderTotal.toFixed(2)}</button>
           </div>
         )}
       </div>
@@ -2885,7 +2895,7 @@ function CartDrawer({ cart, cartOpen, setCartOpen, cartTotal, freeShipping, ship
   );
 }
 
-const qtyBtn = { width: 28, height: 28, border: '1px solid #ddd', background: '#fff', cursor: 'pointer', fontSize: 14 }
+const qtyBtn = { width: 28, height: 28, border: `1px solid ${THEME.blush}`, background: THEME.cream, cursor: 'pointer', fontSize: 14, color: THEME.text }
 
 // Email Capture Popup
 function EmailPopup() {
@@ -2980,7 +2990,7 @@ function EmailPopup() {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        background: '#fff',
+        background: THEME.cream,
         width: '90%',
         maxWidth: 480,
         zIndex: 401,
@@ -2998,7 +3008,7 @@ function EmailPopup() {
             border: 'none',
             fontSize: 24,
             cursor: 'pointer',
-            color: '#666',
+            color: THEME.textLight,
             zIndex: 10
           }}
         >
@@ -3008,7 +3018,7 @@ function EmailPopup() {
         {/* Image header */}
         <div style={{
           height: 180,
-          background: 'linear-gradient(135deg, #f9f3eb 0%, #e8ddd0 100%)',
+          background: `linear-gradient(135deg, ${THEME.blush} 0%, ${THEME.rose} 100%)`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
@@ -3025,13 +3035,13 @@ function EmailPopup() {
                 fontSize: 28,
                 fontWeight: 400,
                 marginBottom: 12,
-                color: '#2c2c2c'
+                color: THEME.text
               }}>
                 Get 10% off your first order
               </h2>
               <p style={{
                 fontSize: 14,
-                color: '#666',
+                color: THEME.textLight,
                 marginBottom: 24,
                 lineHeight: 1.6
               }}>
@@ -3048,11 +3058,12 @@ function EmailPopup() {
                   style={{
                     width: '100%',
                     padding: '14px 16px',
-                    border: '1px solid #ddd',
+                    border: `1px solid ${THEME.blush}`,
                     fontSize: 14,
                     marginBottom: 12,
                     outline: 'none',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    background: THEME.cream
                   }}
                 />
                 <button
@@ -3061,7 +3072,7 @@ function EmailPopup() {
                   style={{
                     width: '100%',
                     padding: '14px 24px',
-                    background: loading ? '#888' : '#2c2c2c',
+                    background: loading ? THEME.rose : THEME.burgundy,
                     color: '#fff',
                     border: 'none',
                     fontSize: 13,
@@ -3076,7 +3087,7 @@ function EmailPopup() {
               
               <p style={{
                 fontSize: 11,
-                color: '#999',
+                color: THEME.textLight,
                 marginTop: 16
               }}>
                 Unsubscribe anytime. We respect your privacy.
@@ -3090,25 +3101,26 @@ function EmailPopup() {
                 fontSize: 28,
                 fontWeight: 400,
                 marginBottom: 12,
-                color: '#2c2c2c'
+                color: THEME.text
               }}>
                 Welcome to Home & Verse!
               </h2>
               <p style={{
                 fontSize: 14,
-                color: '#666',
+                color: THEME.textLight,
                 marginBottom: 24
               }}>
                 Use code below at checkout for 10% off:
               </p>
               <div style={{
-                background: '#f8f8f8',
+                background: THEME.blush,
                 padding: '16px 24px',
                 fontSize: 20,
                 fontWeight: 600,
                 letterSpacing: '2px',
                 marginBottom: 24,
-                border: '2px dashed #ddd'
+                border: `2px dashed ${THEME.rose}`,
+                color: THEME.burgundy
               }}>
                 {DISCOUNT_CODE}
               </div>
@@ -3116,7 +3128,7 @@ function EmailPopup() {
                 onClick={handleClose}
                 style={{
                   padding: '14px 32px',
-                  background: '#2c2c2c',
+                  background: THEME.burgundy,
                   color: '#fff',
                   border: 'none',
                   fontSize: 13,
@@ -3176,7 +3188,7 @@ function FooterNewsletterForm() {
   
   if (status === 'success') {
     return (
-      <div style={{marginBottom: 20, padding: '12px 16px', background: '#f0f0f0', fontSize: 13}}>
+      <div style={{marginBottom: 20, padding: '12px 16px', background: THEME.blush, fontSize: 13, color: THEME.text}}>
         ✓ Thanks! Use code <strong>WELCOME10</strong> for 10% off.
       </div>
     );
@@ -3190,12 +3202,12 @@ function FooterNewsletterForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
-        style={{flex: 1, padding: '10px 12px', border: '1px solid #ddd', borderRight: 'none', fontSize: 13, outline: 'none'}} 
+        style={{flex: 1, padding: '10px 12px', border: `1px solid ${THEME.rose}`, borderRight: 'none', fontSize: 13, outline: 'none', background: THEME.cream}} 
       />
       <button 
         type="submit"
         disabled={status === 'loading'}
-        style={{padding: '10px 16px', background: '#222', color: '#fff', border: 'none', fontSize: 12, cursor: 'pointer'}}
+        style={{padding: '10px 16px', background: THEME.burgundy, color: '#fff', border: 'none', fontSize: 12, cursor: 'pointer'}}
       >
         {status === 'loading' ? '...' : '→'}
       </button>
