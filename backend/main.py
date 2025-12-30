@@ -31,7 +31,7 @@ class CacheControlMiddleware(BaseHTTPMiddleware):
         elif path.startswith('/images/'):
             response.headers['Cache-Control'] = 'public, max-age=86400'
         # Static files (icons, manifest) - cache for 1 hour
-        elif any(path.endswith(ext) for ext in ['.png', '.ico', '.svg', '.json', '.xml', '.txt']):
+        elif any(path.endswith(ext) for ext in ['.png', '.ico', '.svg', '.json', '.xml', '.txt', '.csv']):
             response.headers['Cache-Control'] = 'public, max-age=3600'
         # HTML - no cache
         elif path == '/' or path.endswith('.html'):
@@ -145,6 +145,30 @@ async def get_sitemap():
     for dir in [DIST_DIR, PUBLIC_DIR]:
         if (dir / "sitemap.xml").exists():
             return FileResponse(dir / "sitemap.xml", media_type="application/xml")
+    raise HTTPException(status_code=404)
+
+@app.get("/google-products.csv")
+async def get_google_products_csv():
+    """Google Merchant Center product feed (CSV)"""
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "google-products.csv").exists():
+            return FileResponse(dir / "google-products.csv", media_type="text/csv")
+    raise HTTPException(status_code=404)
+
+@app.get("/google-products.xml")
+async def get_google_products_xml():
+    """Google Merchant Center product feed (XML)"""
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "google-products.xml").exists():
+            return FileResponse(dir / "google-products.xml", media_type="application/xml")
+    raise HTTPException(status_code=404)
+
+@app.get("/llms.txt")
+async def get_llms_txt():
+    """LLMs.txt for AI crawlers"""
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "llms.txt").exists():
+            return FileResponse(dir / "llms.txt", media_type="text/plain")
     raise HTTPException(status_code=404)
 
 

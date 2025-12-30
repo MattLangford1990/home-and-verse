@@ -21,8 +21,14 @@ def generate_feed():
     
     products = data.get('products', data)
     
-    # Filter to in-stock items only
-    in_stock = [p for p in products if p.get('in_stock', False) and p.get('stock', 0) > 0]
+    # Filter to in-stock items only, excluding test products
+    in_stock = [
+        p for p in products 
+        if p.get('in_stock', False) 
+        and p.get('stock', 0) > 0
+        and 'test' not in p.get('name', '').lower()
+        and not p.get('sku', '').startswith('DMB')  # Internal test SKUs
+    ]
     
     print(f"Total products: {len(products)}")
     print(f"In stock: {len(in_stock)}")
