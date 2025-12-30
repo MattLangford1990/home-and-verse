@@ -59,10 +59,11 @@ const getImageUrl = (imagePath, size = 'medium') => {
   return `${CLOUDINARY_BASE}/${transforms[size] || transforms.medium}/products/${sku}.jpg`;
 };
 
-// Categories - Valentine's and Mother's Day are special filtered categories
+// Categories - Valentine's, Mother's Day and Easter are special filtered categories
 const NAV_CATEGORIES = [
   { name: "Valentine's", slug: 'Valentines', isSpecial: true },
   { name: "Mother's Day", slug: 'MothersDay', isSpecial: true },
+  { name: "Easter", slug: 'Easter', isSpecial: true },
   { name: 'Candles & Fragrance', slug: 'Candles & Fragrance' },
   { name: 'Lighting', slug: 'Lighting' },
   { name: 'Tableware', slug: 'Tableware' },
@@ -118,6 +119,7 @@ export default function App() {
       const catDescriptions = {
         "Valentine's": "Shop Valentine's Day gifts featuring hearts & love. Romantic candles, heart decorations & thoughtful gifts for someone special. Free UK delivery over £30.",
         "Mother's Day": "Shop Mother's Day gifts for Mum. Heart decorations, love-themed candles & thoughtful gifts to show you care. Free UK delivery over £30.",
+        "Easter": "Shop Easter decorations & spring gifts. Bunnies, eggs, chicks & seasonal homeware to celebrate Easter. Free UK delivery over £30.",
         'Candles & Fragrance': 'Luxury soy candles with hidden messages, fragrance diffusers & home scents. Hand-poured Dutch candles from My Flame. Free UK delivery over £30.',
         'Lighting': 'Atmospheric lighting, porcelain candle houses & decorative light objects. German-designed Räder light houses & seasonal illumination. Free UK delivery over £30.',
         'Tableware': 'European tableware, porcelain plates, bowls & dining accessories. Luxury German & Dutch design for your table. Free UK delivery over £30.',
@@ -355,6 +357,12 @@ export default function App() {
         filtered = filtered.filter(p => {
           const name = (p.name || '').toLowerCase();
           return name.includes('heart') || name.includes('love') || name.includes('mum') || name.includes('mom');
+        });
+      } else if (activeCategory === 'Easter') {
+        // Filter for products with Easter-related words
+        filtered = filtered.filter(p => {
+          const name = (p.name || '').toLowerCase();
+          return name.includes('easter') || name.includes('bunny') || name.includes('rabbit') || name.includes('egg') || name.includes('chick') || name.includes('spring');
         });
       } else {
         // Products can be in multiple categories - check if activeCategory is in the array
@@ -1017,6 +1025,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
               const categoryImages = {
                 "Valentine's": 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11JGL0101002_mood1.jpg',
                 "Mother's Day": 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11LSB0201009_mood1.jpg',
+                "Easter": 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11OBX0201001_mood1.jpg',
                 'Candles & Fragrance': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/mood/candles_1.jpg',
                 'Lighting': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-lighting.jpg?v=1765906042',
                 'Tableware': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-tableware.jpg?v=1765906042',
