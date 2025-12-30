@@ -1532,13 +1532,13 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
 const BRAND_DATA = [
   {
     name: 'Räder',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_pad,b_rgb:faf6f2,q_85,f_auto/products/51381.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_pad,b_rgb:faf6f2,q_85,f_auto/products/15111.jpg',
     description: 'From their studio in Germany, Räder creates poetic porcelain pieces and atmospheric lighting that capture the magic of the seasons. Their iconic light houses and delicate ceramics have become beloved classics, bringing warmth and wonder to homes across Europe for over three decades.',
     origin: 'Germany'
   },
   {
     name: 'Remember',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_pad,b_rgb:faf6f2,q_85,f_auto/products/TV1.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,q_85,f_auto/products/LD02_mood1.jpg',
     description: 'Bold, colourful, and unapologetically joyful. This German design house believes life is too short for beige, crafting vibrant homeware and gifts that celebrate colour, pattern, and playful sophistication.',
     origin: 'Germany'
   },
@@ -1550,7 +1550,7 @@ const BRAND_DATA = [
   },
   {
     name: 'Relaxound',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_pad,b_rgb:faf6f2,q_85,f_auto/products/11ZBX0101004.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,q_85,f_auto/products/11ZBX0201004_mood1.jpg',
     description: 'The inventors of the original Zwitscherbox, Relaxound brings the calming sounds of nature indoors. German-designed soundboxes deliver moments of birdsong, ocean waves, or forest ambience.',
     origin: 'Germany'
   },
@@ -1562,7 +1562,7 @@ const BRAND_DATA = [
   },
   {
     name: 'Elvang',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_pad,b_rgb:faf6f2,q_85,f_auto/elvang/1060_1.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_pad,b_rgb:faf6f2,q_85,f_auto/elvang/7068_1.jpg',
     description: 'Masters of Scandinavian textile design, Elvang creates luxurious throws, cushions and scarves from the finest alpaca wool. Timeless Danish aesthetics with exceptional warmth.',
     origin: 'Denmark'
   }
