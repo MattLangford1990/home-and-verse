@@ -140,11 +140,11 @@ async def get_robots():
             return FileResponse(dir / "robots.txt", media_type="text/plain")
     raise HTTPException(status_code=404)
 
-@app.get("/favicon-simple.svg")
+@app.get("/favicon.svg")
 async def get_favicon_svg():
     for dir in [DIST_DIR, PUBLIC_DIR]:
-        if (dir / "favicon-simple.svg").exists():
-            return FileResponse(dir / "favicon-simple.svg", media_type="image/svg+xml")
+        if (dir / "favicon.svg").exists():
+            return FileResponse(dir / "favicon.svg", media_type="image/svg+xml")
     raise HTTPException(status_code=404)
 
 @app.get("/apple-touch-icon.png")
