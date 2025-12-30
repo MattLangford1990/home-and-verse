@@ -747,6 +747,14 @@ export default function App() {
             onProductClick={openProduct}
             onAdd={addToCart}
             getCategoryCount={getCategoryCount}
+            onBrandsClick={() => { setView('brands'); window.scrollTo(0, 0); }}
+          />
+        )}
+        
+        {view === 'brands' && (
+          <BrandsPage 
+            onBack={goHome} 
+            onBrandClick={navigateToBrand}
           />
         )}
         
@@ -864,7 +872,7 @@ const navBtn = (active) => ({ background: 'none', border: 'none', fontSize: 13, 
 const footerHeading = { fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 16, color: THEME.text };
 const footerLink = { fontSize: 13, color: THEME.textLight, marginBottom: 10, cursor: 'pointer' };
 
-function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAdd, getCategoryCount }) {
+function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAdd, getCategoryCount, onBrandsClick }) {
   const newProducts = products.slice(0, 8);
   
   // Mood image URLs (using Unsplash for placeholders - replace with your own)
@@ -1094,6 +1102,40 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
                 </button>
               );
             })}
+            
+            {/* Brands Tile */}
+            <button 
+              onClick={onBrandsClick}
+              style={{
+                position: 'relative',
+                aspectRatio: '4/3',
+                background: THEME.burgundy,
+                border: 'none',
+                cursor: 'pointer',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <div style={{
+                textAlign: 'center',
+                padding: 30
+              }}>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontSize: 26,
+                  color: '#fff',
+                  fontWeight: 400,
+                  marginBottom: 12
+                }}>Our Brands</p>
+                <p style={{
+                  fontSize: 13,
+                  color: 'rgba(255,255,255,0.8)',
+                  lineHeight: 1.5
+                }}>Räder · Remember · My Flame<br/>Relaxound · Ideas4Seasons · Elvang</p>
+              </div>
+            </button>
           </div>
         </div>
       </section>
@@ -1372,7 +1414,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
           flexWrap: 'wrap',
           gap: 40
         }}>
-          {['Räder', 'Remember', 'My Flame', 'Relaxound', 'Elvang'].map(brand => (
+          {['Räder', 'Remember', 'My Flame', 'Relaxound', 'Ideas4Seasons', 'Elvang'].map(brand => (
             <span key={brand} style={{
               fontFamily: "'Cormorant Garamond', Georgia, serif",
               fontSize: 24,
@@ -1486,6 +1528,218 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
   );
 }
 
+// Brand images and info
+const BRAND_DATA = [
+  {
+    name: 'Räder',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-lighting.jpg',
+    description: 'From their studio in Germany, Räder creates poetic porcelain pieces and atmospheric lighting that capture the magic of the seasons. Their iconic light houses and delicate ceramics have become beloved classics, bringing warmth and wonder to homes across Europe for over three decades.',
+    origin: 'Germany'
+  },
+  {
+    name: 'Remember',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-gift-1765906153.jpg',
+    description: 'Bold, colourful, and unapologetically joyful. This German design house believes life is too short for beige, crafting vibrant homeware and gifts that celebrate colour, pattern, and playful sophistication.',
+    origin: 'Germany'
+  },
+  {
+    name: 'My Flame',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/mood/candles_1.jpg',
+    description: 'Born in the Netherlands, My Flame creates hand-poured soy candles with a twist — each one carries a hidden message revealed as the candle burns. Beautiful fragrance meets meaningful moments.',
+    origin: 'Netherlands'
+  },
+  {
+    name: 'Relaxound',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/89576_mood1.jpg',
+    description: 'The inventors of the original Zwitscherbox, Relaxound brings the calming sounds of nature indoors. German-designed soundboxes deliver moments of birdsong, ocean waves, or forest ambience.',
+    origin: 'Germany'
+  },
+  {
+    name: 'Ideas4Seasons',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11OBX0201001_mood1.jpg',
+    description: 'Specialising in seasonal decorations and festive homeware, Ideas4Seasons brings the magic of every celebration to your home. From Easter bunnies to Christmas ornaments.',
+    origin: 'Europe'
+  },
+  {
+    name: 'Elvang',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-homedecor.jpg',
+    description: 'Masters of Scandinavian textile design, Elvang creates luxurious throws, cushions and scarves from the finest alpaca wool. Timeless Danish aesthetics with exceptional warmth.',
+    origin: 'Denmark'
+  }
+];
+
+function BrandsPage({ onBack, onBrandClick }) {
+  return (
+    <div style={{background: THEME.cream, minHeight: '100vh'}}>
+      {/* Hero Section */}
+      <div style={{
+        background: THEME.burgundy,
+        padding: '80px 20px',
+        textAlign: 'center',
+        position: 'relative'
+      }}>
+        <button onClick={onBack} style={{position: 'absolute', left: 20, top: 20, background: 'none', border: 'none', fontSize: 13, color: 'rgba(255,255,255,0.8)', display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer'}}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="m15 18-6-6 6-6"/></svg>
+          Back
+        </button>
+        <p style={{
+          fontSize: 12,
+          letterSpacing: '3px',
+          color: THEME.blush,
+          marginBottom: 16,
+          textTransform: 'uppercase'
+        }}>
+          Curated European Design
+        </p>
+        <h1 style={{
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontSize: 48,
+          fontWeight: 300,
+          color: '#fff',
+          marginBottom: 20
+        }}>
+          Our Brands
+        </h1>
+        <p style={{
+          fontSize: 16,
+          color: 'rgba(255,255,255,0.8)',
+          maxWidth: 600,
+          margin: '0 auto',
+          lineHeight: 1.6
+        }}>
+          We partner with Europe's finest design houses to bring you homeware that combines exceptional craftsmanship with timeless beauty.
+        </p>
+      </div>
+      
+      {/* Brand Grid */}
+      <div style={{maxWidth: 1200, margin: '0 auto', padding: '80px 20px'}}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: 40
+        }} className="brands-grid">
+          {BRAND_DATA.map(brand => (
+            <button
+              key={brand.name}
+              onClick={() => onBrandClick(brand.name)}
+              style={{
+                background: THEME.blush,
+                border: 'none',
+                cursor: 'pointer',
+                textAlign: 'left',
+                padding: 0,
+                overflow: 'hidden',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+              }}
+              onMouseOver={e => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 40px rgba(139,41,66,0.15)';
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              <div style={{
+                aspectRatio: '16/9',
+                overflow: 'hidden'
+              }}>
+                <img 
+                  src={brand.image} 
+                  alt={brand.name}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    transition: 'transform 0.6s ease'
+                  }}
+                  onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
+                  onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+                />
+              </div>
+              <div style={{padding: '24px 28px 28px'}}>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12}}>
+                  <h2 style={{
+                    fontFamily: "'Cormorant Garamond', Georgia, serif",
+                    fontSize: 28,
+                    fontWeight: 400,
+                    color: THEME.text
+                  }}>
+                    {brand.name}
+                  </h2>
+                  <span style={{
+                    fontSize: 11,
+                    color: THEME.rose,
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    {brand.origin}
+                  </span>
+                </div>
+                <p style={{
+                  fontSize: 14,
+                  color: THEME.textLight,
+                  lineHeight: 1.7,
+                  marginBottom: 16
+                }}>
+                  {brand.description}
+                </p>
+                <span style={{
+                  fontSize: 12,
+                  color: THEME.burgundy,
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6
+                }}>
+                  Shop {brand.name}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+      
+      {/* Bottom CTA */}
+      <div style={{
+        background: THEME.blush,
+        padding: '60px 20px',
+        textAlign: 'center'
+      }}>
+        <p style={{
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontSize: 28,
+          color: THEME.text,
+          marginBottom: 20
+        }}>
+          Official UK Distributor
+        </p>
+        <p style={{
+          fontSize: 14,
+          color: THEME.textLight,
+          maxWidth: 500,
+          margin: '0 auto'
+        }}>
+          Home & Verse is the exclusive UK distributor for all our partner brands. Shop with confidence knowing you're buying authentic products with full manufacturer warranty.
+        </p>
+      </div>
+      
+      {/* Mobile styles */}
+      <style>{`
+        @media (max-width: 768px) {
+          .brands-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 function AboutPage({ onBack }) {
   return (
     <div style={{maxWidth: 800, margin: '0 auto', padding: '60px 20px'}}>
@@ -1518,6 +1772,10 @@ function AboutPage({ onBack }) {
         
         <p style={{marginBottom: 24}}>
           <strong style={{color: '#222'}}>Relaxound</strong> — The inventors of the original Zwitscherbox, Relaxound brings the calming sounds of nature indoors. These clever German-designed soundboxes deliver moments of birdsong, ocean waves, or forest ambience at the touch of a hand — a simple antidote to the noise of modern life.
+        </p>
+        
+        <p style={{marginBottom: 24}}>
+          <strong style={{color: '#222'}}>Ideas4Seasons</strong> — Specialising in seasonal decorations and festive homeware, Ideas4Seasons brings the magic of every celebration to your home. From Easter bunnies to Christmas ornaments, their thoughtfully designed pieces help mark the moments that matter throughout the year.
         </p>
         
         <p style={{marginBottom: 24}}>
@@ -1840,6 +2098,10 @@ function SustainabilityPage({ onBack }) {
         
         <p style={{marginBottom: 24}}>
           <strong style={{color: '#222'}}>Relaxound</strong> uses sustainably sourced wood and bamboo in their soundboxes, and has committed to carbon-neutral shipping for all their products.
+        </p>
+        
+        <p style={{marginBottom: 24}}>
+          <strong style={{color: '#222'}}>Ideas4Seasons</strong> focuses on creating durable seasonal decorations designed to be cherished and reused year after year, reducing the need for disposable decorations.
         </p>
         
         <p style={{marginBottom: 24}}>
