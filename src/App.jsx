@@ -1532,37 +1532,37 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
 const BRAND_DATA = [
   {
     name: 'Räder',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-lighting.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/51381.jpg',
     description: 'From their studio in Germany, Räder creates poetic porcelain pieces and atmospheric lighting that capture the magic of the seasons. Their iconic light houses and delicate ceramics have become beloved classics, bringing warmth and wonder to homes across Europe for over three decades.',
     origin: 'Germany'
   },
   {
     name: 'Remember',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-gift-1765906153.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/TV1.jpg',
     description: 'Bold, colourful, and unapologetically joyful. This German design house believes life is too short for beige, crafting vibrant homeware and gifts that celebrate colour, pattern, and playful sophistication.',
     origin: 'Germany'
   },
   {
     name: 'My Flame',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/mood/candles_1.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/GL_RND_LC.jpg',
     description: 'Born in the Netherlands, My Flame creates hand-poured soy candles with a twist — each one carries a hidden message revealed as the candle burns. Beautiful fragrance meets meaningful moments.',
     origin: 'Netherlands'
   },
   {
     name: 'Relaxound',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/89576_mood1.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11ZBX0101004.jpg',
     description: 'The inventors of the original Zwitscherbox, Relaxound brings the calming sounds of nature indoors. German-designed soundboxes deliver moments of birdsong, ocean waves, or forest ambience.',
     origin: 'Germany'
   },
   {
     name: 'Ideas4Seasons',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11OBX0201001_mood1.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/35250.jpg',
     description: 'Specialising in seasonal decorations and festive homeware, Ideas4Seasons brings the magic of every celebration to your home. From Easter bunnies to Christmas ornaments.',
     origin: 'Europe'
   },
   {
     name: 'Elvang',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-homedecor.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/elvang/1060_1.jpg',
     description: 'Masters of Scandinavian textile design, Elvang creates luxurious throws, cushions and scarves from the finest alpaca wool. Timeless Danish aesthetics with exceptional warmth.',
     origin: 'Denmark'
   }
