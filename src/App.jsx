@@ -843,7 +843,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
   
   // Mood image URLs (using Unsplash for placeholders - replace with your own)
   const moodImages = {
-    hero: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_1600,q_85,f_auto/mood/christmas_1.jpg',
+    hero: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_1600,q_85,f_auto/mood/homedecor_1.jpg',
     candles: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11JGL0101002_mood1.jpg',
     lighting: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11LSB0201009_mood1.jpg',
     tableware: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11OBX0201001_mood1.jpg',
