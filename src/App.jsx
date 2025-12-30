@@ -1007,7 +1007,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
           }}>
             {NAV_CATEGORIES.map((cat, i) => {
               const categoryImages = {
-                "Valentine's": 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/mood/candles_1.jpg',
+                "Valentine's": 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11JGL0101002_mood1.jpg',
                 'Candles & Fragrance': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/mood/candles_1.jpg',
                 'Lighting': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-lighting.jpg?v=1765906042',
                 'Tableware': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-tableware.jpg?v=1765906042',
