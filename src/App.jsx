@@ -59,9 +59,9 @@ const getImageUrl = (imagePath, size = 'medium') => {
   return `${CLOUDINARY_BASE}/${transforms[size] || transforms.medium}/products/${sku}.jpg`;
 };
 
-// Categories - must match Zoho data exactly
+// Categories - Valentine's is a special filtered category
 const NAV_CATEGORIES = [
-  { name: 'Christmas', slug: 'Christmas' },
+  { name: "Valentine's", slug: 'Valentines', isSpecial: true },
   { name: 'Candles & Fragrance', slug: 'Candles & Fragrance' },
   { name: 'Lighting', slug: 'Lighting' },
   { name: 'Tableware', slug: 'Tableware' },
@@ -115,7 +115,7 @@ export default function App() {
       newTitle = `${catName} | ${baseTitle}`;
       // Category-specific SEO descriptions
       const catDescriptions = {
-        'Christmas': 'Shop Christmas decorations, porcelain light houses, festive candles & seasonal gifts. German-designed Christmas homeware from Räder, Remember & more. Free UK delivery over £30.',
+        "Valentine's": "Shop Valentine's Day gifts featuring hearts & love. Romantic candles, heart decorations & thoughtful gifts for someone special. Free UK delivery over £30.",
         'Candles & Fragrance': 'Luxury soy candles with hidden messages, fragrance diffusers & home scents. Hand-poured Dutch candles from My Flame. Free UK delivery over £30.',
         'Lighting': 'Atmospheric lighting, porcelain candle houses & decorative light objects. German-designed Räder light houses & seasonal illumination. Free UK delivery over £30.',
         'Tableware': 'European tableware, porcelain plates, bowls & dining accessories. Luxury German & Dutch design for your table. Free UK delivery over £30.',
@@ -341,11 +341,20 @@ export default function App() {
   const filterProducts = () => {
     let filtered = [...allProducts];
     if (activeCategory) {
-      // Products can be in multiple categories - check if activeCategory is in the array
-      filtered = filtered.filter(p => {
-        const cats = p.categories || [p.category];
-        return cats.some(c => c.toLowerCase() === activeCategory.toLowerCase());
-      });
+      // Check if it's the special Valentine's category
+      if (activeCategory === 'Valentines') {
+        // Filter for products with 'heart' or 'love' in the name
+        filtered = filtered.filter(p => {
+          const name = (p.name || '').toLowerCase();
+          return name.includes('heart') || name.includes('love');
+        });
+      } else {
+        // Products can be in multiple categories - check if activeCategory is in the array
+        filtered = filtered.filter(p => {
+          const cats = p.categories || [p.category];
+          return cats.some(c => c.toLowerCase() === activeCategory.toLowerCase());
+        });
+      }
     }
     if (activeBrand) {
       filtered = filtered.filter(p => p.brand === activeBrand);
@@ -501,9 +510,9 @@ export default function App() {
 
   return (
     <div style={{minHeight: '100vh', display: 'flex', flexDirection: 'column'}}>
-      {/* Christmas Banner */}
-      <div style={{background: '#1a472a', color: '#fff', padding: '10px 20px', fontSize: 13, textAlign: 'center'}}>
-        🎄 Merry Christmas! Orders will be dispatched from 5th January 2026 🎄
+      {/* Valentine's Banner */}
+      <div style={{background: '#8b2942', color: '#fff', padding: '10px 20px', fontSize: 13, textAlign: 'center'}}>
+        ❤️ Valentine's Day Gifts — Order by 10th February for guaranteed delivery ❤️
       </div>
       
       {/* Announcement Bar */}
@@ -998,7 +1007,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
           }}>
             {NAV_CATEGORIES.map((cat, i) => {
               const categoryImages = {
-                'Christmas': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-christmas-1765906153.jpg',
+                "Valentine's": 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/mood/candles_1.jpg',
                 'Candles & Fragrance': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/mood/candles_1.jpg',
                 'Lighting': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-lighting.jpg?v=1765906042',
                 'Tableware': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-tableware.jpg?v=1765906042',
