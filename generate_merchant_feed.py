@@ -12,7 +12,40 @@ OUTPUT_FILE = Path("/Users/matt/Desktop/home-and-verse/public/google-products.xm
 OUTPUT_CSV = Path("/Users/matt/Desktop/home-and-verse/public/google-products.csv")
 
 SITE_URL = "https://www.homeandverse.co.uk"
-CLOUDINARY_BASE = "https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_jpg/products"
+CLOUDINARY_BASE = "https://res.cloudinary.com/dcfbgveei/image/upload"
+
+def get_image_url(product):
+    """Get the correct image URL for a product, ensuring it's Google-compatible (JPG format)"""
+    sku = product.get('sku', '')
+    brand = product.get('brand', '')
+    image_path = product.get('image_url', '')
+    
+    # If it's already a full Cloudinary URL, use it but ensure JPG format
+    if image_path and 'cloudinary.com' in image_path:
+        # Replace any f_auto with f_jpg for Google compatibility
+        url = image_path.replace('f_auto', 'f_jpg')
+        # Add transforms if missing
+        if '/upload/' in url and 'w_' not in url:
+            url = url.replace('/upload/', '/upload/w_800,q_85,f_jpg/')
+        return url
+    
+    # Handle different brands with different folder structures
+    if brand == 'Elvang':
+        # Elvang images are in elvang/ folder with _1 suffix
+        return f"{CLOUDINARY_BASE}/w_800,q_85,f_jpg/elvang/{sku}_1.jpg"
+    
+    # For products with local image paths like /images/SKU.jpg
+    if image_path:
+        # Extract filename and handle SKU variations (dots to underscores for My Flame etc)
+        filename = image_path.split('/')[-1]
+        # Remove extension and use as-is (already has correct format)
+        sku_part = filename.replace('.jpg', '').replace('.png', '')
+        return f"{CLOUDINARY_BASE}/w_800,q_85,f_jpg/products/{sku_part}.jpg"
+    
+    # Default fallback - construct from SKU
+    # Replace dots with underscores for SKUs like GL.CO.SA
+    safe_sku = sku.replace('.', '_')
+    return f"{CLOUDINARY_BASE}/w_800,q_85,f_jpg/products/{safe_sku}.jpg"
 
 def generate_feed():
     # Load products
@@ -21,17 +54,18 @@ def generate_feed():
     
     products = data.get('products', data)
     
-    # Filter to in-stock items only, excluding test products
+    # Filter to in-stock items with images only, excluding test products
     in_stock = [
         p for p in products 
         if p.get('in_stock', False) 
         and p.get('stock', 0) > 0
+        and p.get('has_image', False)
         and 'test' not in p.get('name', '').lower()
         and not p.get('sku', '').startswith('DMB')  # Internal test SKUs
     ]
     
     print(f"Total products: {len(products)}")
-    print(f"In stock: {len(in_stock)}")
+    print(f"In stock with images: {len(in_stock)}")
     
     # Generate CSV (easier to upload to Merchant Center)
     with open(OUTPUT_CSV, 'w', newline='', encoding='utf-8') as f:
@@ -65,8 +99,8 @@ def generate_feed():
             # Product URL - using SKU parameter
             product_url = f"{SITE_URL}/?product={sku}"
             
-            # Image URL
-            image_url = f"{CLOUDINARY_BASE}/{sku}.jpg"
+            # Image URL - use correct URL based on product data
+            image_url = get_image_url(p)
             
             # Category path for Google
             category_path = ' > '.join(['Home & Garden', 'Home Decor'] + categories[:2])
@@ -109,7 +143,7 @@ def generate_feed():
         categories = p.get('categories', [])
         
         product_url = f"{SITE_URL}/?product={sku}"
-        image_url = f"{CLOUDINARY_BASE}/{sku}.jpg"
+        image_url = get_image_url(p)
         category_path = ' &gt; '.join(['Home &amp; Garden', 'Home Decor'] + [c.replace('&', '&amp;') for c in categories[:2]])
         
         xml_lines.append('<item>')
