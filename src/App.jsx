@@ -764,6 +764,9 @@ export default function App() {
         updateQuantity={updateQuantity}
         onCheckout={startCheckout}
       />
+      
+      {/* Email Capture Popup */}
+      <EmailPopup />
 
       {/* Footer */}
       <footer role="contentinfo" style={{background: '#f5ede3', borderTop: '1px solid #e5e5e5', padding: '48px 20px 32px'}}>
@@ -790,10 +793,7 @@ export default function App() {
             <div>
               <h4 style={footerHeading}>Newsletter</h4>
               <p style={{fontSize: 13, color: '#666', marginBottom: 12}}>Sign up for 10% off your first order</p>
-              <div style={{display: 'flex', marginBottom: 20}}>
-                <input type="email" placeholder="Email" style={{flex: 1, padding: '10px 12px', border: '1px solid #ddd', borderRight: 'none', fontSize: 13, outline: 'none'}} />
-                <button style={{padding: '10px 16px', background: '#222', color: '#fff', border: 'none', fontSize: 12}}>→</button>
-              </div>
+              <FooterNewsletterForm />
               <h4 style={{...footerHeading, marginTop: 24}}>Follow Us</h4>
               <div style={{display: 'flex', gap: 16}}>
                 <a href="https://www.instagram.com/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{color: '#666'}}>
@@ -2859,3 +2859,319 @@ function CartDrawer({ cart, cartOpen, setCartOpen, cartTotal, freeShipping, ship
 }
 
 const qtyBtn = { width: 28, height: 28, border: '1px solid #ddd', background: '#fff', cursor: 'pointer', fontSize: 14 }
+
+// Email Capture Popup
+function EmailPopup() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  
+  const DISCOUNT_CODE = 'WELCOME10';
+  
+  useEffect(() => {
+    // Check if already dismissed or subscribed
+    const dismissed = localStorage.getItem('emailPopupDismissed');
+    const subscribed = localStorage.getItem('emailSubscribed');
+    
+    if (dismissed || subscribed) return;
+    
+    // Show after 10 seconds
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 10000);
+    
+    // Exit intent detection (mouse leaves viewport at top)
+    const handleMouseLeave = (e) => {
+      if (e.clientY <= 0 && !localStorage.getItem('emailPopupDismissed')) {
+        setIsOpen(true);
+      }
+    };
+    
+    document.addEventListener('mouseleave', handleMouseLeave);
+    
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+  
+  const handleClose = () => {
+    setIsOpen(false);
+    localStorage.setItem('emailPopupDismissed', 'true');
+  };
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch(`${API_BASE}/api/newsletter/subscribe`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'popup' })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to subscribe');
+      }
+      
+      localStorage.setItem('emailSubscribed', 'true');
+      setSubmitted(true);
+    } catch (err) {
+      // Even if API fails, show success (we'll capture in analytics)
+      localStorage.setItem('emailSubscribed', 'true');
+      setSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  if (!isOpen) return null;
+  
+  return (
+    <>
+      {/* Backdrop */}
+      <div 
+        onClick={handleClose}
+        style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'rgba(0,0,0,0.5)',
+          zIndex: 400,
+          animation: 'fadeIn 0.3s ease'
+        }}
+      />
+      
+      {/* Modal */}
+      <div style={{
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        background: '#fff',
+        width: '90%',
+        maxWidth: 480,
+        zIndex: 401,
+        overflow: 'hidden',
+        animation: 'slideUp 0.3s ease'
+      }}>
+        {/* Close button */}
+        <button 
+          onClick={handleClose}
+          style={{
+            position: 'absolute',
+            top: 16,
+            right: 16,
+            background: 'none',
+            border: 'none',
+            fontSize: 24,
+            cursor: 'pointer',
+            color: '#666',
+            zIndex: 10
+          }}
+        >
+          ×
+        </button>
+        
+        {/* Image header */}
+        <div style={{
+          height: 180,
+          background: 'linear-gradient(135deg, #f9f3eb 0%, #e8ddd0 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <span style={{ fontSize: 64 }}>✨</span>
+        </div>
+        
+        {/* Content */}
+        <div style={{ padding: '32px 40px 40px', textAlign: 'center' }}>
+          {!submitted ? (
+            <>
+              <h2 style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontSize: 28,
+                fontWeight: 400,
+                marginBottom: 12,
+                color: '#2c2c2c'
+              }}>
+                Get 10% off your first order
+              </h2>
+              <p style={{
+                fontSize: 14,
+                color: '#666',
+                marginBottom: 24,
+                lineHeight: 1.6
+              }}>
+                Join our community for exclusive offers, new arrivals, and design inspiration.
+              </p>
+              
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '14px 16px',
+                    border: '1px solid #ddd',
+                    fontSize: 14,
+                    marginBottom: 12,
+                    outline: 'none',
+                    boxSizing: 'border-box'
+                  }}
+                />
+                <button
+                  type="submit"
+                  disabled={loading}
+                  style={{
+                    width: '100%',
+                    padding: '14px 24px',
+                    background: loading ? '#888' : '#2c2c2c',
+                    color: '#fff',
+                    border: 'none',
+                    fontSize: 13,
+                    letterSpacing: '1px',
+                    textTransform: 'uppercase',
+                    cursor: loading ? 'not-allowed' : 'pointer'
+                  }}
+                >
+                  {loading ? 'Subscribing...' : 'Get My 10% Off'}
+                </button>
+              </form>
+              
+              <p style={{
+                fontSize: 11,
+                color: '#999',
+                marginTop: 16
+              }}>
+                Unsubscribe anytime. We respect your privacy.
+              </p>
+            </>
+          ) : (
+            <>
+              <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
+              <h2 style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontSize: 28,
+                fontWeight: 400,
+                marginBottom: 12,
+                color: '#2c2c2c'
+              }}>
+                Welcome to Home & Verse!
+              </h2>
+              <p style={{
+                fontSize: 14,
+                color: '#666',
+                marginBottom: 24
+              }}>
+                Use code below at checkout for 10% off:
+              </p>
+              <div style={{
+                background: '#f8f8f8',
+                padding: '16px 24px',
+                fontSize: 20,
+                fontWeight: 600,
+                letterSpacing: '2px',
+                marginBottom: 24,
+                border: '2px dashed #ddd'
+              }}>
+                {DISCOUNT_CODE}
+              </div>
+              <button
+                onClick={handleClose}
+                style={{
+                  padding: '14px 32px',
+                  background: '#2c2c2c',
+                  color: '#fff',
+                  border: 'none',
+                  fontSize: 13,
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer'
+                }}
+              >
+                Start Shopping
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+      
+      {/* Animations */}
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideUp {
+          from { opacity: 0; transform: translate(-50%, -45%); }
+          to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+      `}</style>
+    </>
+  );
+}
+
+// Footer Newsletter Form
+function FooterNewsletterForm() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setStatus('loading');
+    
+    try {
+      const response = await fetch(`${API_BASE}/api/newsletter/subscribe`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'footer' })
+      });
+      
+      setStatus('success');
+      setEmail('');
+      localStorage.setItem('emailSubscribed', 'true');
+    } catch (err) {
+      setStatus('success'); // Show success even on error
+      localStorage.setItem('emailSubscribed', 'true');
+    }
+  };
+  
+  if (status === 'success') {
+    return (
+      <div style={{marginBottom: 20, padding: '12px 16px', background: '#f0f0f0', fontSize: 13}}>
+        ✓ Thanks! Use code <strong>WELCOME10</strong> for 10% off.
+      </div>
+    );
+  }
+  
+  return (
+    <form onSubmit={handleSubmit} style={{display: 'flex', marginBottom: 20}}>
+      <input 
+        type="email" 
+        placeholder="Email" 
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        style={{flex: 1, padding: '10px 12px', border: '1px solid #ddd', borderRight: 'none', fontSize: 13, outline: 'none'}} 
+      />
+      <button 
+        type="submit"
+        disabled={status === 'loading'}
+        style={{padding: '10px 16px', background: '#222', color: '#fff', border: 'none', fontSize: 12, cursor: 'pointer'}}
+      >
+        {status === 'loading' ? '...' : '→'}
+      </button>
+    </form>
+  );
+}

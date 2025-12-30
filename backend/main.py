@@ -732,3 +732,103 @@ async def create_test_order():
         "product_name": test_product["name"],
         "result": result
     }
+
+
+# ==========================================
+# NEWSLETTER ENDPOINTS
+# ==========================================
+
+NEWSLETTER_FILE = DATA_DIR / "newsletter_subscribers.json"
+
+
+class NewsletterSubscribeRequest(BaseModel):
+    email: str
+    source: str = "unknown"  # popup, footer, etc.
+
+
+def load_subscribers() -> list:
+    """Load newsletter subscribers from JSON file"""
+    if not NEWSLETTER_FILE.exists():
+        return []
+    with open(NEWSLETTER_FILE) as f:
+        data = json.load(f)
+    return data.get("subscribers", [])
+
+
+def save_subscribers(subscribers: list):
+    """Save newsletter subscribers to JSON file"""
+    with open(NEWSLETTER_FILE, "w") as f:
+        json.dump({"subscribers": subscribers}, f, indent=2)
+
+
+@app.post("/api/newsletter/subscribe")
+async def newsletter_subscribe(request: NewsletterSubscribeRequest):
+    """
+    Subscribe to newsletter.
+    Stores email with timestamp and source.
+    """
+    from datetime import datetime
+    
+    email = request.email.lower().strip()
+    
+    # Basic validation
+    if not email or "@" not in email:
+        raise HTTPException(status_code=400, detail="Invalid email address")
+    
+    subscribers = load_subscribers()
+    
+    # Check if already subscribed
+    existing_emails = [s.get("email", "").lower() for s in subscribers]
+    if email in existing_emails:
+        return {"success": True, "message": "Already subscribed", "new": False}
+    
+    # Add new subscriber
+    subscribers.append({
+        "email": email,
+        "source": request.source,
+        "subscribed_at": datetime.utcnow().isoformat(),
+        "discount_code": "WELCOME10"
+    })
+    
+    save_subscribers(subscribers)
+    
+    return {
+        "success": True,
+        "message": "Successfully subscribed",
+        "new": True,
+        "discount_code": "WELCOME10"
+    }
+
+
+@app.get("/api/newsletter/subscribers")
+async def get_newsletter_subscribers():
+    """
+    Get all newsletter subscribers (admin endpoint).
+    In production, add authentication.
+    """
+    subscribers = load_subscribers()
+    return {
+        "count": len(subscribers),
+        "subscribers": subscribers
+    }
+
+
+@app.get("/api/newsletter/export")
+async def export_newsletter_subscribers():
+    """
+    Export subscribers as CSV for import to Mailchimp/Klaviyo.
+    """
+    subscribers = load_subscribers()
+    
+    # Build CSV content
+    lines = ["email,source,subscribed_at,discount_code"]
+    for s in subscribers:
+        lines.append(f"{s.get('email','')},{s.get('source','')},{s.get('subscribed_at','')},{s.get('discount_code','')}")
+    
+    csv_content = "\n".join(lines)
+    
+    return Response(
+        content=csv_content,
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=newsletter_subscribers.csv"}
+    )
