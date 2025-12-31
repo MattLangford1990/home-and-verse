@@ -106,6 +106,80 @@ export default function App() {
   const [checkoutView, setCheckoutView] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
+  // Browser history support - parse URL to get initial state
+  const parseUrlState = () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('product')) return { view: 'product', productSku: params.get('product') };
+    if (params.get('category')) return { view: 'products', category: params.get('category') };
+    if (params.get('brand')) return { view: 'products', brand: params.get('brand') };
+    if (params.get('view')) return { view: params.get('view') };
+    return { view: 'home' };
+  };
+  
+  // Build URL from state
+  const buildUrl = (newView, options = {}) => {
+    const params = new URLSearchParams();
+    if (newView === 'product' && options.product) {
+      params.set('product', options.product.sku);
+    } else if (newView === 'products') {
+      if (options.category) params.set('category', options.category);
+      if (options.brand) params.set('brand', options.brand);
+    } else if (newView !== 'home') {
+      params.set('view', newView);
+    }
+    const queryString = params.toString();
+    return queryString ? `?${queryString}` : '/';
+  };
+  
+  // Navigate with history
+  const navigate = (newView, options = {}) => {
+    const url = buildUrl(newView, options);
+    window.history.pushState({ view: newView, ...options }, '', url);
+    setView(newView);
+    if (options.category !== undefined) setActiveCategory(options.category);
+    if (options.brand !== undefined) setActiveBrand(options.brand);
+    if (options.product !== undefined) setSelectedProduct(options.product);
+    window.scrollTo(0, 0);
+  };
+  
+  // Handle browser back/forward
+  useEffect(() => {
+    const handlePopState = (event) => {
+      if (event.state) {
+        setView(event.state.view || 'home');
+        setActiveCategory(event.state.category || null);
+        setActiveBrand(event.state.brand || null);
+        if (event.state.product) {
+          setSelectedProduct(event.state.product);
+        } else if (event.state.productSku && allProducts.length > 0) {
+          const product = allProducts.find(p => p.sku === event.state.productSku);
+          if (product) setSelectedProduct(product);
+        } else {
+          setSelectedProduct(null);
+        }
+      } else {
+        const urlState = parseUrlState();
+        setView(urlState.view);
+        setActiveCategory(urlState.category || null);
+        setActiveBrand(urlState.brand || null);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [allProducts]);
+  
+  // Initialize state from URL on first load
+  useEffect(() => {
+    const urlState = parseUrlState();
+    if (urlState.view !== 'home') {
+      setView(urlState.view);
+      if (urlState.category) setActiveCategory(urlState.category);
+      if (urlState.brand) setActiveBrand(urlState.brand);
+      if (urlState.productSku) window._pendingProductSku = urlState.productSku;
+    }
+    window.history.replaceState(urlState, '', window.location.href);
+  }, []);
+  
   useEffect(() => { fetchData(); }, []);
   useEffect(() => { filterProducts(); }, [allProducts, activeCategory, activeBrand, searchQuery, sortBy, priceRange]);
   
@@ -474,42 +548,30 @@ export default function App() {
   const orderTotal = cartTotal + shippingCost;
   
   const navigateTo = (category) => {
-    setActiveCategory(category);
-    setActiveBrand(null);
-    setView('products');
+    navigate('products', { category, brand: null });
     setSearchQuery('');
-    window.scrollTo(0, 0);
   };
   
   const navigateToBrand = (brand) => {
-    setActiveBrand(brand);
-    setActiveCategory(null);
-    setView('products');
+    navigate('products', { brand, category: null });
     setSearchQuery('');
     setBrandsDropdownOpen(false);
-    window.scrollTo(0, 0);
   };
   
   const goHome = () => {
-    setView('home');
-    setActiveCategory(null);
-    setActiveBrand(null);
+    navigate('home', { category: null, brand: null });
     setSearchQuery('');
     setCheckoutView(false);
-    window.scrollTo(0, 0);
   };
   
   const openProduct = (product) => {
-    setSelectedProduct(product);
-    setView('product');
-    window.scrollTo(0, 0);
+    navigate('product', { product });
   };
   
   const startCheckout = () => {
     setCartOpen(false);
     setCheckoutView(true);
-    setView('checkout');
-    window.scrollTo(0, 0);
+    navigate('checkout');
   };
 
   const getCategoryCount = (cat) => {
@@ -583,7 +645,7 @@ export default function App() {
           
           {/* Navigation - Desktop */}
           <nav className="desktop-nav" aria-label="Main navigation" style={{display: 'flex', justifyContent: 'center', gap: 28, borderTop: `1px solid ${THEME.blush}`, paddingTop: 12, paddingBottom: 12}}>
-            <button onClick={() => { setActiveCategory(null); setActiveBrand(null); setView('products'); }} style={navBtn(activeCategory === null && activeBrand === null && view === 'products')}>
+            <button onClick={() => navigate('products', { category: null, brand: null })} style={navBtn(activeCategory === null && activeBrand === null && view === 'products')}>
               New In
             </button>
             {NAV_CATEGORIES.map(cat => (
@@ -651,7 +713,7 @@ export default function App() {
                 type="text" placeholder="Search for products..."
                 aria-label="Search products"
                 value={searchQuery}
-                onChange={(e) => { setSearchQuery(e.target.value); if (view !== 'products') setView('products'); }}
+                onChange={(e) => { setSearchQuery(e.target.value); if (view !== 'products') navigate('products', { category: null, brand: null }); }}
                 autoFocus
                 style={{width: '100%', padding: '12px 16px', border: `1px solid ${THEME.rose}`, fontSize: 14, outline: 'none', background: THEME.cream}}
               />
@@ -675,7 +737,7 @@ export default function App() {
         }}>
           <nav style={{padding: '20px'}}>
             <button 
-              onClick={() => { setActiveCategory(null); setActiveBrand(null); setView('products'); setMobileMenuOpen(false); }} 
+              onClick={() => { navigate('products', { category: null, brand: null }); setMobileMenuOpen(false); }} 
               style={{display: 'block', width: '100%', padding: '16px 0', border: 'none', borderBottom: `1px solid ${THEME.blush}`, background: 'none', fontSize: 16, textAlign: 'left', cursor: 'pointer', color: THEME.text}}
             >
               New In
@@ -711,13 +773,13 @@ export default function App() {
           <CheckoutPage 
             cart={cart} 
             cartTotal={cartTotal} 
-            onBack={() => { setView('home'); setCheckoutView(false); }}
+            onBack={() => { navigate('home'); setCheckoutView(false); }}
             updateQuantity={updateQuantity}
           />
         )}
         
         {view === 'product' && selectedProduct && (
-          <ProductPage product={selectedProduct} onBack={() => setView('products')} onAdd={addToCart} />
+          <ProductPage product={selectedProduct} onBack={() => navigate('products', { category: activeCategory, brand: activeBrand })} onAdd={addToCart} />
         )}
         
         {view === 'products' && (
@@ -747,7 +809,7 @@ export default function App() {
             onProductClick={openProduct}
             onAdd={addToCart}
             getCategoryCount={getCategoryCount}
-            onBrandsClick={() => { setView('brands'); window.scrollTo(0, 0); }}
+            onBrandsClick={() => navigate('brands')}
           />
         )}
         
@@ -823,15 +885,15 @@ export default function App() {
             </div>
             <div>
               <h4 style={footerHeading}>Customer Service</h4>
-              <p onClick={() => { setView('delivery'); window.scrollTo(0, 0); }} style={{...footerLink, cursor: 'pointer'}}>Delivery Information</p>
-              <p onClick={() => { setView('returns'); window.scrollTo(0, 0); }} style={{...footerLink, cursor: 'pointer'}}>Returns & Exchanges</p>
-              <p onClick={() => { setView('faqs'); window.scrollTo(0, 0); }} style={{...footerLink, cursor: 'pointer'}}>FAQs</p>
-              <p onClick={() => { setView('contact'); window.scrollTo(0, 0); }} style={{...footerLink, cursor: 'pointer'}}>Contact Us</p>
+              <p onClick={() => navigate('delivery')} style={{...footerLink, cursor: 'pointer'}}>Delivery Information</p>
+              <p onClick={() => navigate('returns')} style={{...footerLink, cursor: 'pointer'}}>Returns & Exchanges</p>
+              <p onClick={() => navigate('faqs')} style={{...footerLink, cursor: 'pointer'}}>FAQs</p>
+              <p onClick={() => navigate('contact')} style={{...footerLink, cursor: 'pointer'}}>Contact Us</p>
             </div>
             <div>
               <h4 style={footerHeading}>About</h4>
-              <p onClick={() => { setView('about'); window.scrollTo(0, 0); }} style={{...footerLink, cursor: 'pointer'}}>Our Story</p>
-              <p onClick={() => { setView('sustainability'); window.scrollTo(0, 0); }} style={{...footerLink, cursor: 'pointer'}}>Sustainability</p>
+              <p onClick={() => navigate('about')} style={{...footerLink, cursor: 'pointer'}}>Our Story</p>
+              <p onClick={() => navigate('sustainability')} style={{...footerLink, cursor: 'pointer'}}>Sustainability</p>
             </div>
             <div>
               <h4 style={footerHeading}>Newsletter</h4>
@@ -854,9 +916,9 @@ export default function App() {
           <div className="footer-bottom" style={{borderTop: `1px solid ${THEME.rose}`, paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontSize: 12, color: THEME.textLight}}>
             <span>© 2025 Home & Verse. DM Brands Ltd.</span>
             <div style={{display: 'flex', gap: 20}}>
-              <span onClick={() => { setView('privacy'); window.scrollTo(0, 0); }} style={{cursor: 'pointer'}}>Privacy Policy</span>
-              <span onClick={() => { setView('terms'); window.scrollTo(0, 0); }} style={{cursor: 'pointer'}}>Terms & Conditions</span>
-              <span onClick={() => { setView('cookies'); window.scrollTo(0, 0); }} style={{cursor: 'pointer'}}>Cookie Policy</span>
+              <span onClick={() => navigate('privacy')} style={{cursor: 'pointer'}}>Privacy Policy</span>
+              <span onClick={() => navigate('terms')} style={{cursor: 'pointer'}}>Terms & Conditions</span>
+              <span onClick={() => navigate('cookies')} style={{cursor: 'pointer'}}>Cookie Policy</span>
             </div>
           </div>
         </div>
@@ -1532,37 +1594,37 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
 const BRAND_DATA = [
   {
     name: 'Räder',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_pad,b_rgb:faf6f2,q_85,f_auto/products/15111.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/products/15111.jpg',
     description: 'From their studio in Germany, Räder creates poetic porcelain pieces and atmospheric lighting that capture the magic of the seasons. Their iconic light houses and delicate ceramics have become beloved classics, bringing warmth and wonder to homes across Europe for over three decades.',
     origin: 'Germany'
   },
   {
     name: 'Remember',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,q_85,f_auto/products/LD02_mood1.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/products/LD02_mood1.jpg',
     description: 'Bold, colourful, and unapologetically joyful. This German design house believes life is too short for beige, crafting vibrant homeware and gifts that celebrate colour, pattern, and playful sophistication.',
     origin: 'Germany'
   },
   {
     name: 'My Flame',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_pad,b_rgb:faf6f2,q_85,f_auto/products/GL_RND_LC.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/products/GL_RND_LC.jpg',
     description: 'Born in the Netherlands, My Flame creates hand-poured soy candles with a twist — each one carries a hidden message revealed as the candle burns. Beautiful fragrance meets meaningful moments.',
     origin: 'Netherlands'
   },
   {
     name: 'Relaxound',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,q_85,f_auto/products/11ZBX0201004_mood1.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/products/11ZBX0201004_mood1.jpg',
     description: 'The inventors of the original Zwitscherbox, Relaxound brings the calming sounds of nature indoors. German-designed soundboxes deliver moments of birdsong, ocean waves, or forest ambience.',
     origin: 'Germany'
   },
   {
     name: 'Ideas4Seasons',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_pad,b_rgb:faf6f2,q_85,f_auto/products/35250.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/products/35250.jpg',
     description: 'Specialising in seasonal decorations and festive homeware, Ideas4Seasons brings the magic of every celebration to your home. From Easter bunnies to Christmas ornaments.',
     origin: 'Europe'
   },
   {
     name: 'Elvang',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_pad,b_rgb:faf6f2,q_85,f_auto/elvang/7068_1.jpg',
+    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/elvang/7068_1.jpg',
     description: 'Masters of Scandinavian textile design, Elvang creates luxurious throws, cushions and scarves from the finest alpaca wool. Timeless Danish aesthetics with exceptional warmth.',
     origin: 'Denmark'
   }
