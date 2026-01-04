@@ -1174,8 +1174,8 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
             {NAV_CATEGORIES.map((cat, i) => {
               const categoryImages = {
                 "Valentine's": `${CDN_BASE}/products/13145_500.jpg`,
-                "Mother's Day": `${CDN_BASE}/products/11LSB0201009_mood1.jpg`,
-                "Easter": `${CDN_BASE}/products/11OBX0201001_mood1.jpg`,
+                "Mother's Day": `${CDN_BASE}/products/WZ_MOTH_023_06B.png`,
+                "Easter": `${CDN_BASE}/products/WX_EGG_014_05.png`,
                 'Candles & Fragrance': `${CDN_BASE}/mood/candles_1.jpg`,
                 'Lighting': `${CDN_BASE}/heroes/hero-lighting.jpg`,
                 'Tableware': `${CDN_BASE}/heroes/hero-tableware.jpg`,
