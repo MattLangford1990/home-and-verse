@@ -23,20 +23,20 @@ const THEME = {
   textLight: '#6d5459',
 };
 
-// Cloudinary image helper - HIGH RES for website (quality customer experience)
-const CLOUDINARY_BASE = 'https://res.cloudinary.com/dcfbgveei/image/upload';
+// Self-hosted CDN for images (migrated from Cloudinary)
+const CDN_BASE = 'https://cdn.appdmbrands.com';
 
 // Pre-loaded image manifest - no network requests needed
 const IMAGE_EXTRAS = {"EV03": ["EV03_04"], "HA210": ["HA210_230"], "KA25": ["KA25_230911", "KA25_240219"], "KT01": ["KT01_02"], "SK22": ["SK22_23"], "WB20": ["WB20_21"], "WKS29": ["WKS29_30"], "11873": ["11873_1"], "12442": ["12442_4", "12442_500"], "12619": ["12619_01", "12619_02"], "12927": ["12927_01", "12927_012", "12927_03", "12927_04"], "12928": ["12928_01", "12928_02", "12928_03", "12928_04"], "13179": ["13179_01", "13179_02", "13179_03"], "13614": ["13614_01", "13614_02", "13614_03", "13614_04"], "13615": ["13615_01", "13615_02", "13615_03", "13615_04"], "13802": ["13802_01", "13802_02", "13802_03", "13802_04"], "17302": ["17302_3", "17302_500"], "51180": ["51180_2", "51180_3", "51180_4", "51180_5"], "88292": ["88292_2"], "88683": ["88683_01", "88683_02", "88683_03", "88683_04"], "88684": ["88684_01", "88684_02", "88684_03", "88684_04"], "89840": ["89840_01", "89840_02", "89840_03"], "89851": ["89851_01"], "90299": ["90299_2", "90299_3"], "90308": ["90308_1"], "90440": ["90440_1"], "90598": ["90598_1"], "90752": ["90752_2"], "92169": ["92169_1"], "9479": ["9479_3", "9479_500"], "10021": ["10021_500"], "10454": ["10454_500"], "10756": ["10756_500"], "10791": ["10791_500"], "10793": ["10793_500"], "10843": ["10843_500"], "10844": ["10844_500"], "10845": ["10845_500"], "10846": ["10846_500"], "10847": ["10847_500"], "10848": ["10848_500"], "11221": ["11221_500"], "11326": ["11326_500"], "12166": ["12166_500"], "12405": ["12405_500"], "12439": ["12439_500"], "12551": ["12551_500"], "12556": ["12556_500"], "12563": ["12563_500"], "12957": ["12957_500"], "12958": ["12958_500"], "13140": ["13140_500"], "13145": ["13145_500"], "13146": ["13146_500"], "13185": ["13185_500"], "13188": ["13188_500"], "13609": ["13609_500"], "13914": ["13914_01", "13914_500"], "13915": ["13915_04", "13915_500"], "13916": ["13916_03", "13916_500"], "13917": ["13917_02", "13917_500"], "14134": ["14134_500"], "14135": ["14135_500"], "14136": ["14136_500"], "14186": ["14186_500"], "14187": ["14187_500"], "14188": ["14188_500"], "14273": ["14273_500"], "14279": ["14279_500"], "14280": ["14280_500"], "14343": ["14343_500"], "14383": ["14383_500"], "14402": ["14402_500"], "14404": ["14404_500"], "14446": ["14446_500"], "14725": ["14725_500"], "14812": ["14812_500"], "15111": ["15111_500"], "15113": ["15113_500"], "15114": ["15114_500"], "15115": ["15115_500"], "15116": ["15116_500"], "15152": ["15152_02"], "15153": ["15153_03"], "15154": ["15154_01"], "15169": ["15169_500"], "15349": ["15349_500"], "15405": ["15405_500"], "15406": ["15406_500"], "15407": ["15407_500"], "15417": ["15417_500"], "15428": ["15428_500"], "15468": ["15468_500"], "15501": ["15501_500"], "15516": ["15516_500"], "15517": ["15517_500"], "15518": ["15518_500"], "15583": ["15583_500"], "15730": ["15730_500"], "15731": ["15731_500"], "15732": ["15732_500"], "16051": ["16051_500"], "16221": ["16221_500"], "16223": ["16223_500"], "16342": ["16342_500"], "16458": ["16458_500"], "16459": ["16459_500"], "16460": ["16460_500"], "16465": ["16465_500"], "16731": ["16731_500"], "16779": ["16779_500"], "16794": ["16794_500"], "16795": ["16795_500"], "16848": ["16848_500"], "16851": ["16851_500"], "16858": ["16858_500"], "16873": ["16873_500"], "16945": ["16945_500"], "17008": ["17008_500"], "17010": ["17010_500"], "17017": ["17017_500"], "17056": ["17056_500"], "17188": ["17188_500"], "17230": ["17230_500"], "17231": ["17231_500"], "17253": ["17253_500"], "17254": ["17254_500"], "17282": ["17282_500"], "17303": ["17303_500"], "17313": ["17313_500"], "17348": ["17348_500"], "17354": ["17354_500"], "17356": ["17356_500"], "17360": ["17360_500"], "17361": ["17361_500"], "17371": ["17371_500"], "17392": ["17392_500"], "17416": ["17416_500"], "17419": ["17419_500"], "17429": ["17429_500"], "17430": ["17430_500"], "17438": ["17438_500"], "17453": ["17453_500"], "17504": ["17504_500"], "17513": ["17513_500"], "17514": ["17514_500"], "17518": ["17518_500"], "17520": ["17520_500"], "17538": ["17538_500"], "17550": ["17550_500"], "17567": ["17567_500"], "17568": ["17568_500"], "17569": ["17569_500"], "17570": ["17570_500"], "17582": ["17582_500"], "17583": ["17583_500"], "17595": ["17595_500"], "17613": ["17613_500"], "17614": ["17614_500"], "17615": ["17615_500"], "17616": ["17616_500"], "17618": ["17618_500"], "17619": ["17619_500"], "17634": ["17634_500"], "17663": ["17663_500"], "17670": ["17670_500"], "17679": ["17679_500"], "17685": ["17685_500"], "17703": ["17703_500"], "17709": ["17709_500"], "17710": ["17710_500"], "17713": ["17713_500"], "17715": ["17715_500"], "17746": ["17746_500"], "17747": ["17747_500"], "17786": ["17786_500"], "17794": ["17794_500"], "17841": ["17841_500"], "17866": ["17866_500"], "17873": ["17873_500"], "17874": ["17874_500"], "17875": ["17875_500"], "17876": ["17876_500"], "17877": ["17877_500"], "17898": ["17898_500"], "17899": ["17899_500"], "17943": ["17943_500"], "17996": ["17996_500"], "18011": ["18011_500"], "18013": ["18013_500"], "18014": ["18014_500"], "18020": ["18020_500"], "18021": ["18021_500"], "18026": ["18026_500"], "18033": ["18033_500"], "18035": ["18035_500"], "18037": ["18037_500"], "18038": ["18038_500"], "18039": ["18039_500"], "18040": ["18040_500"], "18041": ["18041_500"], "18042": ["18042_500"], "18043": ["18043_500"], "18044": ["18044_500"], "18045": ["18045_500"], "18046": ["18046_500"], "18047": ["18047_500"], "18051": ["18051_500"], "18052": ["18052_500"], "18070": ["18070_500"], "18071": ["18071_500"], "18073": ["18073_500"], "18074": ["18074_500"], "18075": ["18075_500"], "18076": ["18076_500"], "18079": ["18079_500"], "18081": ["18081_500"], "18082": ["18082_500"], "18085": ["18085_500"], "18087": ["18087_500"], "18094": ["18094_500"], "18122": ["18122_500"], "18150": ["18150_500"], "18156": ["18156_500"], "18164": ["18164_500"], "18166": ["18166_500"], "18167": ["18167_500"], "18169": ["18169_500"], "18172": ["18172_500"], "18173": ["18173_500"], "18175": ["18175_500"], "18177": ["18177_500"], "18180": ["18180_500"], "18198": ["18198_500"], "18199": ["18199_500"], "18200": ["18200_500"], "18201": ["18201_500"], "18203": ["18203_500"], "18204": ["18204_500"], "18209": ["18209_500"], "18210": ["18210_500"], "18211": ["18211_500"], "18213": ["18213_01", "18213_500"], "18214": ["18214_500"], "18226": ["18226_500"], "18227": ["18227_500"], "18228": ["18228_500"], "18229": ["18229_500"], "18247": ["18247_500"], "18248": ["18248_500"], "18269": ["18269_500"], "18270": ["18270_500"], "18271": ["18271_500"], "18272": ["18272_500"], "18273": ["18273_500"], "18274": ["18274_500"], "18284": ["18284_500"], "18286": ["18286_500"], "18288": ["18288_500"], "18291": ["18291_500"], "18300": ["18300_500"], "18309": ["18309_500"], "18316": ["18316_500"], "18325": ["18325_500"], "18331": ["18331_500"], "18335": ["18335_500"], "18338": ["18338_500"], "18342": ["18342_500"], "18343": ["18343_500"], "18344": ["18344_500"], "18348": ["18348_500"], "18349": ["18349_500"], "18359": ["18359_500"], "18360": ["18360_500"], "18365": ["18365_500"], "18366": ["18366_500"], "18367": ["18367_500"], "18369": ["18369_500"], "18370": ["18370_500"], "18371": ["18371_500"], "18374": ["18374_500"], "18378": ["18378_500"], "18379": ["18379_500"], "18380": ["18380_500"], "18381": ["18381_500"], "18397": ["18397_500"], "18398": ["18398_500"], "51240": ["51240_1200"], "51241": ["51241_1200"], "51242": ["51242_1200"], "51244": ["51244_1200"], "51245": ["51245_1200"], "51260": ["51260_1200"], "51265": ["51265_1200"], "51266": ["51266_3526"], "51268": ["51268_2"], "51284": ["51284_2647"], "51287": ["51287_1200"], "51370": ["51370_1"], "51371": ["51371_1"], "51372": ["51372_1"], "51373": ["51373_1"], "51374": ["51374_1"], "51375": ["51375_4"], "51391": ["51391_1200"], "51394": ["51394_1200"], "51420": ["51420_500"], "51430": ["51430_1200"], "51431": ["51431_1200"], "51432": ["51432_1200"], "51433": ["51433_1200"], "51434": ["51434_1200"], "51435": ["51435_1200"], "51450": ["51450_1"], "51452": ["51452_2"], "51471": ["51471_2"], "51556": ["51556_500"], "51599": ["51599_500"], "51600": ["51600_500"], "51601": ["51601_500"], "51602": ["51602_500"], "51603": ["51603_500"], "51754": ["51754_500"], "51755": ["51755_500"], "51756": ["51756_500"], "51757": ["51757_500"], "88950": ["88950_500"], "89023": ["89023_500"], "89572": ["89572_04"], "89576": ["89576_01", "89576_02", "89576_03", "89576_04"], "89577": ["89577_02", "89577_03", "89577_04"], "89802": ["89802_500"], "89803": ["89803_500"], "89804": ["89804_500"], "89805": ["89805_500"], "90337": ["90337_500"], "90338": ["90338_500"], "90340": ["90340_500"], "90341": ["90341_500"], "90446": ["90446_500"], "90535": ["90535_500"], "90536": ["90536_500"], "90629": ["90629_500"], "90682": ["90682_500"], "90683": ["90683_500"], "90694": ["90694_500"], "90699": ["90699_500"], "90704": ["90704_500"], "92144": ["92144_500"], "92182": ["92182_500"], "92227": ["92227_500"], "92302": ["92302_001"], "92547": ["92547_500"], "92589": ["92589_500"], "92590": ["92590_500"], "9735": ["9735_500"]};
 
-// Relaxound sound files mapping
+// Relaxound sound files mapping - served from CDN
 const RELAXOUND_SOUNDS = {
-  'zwitscherbox': 'https://res.cloudinary.com/dcfbgveei/video/upload/sounds/zwitscherbox.mp3',
-  'birdybox': 'https://res.cloudinary.com/dcfbgveei/video/upload/sounds/zwitscherbox.mp3',
-  'lakesidebox': 'https://res.cloudinary.com/dcfbgveei/video/upload/sounds/lakesidebox.mp3',
-  'oceanbox': 'https://res.cloudinary.com/dcfbgveei/video/upload/sounds/oceanbox.mp3',
-  'seabird': 'https://res.cloudinary.com/dcfbgveei/video/upload/sounds/oceanbox.mp3',
-  'junglebox': 'https://res.cloudinary.com/dcfbgveei/video/upload/sounds/junglebox.mp3',
+  'zwitscherbox': `${CDN_BASE}/sounds/zwitscherbox.mp3`,
+  'birdybox': `${CDN_BASE}/sounds/zwitscherbox.mp3`,
+  'lakesidebox': `${CDN_BASE}/sounds/lakesidebox.mp3`,
+  'oceanbox': `${CDN_BASE}/sounds/oceanbox.mp3`,
+  'seabird': `${CDN_BASE}/sounds/oceanbox.mp3`,
+  'junglebox': `${CDN_BASE}/sounds/junglebox.mp3`,
 };
 
 const getRelaxoundSound = (productName) => {
@@ -51,22 +51,20 @@ const getRelaxoundSound = (productName) => {
 const getImageUrl = (imagePath, size = 'medium') => {
   if (!imagePath) return null;
   
-  // Size presets - high quality for website
-  const transforms = {
-    large: 'w_1200,q_85,f_auto',     // Product page / lightbox - full quality
-    medium: 'w_600,q_80,f_auto',     // Product cards
-    thumb: 'w_150,q_70,f_auto',      // Thumbnails
-  };
+  // If it's already a full CDN URL, return as-is
+  if (imagePath.includes('cdn.appdmbrands.com')) {
+    return imagePath;
+  }
   
-  // If it's already a full Cloudinary URL, insert transforms after /upload/
-  if (imagePath.includes('res.cloudinary.com')) {
-    return imagePath.replace('/upload/', `/upload/${transforms[size] || transforms.medium}/`);
+  // If it's a full URL path with folder (e.g., /mood/filename.jpg), use directly
+  if (imagePath.startsWith('/')) {
+    return `${CDN_BASE}${imagePath}`;
   }
   
   // Otherwise, build URL from path like /images/SKU.jpg
   const filename = imagePath.split('/').pop();
   const sku = filename.replace(/\.(jpg|jpeg|png)$/i, '');
-  return `${CLOUDINARY_BASE}/${transforms[size] || transforms.medium}/products/${sku}.jpg`;
+  return `${CDN_BASE}/products/${sku}.jpg`;
 };
 
 // Categories - Valentine's, Mother's Day and Easter are special filtered categories
@@ -939,12 +937,12 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
   
   // Mood image URLs (using Unsplash for placeholders - replace with your own)
   const moodImages = {
-    hero: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_1600,q_85,f_auto/mood/homedecor_1.jpg',
-    candles: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11JGL0101002_mood1.jpg',
-    lighting: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11LSB0201009_mood1.jpg',
-    tableware: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11OBX0201001_mood1.jpg',
-    living: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_1200,q_85,f_auto/mood/homedecor_1.jpg',
-    christmas: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_1200,q_85,f_auto/mood/christmas_2.jpg',
+    hero: `${CDN_BASE}/mood/homedecor_1.jpg`,
+    candles: `${CDN_BASE}/products/11JGL0101002_mood1.jpg`,
+    lighting: `${CDN_BASE}/products/11LSB0201009_mood1.jpg`,
+    tableware: `${CDN_BASE}/products/11OBX0201001_mood1.jpg`,
+    living: `${CDN_BASE}/mood/homedecor_1.jpg`,
+    christmas: `${CDN_BASE}/mood/christmas_2.jpg`,
   };
   
   return (
@@ -1103,14 +1101,14 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
           }}>
             {NAV_CATEGORIES.map((cat, i) => {
               const categoryImages = {
-                "Valentine's": 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/products/17713_500.jpg',
-                "Mother's Day": 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11LSB0201009_mood1.jpg',
-                "Easter": 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/products/11OBX0201001_mood1.jpg',
-                'Candles & Fragrance': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/mood/candles_1.jpg',
-                'Lighting': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-lighting.jpg?v=1765906042',
-                'Tableware': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-tableware.jpg?v=1765906042',
-                'Home Décor': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-homedecor.jpg?v=1765906042',
-                'Gifts': 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,q_85,f_auto/heroes/hero-gift-1765906153.jpg'
+                "Valentine's": `${CDN_BASE}/products/17713_500.jpg`,
+                "Mother's Day": `${CDN_BASE}/products/11LSB0201009_mood1.jpg`,
+                "Easter": `${CDN_BASE}/products/11OBX0201001_mood1.jpg`,
+                'Candles & Fragrance': `${CDN_BASE}/mood/candles_1.jpg`,
+                'Lighting': `${CDN_BASE}/heroes/hero-lighting.jpg`,
+                'Tableware': `${CDN_BASE}/heroes/hero-tableware.jpg`,
+                'Home Décor': `${CDN_BASE}/heroes/hero-homedecor.jpg`,
+                'Gifts': `${CDN_BASE}/heroes/hero-gift-1765906153.jpg`
               };
               return (
                 <button 
@@ -1594,37 +1592,37 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
 const BRAND_DATA = [
   {
     name: 'Räder',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/products/15111.jpg',
+    image: `${CDN_BASE}/products/15111.jpg`,
     description: 'From their studio in Germany, Räder creates poetic porcelain pieces and atmospheric lighting that capture the magic of the seasons. Their iconic light houses and delicate ceramics have become beloved classics, bringing warmth and wonder to homes across Europe for over three decades.',
     origin: 'Germany'
   },
   {
     name: 'Remember',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/products/LD02_mood1.jpg',
+    image: `${CDN_BASE}/products/LD02_mood1.jpg`,
     description: 'Bold, colourful, and unapologetically joyful. This German design house believes life is too short for beige, crafting vibrant homeware and gifts that celebrate colour, pattern, and playful sophistication.',
     origin: 'Germany'
   },
   {
     name: 'My Flame',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/products/GL_RND_LC.jpg',
+    image: `${CDN_BASE}/products/GL_RND_LC.jpg`,
     description: 'Born in the Netherlands, My Flame creates hand-poured soy candles with a twist — each one carries a hidden message revealed as the candle burns. Beautiful fragrance meets meaningful moments.',
     origin: 'Netherlands'
   },
   {
     name: 'Relaxound',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/products/11ZBX0201004_mood1.jpg',
+    image: `${CDN_BASE}/products/11ZBX0201004_mood1.jpg`,
     description: 'The inventors of the original Zwitscherbox, Relaxound brings the calming sounds of nature indoors. German-designed soundboxes deliver moments of birdsong, ocean waves, or forest ambience.',
     origin: 'Germany'
   },
   {
     name: 'Ideas4Seasons',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/products/35250.jpg',
+    image: `${CDN_BASE}/products/35250.jpg`,
     description: 'Specialising in seasonal decorations and festive homeware, Ideas4Seasons brings the magic of every celebration to your home. From Easter bunnies to Christmas ornaments.',
     origin: 'Europe'
   },
   {
     name: 'Elvang',
-    image: 'https://res.cloudinary.com/dcfbgveei/image/upload/w_800,h_450,c_fill,g_auto,q_85,f_auto/elvang/7068_1.jpg',
+    image: `${CDN_BASE}/elvang/7068_1.jpg`,
     description: 'Masters of Scandinavian textile design, Elvang creates luxurious throws, cushions and scarves from the finest alpaca wool. Timeless Danish aesthetics with exceptional warmth.',
     origin: 'Denmark'
   }
