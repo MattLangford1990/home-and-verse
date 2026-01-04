@@ -1175,7 +1175,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
               const categoryImages = {
                 "Valentine's": `${CDN_BASE}/products/13145_500.jpg`,
                 "Mother's Day": `${CDN_BASE}/products/WZ_MOTH_023_06B.png`,
-                "Easter": `${CDN_BASE}/products/WX_EGG_014_05.png`,
+                "Easter": `${CDN_BASE}/products/WX_EGG_014_08.png`,
                 'Candles & Fragrance': `${CDN_BASE}/mood/candles_1.jpg`,
                 'Lighting': `${CDN_BASE}/heroes/hero-lighting.jpg`,
                 'Tableware': `${CDN_BASE}/heroes/hero-tableware.jpg`,
