@@ -1017,7 +1017,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
     lighting: `${CDN_BASE}/products/11LSB0201009_mood1.jpg`,
     tableware: `${CDN_BASE}/products/11OBX0201001_mood1.jpg`,
     living: `${CDN_BASE}/mood/homedecor_1.jpg`,
-    christmas: `${CDN_BASE}/mood/christmas_2.jpg`,
+    gifts: `${CDN_BASE}/mood/gifts_1.jpg`,
   };
   
   return (
@@ -1409,7 +1409,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
         </section>
       )}
 
-      {/* Full Width Mood Banner */}
+      {/* Full Width Mood Banner - Gifts */}
       <section style={{
         position: 'relative',
         height: '60vh',
@@ -1422,7 +1422,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
         <div style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: `url(${moodImages.christmas})`,
+          backgroundImage: `url(${moodImages.gifts})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed'
@@ -1445,7 +1445,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
             marginBottom: 20,
             textTransform: 'uppercase'
           }}>
-            The Festive Edit
+            The Gift Edit
           </p>
           <h2 style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
@@ -1455,11 +1455,11 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
             lineHeight: 1.2,
             marginBottom: 32
           }}>
-            Make your home magical<br/>
-            <em style={{fontStyle: 'italic'}}>this Christmas</em>
+            Thoughtful gifts<br/>
+            <em style={{fontStyle: 'italic'}}>for every occasion</em>
           </h2>
           <button 
-            onClick={() => onCategoryClick('Christmas')}
+            onClick={() => onCategoryClick('Gifts')}
             style={{
               padding: '16px 48px',
               background: '#d4c5a9',
@@ -1477,7 +1477,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
               e.currentTarget.style.background = '#d4c5a9'; 
             }}
           >
-            Shop Christmas
+            Shop Gifts
           </button>
         </div>
       </section>
