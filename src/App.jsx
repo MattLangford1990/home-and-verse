@@ -1182,6 +1182,17 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
                 'Home Décor': `${CDN_BASE}/heroes/hero-homedecor.jpg`,
                 'Gifts': `${CDN_BASE}/heroes/hero-gift-1765906153.jpg`
               };
+              // Custom object-position for each tile to focus on key content
+              const imagePositions = {
+                "Valentine's": 'center 40%',
+                "Mother's Day": 'center 60%',
+                "Easter": 'center 30%',
+                'Candles & Fragrance': 'center center',
+                'Lighting': 'center center',
+                'Tableware': 'center center',
+                'Home Décor': 'center center',
+                'Gifts': 'center center'
+              };
               return (
                 <button 
                   key={cat.slug} 
@@ -1204,6 +1215,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
+                      objectPosition: imagePositions[cat.name] || 'center center',
                       transition: 'transform 0.6s ease'
                     }}
                     onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
