@@ -1173,7 +1173,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
           }}>
             {NAV_CATEGORIES.map((cat, i) => {
               const categoryImages = {
-                "Valentine's": `${CDN_BASE}/products/17713_500.jpg`,
+                "Valentine's": `${CDN_BASE}/products/13145_500.jpg`,
                 "Mother's Day": `${CDN_BASE}/products/11LSB0201009_mood1.jpg`,
                 "Easter": `${CDN_BASE}/products/11OBX0201001_mood1.jpg`,
                 'Candles & Fragrance': `${CDN_BASE}/mood/candles_1.jpg`,
