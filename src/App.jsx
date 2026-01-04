@@ -62,6 +62,18 @@ const getImageUrl = (imagePath, size = 'medium', extension = 'jpg') => {
     return imagePath;
   }
   
+  // Convert Cloudinary URLs to CDN URLs (e.g., Elvang products)
+  if (imagePath.includes('res.cloudinary.com')) {
+    // Extract folder and filename from Cloudinary URL
+    // e.g., .../elvang/1_1.jpg -> /elvang/1_1.jpg
+    const match = imagePath.match(/\/(elvang|products|mood|heroes)\/([^?]+)/);
+    if (match) {
+      const folder = match[1];
+      const filename = match[2].replace(/\.(jpg|jpeg|png)$/i, '');
+      return `${CDN_BASE}/${folder}/${filename}.${extension}`;
+    }
+  }
+  
   // If it's a path like /images/SKU.jpg, extract SKU and use /products/
   if (imagePath.startsWith('/images/')) {
     const filename = imagePath.replace('/images/', '');
