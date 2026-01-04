@@ -942,6 +942,9 @@ export default function App() {
       
       {/* Email Capture Popup */}
       <EmailPopup />
+      
+      {/* Cookie Consent Banner */}
+      <CookieConsent />
 
       {/* Footer */}
       <footer role="contentinfo" style={{background: THEME.blush, borderTop: `1px solid ${THEME.rose}`, padding: '48px 20px 32px'}}>
@@ -3618,5 +3621,94 @@ function FooterNewsletterForm() {
         {status === 'loading' ? '...' : '→'}
       </button>
     </form>
+  );
+}
+
+// Cookie Consent Banner
+function CookieConsent() {
+  const [show, setShow] = useState(false);
+  
+  useEffect(() => {
+    // Check if user has already consented
+    const consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+      // Show banner after a short delay
+      const timer = setTimeout(() => setShow(true), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+  
+  const acceptAll = () => {
+    localStorage.setItem('cookieConsent', 'all');
+    setShow(false);
+  };
+  
+  const acceptEssential = () => {
+    localStorage.setItem('cookieConsent', 'essential');
+    setShow(false);
+    // Disable GA tracking
+    window['ga-disable-G-ZZJZNJJ531'] = true;
+  };
+  
+  if (!show) return null;
+  
+  return (
+    <div style={{
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      background: 'white',
+      borderTop: `1px solid ${THEME.rose}`,
+      padding: '20px',
+      boxShadow: '0 -4px 20px rgba(0,0,0,0.1)',
+      zIndex: 9999,
+      animation: 'cookieSlideUp 0.3s ease'
+    }}>
+      <style>{`
+        @keyframes cookieSlideUp {
+          from { transform: translateY(100%); }
+          to { transform: translateY(0); }
+        }
+      `}</style>
+      <div style={{maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16}}>
+        <div style={{flex: 1, minWidth: 280}}>
+          <p style={{fontSize: 14, color: THEME.text, margin: 0}}>
+            We use cookies to enhance your experience and analyse site traffic. 
+            <a href="/?view=cookies" style={{color: THEME.burgundy, marginLeft: 4}}>Learn more</a>
+          </p>
+        </div>
+        <div style={{display: 'flex', gap: 12}}>
+          <button
+            onClick={acceptEssential}
+            style={{
+              padding: '10px 20px',
+              background: 'transparent',
+              border: `1px solid ${THEME.rose}`,
+              color: THEME.text,
+              fontSize: 13,
+              cursor: 'pointer',
+              borderRadius: 4
+            }}
+          >
+            Essential Only
+          </button>
+          <button
+            onClick={acceptAll}
+            style={{
+              padding: '10px 20px',
+              background: THEME.burgundy,
+              border: 'none',
+              color: 'white',
+              fontSize: 13,
+              cursor: 'pointer',
+              borderRadius: 4
+            }}
+          >
+            Accept All
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
