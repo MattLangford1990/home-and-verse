@@ -62,7 +62,15 @@ const getImageUrl = (imagePath, size = 'medium', extension = 'jpg') => {
     return imagePath;
   }
   
-  // If it's a full URL path with folder (e.g., /mood/filename.jpg), use directly
+  // If it's a path like /images/SKU.jpg, extract SKU and use /products/
+  if (imagePath.startsWith('/images/')) {
+    const filename = imagePath.replace('/images/', '');
+    const sku = filename.replace(/\.(jpg|jpeg|png)$/i, '');
+    const cdnSku = skuToCdnId(sku);
+    return `${CDN_BASE}/products/${cdnSku}.${extension}`;
+  }
+  
+  // If it's another full URL path with folder (e.g., /mood/filename.jpg), use directly
   if (imagePath.startsWith('/')) {
     return `${CDN_BASE}${imagePath}`;
   }
