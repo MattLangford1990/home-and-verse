@@ -48,6 +48,143 @@ const getRelaxoundSound = (productName) => {
   return RELAXOUND_SOUNDS.zwitscherbox;
 };
 
+// Google Merchant SEO - Optimized title generation
+const getOptimizedTitle = (product) => {
+  const { name, brand } = product;
+  let title = name.replace(/\s*\|\s*\w+(\s+\w+)?\s*$/, '').trim();
+  title = title.replace(new RegExp(`^${brand}\\s+`, 'i'), '').trim();
+  title = title.replace(/^Rader\s+/i, '').replace(/^My Flame Lifestyle\s+/i, '').replace(/^My Flame\s+/i, '').trim();
+  
+  const titleLower = title.toLowerCase();
+  
+  if (brand === 'Relaxound') {
+    if (titleLower.includes('zwitscherbox')) {
+      const variant = title.match(/Zwitscherbox\s+(\w+)/i)?.[1] || '';
+      return `Relaxound Zwitscherbox ${variant} - Birdsong Box Motion Sensor Nature Sounds`.trim();
+    }
+    if (titleLower.includes('birdybox')) return `Relaxound ${title} - Portable USB Birdsong Box`;
+    if (titleLower.includes('lakeside')) return 'Relaxound Lakesidebox - Water & Nature Sounds Relaxation Box';
+    if (titleLower.includes('seaside')) return 'Relaxound Seasidebox - Ocean Wave Sounds Relaxation Box';
+    if (titleLower.includes('ocean')) return 'Relaxound Oceanbox - Sea & Seagull Sounds Relaxation Box';
+    if (titleLower.includes('jungle')) return 'Relaxound Junglebox - Tropical Rainforest Sounds Box';
+    return `Relaxound ${title} - Nature Sound Machine`;
+  }
+  
+  if (brand === 'Räder') {
+    if (titleLower.includes('light') && titleLower.includes('house')) return `Räder ${title} - Porcelain Tealight House`;
+    if (titleLower.includes('light object')) return `Räder ${title} - Porcelain Tealight Holder`;
+    if (titleLower.includes('vase')) return `Räder ${title} - German Porcelain Vase`;
+    if (titleLower.includes('cup')) return `Räder ${title} - German Porcelain Cup`;
+    if (titleLower.includes('plate')) return `Räder ${title} - German Porcelain Plate`;
+    if (titleLower.includes('bowl')) return `Räder ${title} - German Porcelain Bowl`;
+    if (titleLower.includes('easter')) return `Räder ${title} - German Easter Decoration`;
+    if (['christmas', 'santa', 'advent'].some(x => titleLower.includes(x))) return `Räder ${title} - German Christmas Decoration`;
+    return `Räder ${title} - German Porcelain Décor`;
+  }
+  
+  if (brand === 'My Flame') {
+    if (titleLower.includes('soy candle')) {
+      const msg = title.replace(/Scented soy candle in glass jar\s*(with \w+\s*)*/i, '').slice(0, 50);
+      return `My Flame '${msg}' Hidden Message Candle - Soy Wax Gift`;
+    }
+    if (titleLower.includes('diffuser')) return `My Flame ${title.slice(0, 40)} - Reed Diffuser Home Fragrance`;
+    if (titleLower.includes('outdoor')) return `My Flame ${title.slice(0, 40)} - Citronella Garden Candle`;
+    return `My Flame ${title.slice(0, 50)} - Dutch Gift`;
+  }
+  
+  if (brand === 'Remember') {
+    if (titleLower.includes('lamp')) return `Remember ${title} - Colourful German Designer Lamp`;
+    if (titleLower.includes('lantern')) return `Remember ${title} - Colourful German Lantern`;
+    if (titleLower.includes('memo')) return `Remember ${title} - Memory Game Gift`;
+    if (titleLower.includes('game')) return `Remember ${title} - German Family Game`;
+    return `Remember ${title} - Colourful German Design`;
+  }
+  
+  if (brand === 'Elvang') {
+    if (titleLower.includes('throw') || titleLower.includes('blanket')) return `Elvang ${title} - Luxury Danish Alpaca Throw`;
+    if (titleLower.includes('cushion')) return `Elvang ${title} - Danish Alpaca Cushion`;
+    if (titleLower.includes('rug')) return `Elvang ${title} - Danish Design Rug`;
+    if (titleLower.includes('scarf')) return `Elvang ${title} - Danish Alpaca Scarf`;
+    return `Elvang ${title} - Danish Design`;
+  }
+  
+  return `${brand} ${title}`.slice(0, 150);
+};
+
+// Google Merchant - Extract colour from product
+const extractColour = (product) => {
+  const text = `${product.name} ${product.description || ''}`.toLowerCase();
+  const colours = {
+    'white': 'White', 'black': 'Black', 'grey': 'Grey', 'gray': 'Grey',
+    'blue': 'Blue', 'navy': 'Navy Blue', 'green': 'Green', 'mint': 'Mint Green',
+    'sage': 'Sage Green', 'red': 'Red', 'burgundy': 'Burgundy', 'pink': 'Pink',
+    'rose': 'Rose', 'coral': 'Coral', 'yellow': 'Yellow', 'orange': 'Orange',
+    'purple': 'Purple', 'brown': 'Brown', 'beige': 'Beige', 'cream': 'Cream',
+    'sand': 'Sand', 'taupe': 'Taupe', 'camel': 'Camel', 'natural': 'Natural',
+    'oak': 'Oak', 'walnut': 'Walnut', 'gold': 'Gold', 'silver': 'Silver',
+    'multicolour': 'Multicolour', 'multi': 'Multicolour'
+  };
+  for (const [key, value] of Object.entries(colours)) {
+    if (text.includes(key)) return value;
+  }
+  return null;
+};
+
+// Google Merchant - Extract material from product
+const extractMaterial = (product) => {
+  const text = `${product.name} ${product.description || ''}`.toLowerCase();
+  const { brand } = product;
+  
+  if (brand === 'Räder') return 'Porcelain';
+  if (brand === 'Elvang') return text.includes('alpaca') ? 'Alpaca Wool' : 'Wool Blend';
+  if (brand === 'My Flame' && text.includes('candle')) return 'Soy Wax';
+  if (brand === 'Relaxound') {
+    if (text.includes('oak')) return 'Oak Wood';
+    if (text.includes('walnut')) return 'Walnut Wood';
+    if (text.includes('bamboo')) return 'Bamboo';
+    return 'Wood';
+  }
+  
+  const materials = ['porcelain', 'ceramic', 'glass', 'wood', 'cotton', 'wool', 'metal', 'paper'];
+  for (const m of materials) {
+    if (text.includes(m)) return m.charAt(0).toUpperCase() + m.slice(1);
+  }
+  return null;
+};
+
+// Google Merchant - Estimate shipping weight
+const estimateWeight = (product) => {
+  const { name, brand } = product;
+  const titleLower = name.toLowerCase();
+  
+  if (brand === 'Elvang') {
+    if (titleLower.includes('throw') || titleLower.includes('blanket')) return 1.2;
+    if (titleLower.includes('cushion')) return 0.4;
+    if (titleLower.includes('rug')) return titleLower.includes('170x240') ? 3.0 : 1.5;
+    if (titleLower.includes('scarf')) return 0.2;
+    return 0.5;
+  }
+  if (brand === 'Relaxound') return titleLower.includes('birdybox') ? 0.15 : 0.3;
+  if (brand === 'Räder') {
+    if (titleLower.includes('light house') && titleLower.includes('large')) return 0.8;
+    if (titleLower.includes('vase') && titleLower.includes('large')) return 0.8;
+    if (titleLower.includes('cup') || titleLower.includes('mug')) return 0.25;
+    return 0.3;
+  }
+  if (brand === 'My Flame') {
+    if (titleLower.includes('outdoor')) return 0.8;
+    if (titleLower.includes('tin')) return 0.15;
+    if (titleLower.includes('giftbox') || titleLower.includes('spa')) return 0.6;
+    return 0.35;
+  }
+  if (brand === 'Remember') {
+    if (titleLower.includes('memo') || titleLower.includes('game')) return 0.8;
+    if (titleLower.includes('lamp')) return 0.4;
+    return 0.3;
+  }
+  return 0.5;
+};
+
 // Convert SKU to CDN format (dots -> underscores for My Flame products)
 const skuToCdnId = (sku) => {
   if (!sku) return null;
@@ -337,12 +474,18 @@ export default function App() {
     // Get primary category for breadcrumb
     const primaryCategory = product.categories?.[0] || 'Home Décor';
     
+    // Google Merchant optimizations
+    const optimizedTitle = getOptimizedTitle(product);
+    const colour = extractColour(product);
+    const material = extractMaterial(product);
+    const weight = estimateWeight(product);
+    
     const schema = {
       "@context": "https://schema.org",
       "@graph": [
         {
           "@type": "Product",
-          "name": product.name,
+          "name": optimizedTitle,
           "description": product.description || `${product.name} by ${product.brand}`,
           "sku": product.sku,
           "brand": {
@@ -460,6 +603,23 @@ export default function App() {
     if (product.ean) {
       schema["@graph"][0].gtin13 = product.ean;
     }
+    
+    // Add colour if detected
+    if (colour) {
+      schema["@graph"][0].color = colour;
+    }
+    
+    // Add material if detected
+    if (material) {
+      schema["@graph"][0].material = material;
+    }
+    
+    // Add weight
+    schema["@graph"][0].weight = {
+      "@type": "QuantitativeValue",
+      "value": weight,
+      "unitCode": "KGM"
+    };
     
     const script = document.createElement('script');
     script.type = 'application/ld+json';
