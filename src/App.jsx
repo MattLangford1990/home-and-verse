@@ -48,7 +48,13 @@ const getRelaxoundSound = (productName) => {
   return RELAXOUND_SOUNDS.zwitscherbox;
 };
 
-const getImageUrl = (imagePath, size = 'medium') => {
+// Convert SKU to CDN format (dots -> underscores for My Flame products)
+const skuToCdnId = (sku) => {
+  if (!sku) return null;
+  return sku.replace(/\./g, '_');
+};
+
+const getImageUrl = (imagePath, size = 'medium', extension = 'jpg') => {
   if (!imagePath) return null;
   
   // If it's already a full CDN URL, return as-is
@@ -61,10 +67,56 @@ const getImageUrl = (imagePath, size = 'medium') => {
     return `${CDN_BASE}${imagePath}`;
   }
   
-  // Otherwise, build URL from path like /images/SKU.jpg
+  // Otherwise, build URL from SKU - convert dots to underscores
   const filename = imagePath.split('/').pop();
   const sku = filename.replace(/\.(jpg|jpeg|png)$/i, '');
-  return `${CDN_BASE}/products/${sku}.jpg`;
+  const cdnSku = skuToCdnId(sku);
+  return `${CDN_BASE}/products/${cdnSku}.${extension}`;
+};
+
+// ProductImage component that tries jpg first, then png as fallback
+const ProductImage = ({ src, alt, style, className, loading = 'lazy', onMouseEnter, onMouseLeave, size = 'medium' }) => {
+  const [extension, setExtension] = useState('jpg');
+  const [failed, setFailed] = useState(false);
+  
+  // Build the actual URL with current extension
+  const imageUrl = src ? getImageUrl(src, size, extension) : null;
+  
+  const handleError = () => {
+    if (extension === 'jpg') {
+      // Try png as fallback (My Flame products use .png)
+      setExtension('png');
+    } else {
+      setFailed(true);
+    }
+  };
+  
+  // Reset state when src changes
+  useEffect(() => {
+    setExtension('jpg');
+    setFailed(false);
+  }, [src]);
+  
+  if (!src || failed) {
+    return (
+      <div style={{ ...style, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f5f5f5', color: '#999' }}>
+        <span>No image</span>
+      </div>
+    );
+  }
+  
+  return (
+    <img
+      src={imageUrl}
+      alt={alt}
+      style={style}
+      className={className}
+      loading={loading}
+      onError={handleError}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    />
+  );
 };
 
 // Categories - Valentine's, Mother's Day and Easter are special filtered categories
@@ -2550,7 +2602,7 @@ function ProductCard({ product, onClick, onAdd }) {
     <div style={{cursor: 'pointer'}} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} onClick={onClick}>
       <div style={{background: '#f8f8f8', aspectRatio: '1', marginBottom: 12, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden'}}>
         {product.has_image ? (
-          <img src={getImageUrl(product.image_url, 'medium')} alt={`${product.name} by ${product.brand} - Luxury European homeware from Home & Verse`} loading="lazy" style={{maxWidth: '85%', maxHeight: '85%', objectFit: 'contain', transition: 'transform 0.3s', transform: hovered ? 'scale(1.03)' : 'scale(1)'}} />
+          <ProductImage src={product.image_url} alt={`${product.name} by ${product.brand} - Luxury European homeware from Home & Verse`} loading="lazy" style={{maxWidth: '85%', maxHeight: '85%', objectFit: 'contain', transition: 'transform 0.3s', transform: hovered ? 'scale(1.03)' : 'scale(1)'}} />
         ) : (
           <div style={{color: '#ddd', fontSize: 48}}>✦</div>
         )}
@@ -2718,7 +2770,7 @@ function ProductPage({ product, onBack, onAdd }) {
             style={{background: '#f8f8f8', aspectRatio: '1', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: images.length > 1 ? 12 : 0, position: 'relative', cursor: images.length > 0 ? 'zoom-in' : 'default'}}
           >
             {images.length > 0 ? (
-              <img src={getImageUrl(images[selectedImage], 'large')} alt={`${product.name} by ${product.brand} - £${product.price?.toFixed(2)} at Home & Verse`} style={{maxWidth: '80%', maxHeight: '80%', objectFit: 'contain'}} />
+              <ProductImage src={images[selectedImage]} size="large" alt={`${product.name} by ${product.brand} - £${product.price?.toFixed(2)} at Home & Verse`} style={{maxWidth: '80%', maxHeight: '80%', objectFit: 'contain'}} />
             ) : (
               <div style={{color: '#ddd', fontSize: 80}}>✦</div>
             )}
@@ -2756,7 +2808,7 @@ function ProductPage({ product, onBack, onAdd }) {
                     cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'
                   }}
                 >
-                  <img src={getImageUrl(img, 'thumb')} alt={`${product.name} ${idx + 1}`} loading="lazy" style={{maxWidth: '90%', maxHeight: '90%', objectFit: 'contain'}} />
+                  <ProductImage src={img} size="thumb" alt={`${product.name} ${idx + 1}`} loading="lazy" style={{maxWidth: '90%', maxHeight: '90%', objectFit: 'contain'}} />
                 </button>
               ))}
             </div>
@@ -3111,7 +3163,7 @@ function CheckoutPage({ cart, cartTotal, onBack, updateQuantity, onOrderComplete
               {cart.map(item => (
                 <div key={item.sku} style={{display: 'flex', gap: 12, marginBottom: 16, paddingBottom: 16, borderBottom: '1px solid #eee'}}>
                   <div style={{width: 60, height: 60, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                    {item.has_image ? <img src={getImageUrl(item.image_url, 'thumb')} alt={item.name} style={{maxWidth: '90%', maxHeight: '90%'}} /> : <span style={{color: '#ddd'}}>✦</span>}
+                    {item.has_image ? <ProductImage src={item.image_url} size="thumb" alt={item.name} style={{maxWidth: '90%', maxHeight: '90%'}} /> : <span style={{color: '#ddd'}}>✦</span>}
                   </div>
                   <div style={{flex: 1}}>
                     <p style={{fontSize: 13, marginBottom: 4}}>{item.name}</p>
@@ -3181,7 +3233,7 @@ function CartDrawer({ cart, cartOpen, setCartOpen, cartTotal, freeShipping, ship
             cart.map(item => (
               <div key={item.sku} style={{display: 'flex', gap: 16, marginBottom: 20, paddingBottom: 20, borderBottom: `1px solid ${THEME.blush}`}}>
                 <div style={{width: 80, height: 80, background: THEME.blush, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                  {item.has_image ? <img src={getImageUrl(item.image_url, 'thumb')} alt={item.name} style={{maxWidth: '90%', maxHeight: '90%'}} /> : <span style={{color: THEME.rose, fontSize: 24}}>✦</span>}
+                  {item.has_image ? <ProductImage src={item.image_url} size="thumb" alt={item.name} style={{maxWidth: '90%', maxHeight: '90%'}} /> : <span style={{color: THEME.rose, fontSize: 24}}>✦</span>}
                 </div>
                 <div style={{flex: 1}}>
                   <p style={{fontSize: 13, marginBottom: 4, color: THEME.text}}>{item.name}</p>
