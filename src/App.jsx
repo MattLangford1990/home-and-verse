@@ -1186,7 +1186,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
               const imagePositions = {
                 "Valentine's": 'center 40%',
                 "Mother's Day": 'center 60%',
-                "Easter": 'center 70%',
+                "Easter": 'center 55%',
                 'Candles & Fragrance': 'center center',
                 'Lighting': 'center center',
                 'Tableware': 'center center',

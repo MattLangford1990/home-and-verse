@@ -1,5 +1,5 @@
 // Service Worker for Home & Verse PWA
-const CACHE_NAME = 'home-and-verse-v8';
+const CACHE_NAME = 'home-and-verse-v9';
 const STATIC_ASSETS = [
   '/',
   '/preview.html',
