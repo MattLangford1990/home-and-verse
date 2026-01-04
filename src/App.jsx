@@ -31,12 +31,12 @@ const IMAGE_EXTRAS = {"EV03": ["EV03_04"], "HA210": ["HA210_230"], "KA25": ["KA2
 
 // Relaxound sound files mapping - served from CDN
 const RELAXOUND_SOUNDS = {
-  'zwitscherbox': `${CDN_BASE}/sounds/zwitscherbox.mp3`,
-  'birdybox': `${CDN_BASE}/sounds/zwitscherbox.mp3`,
-  'lakesidebox': `${CDN_BASE}/sounds/lakesidebox.mp3`,
-  'oceanbox': `${CDN_BASE}/sounds/oceanbox.mp3`,
-  'seabird': `${CDN_BASE}/sounds/oceanbox.mp3`,
-  'junglebox': `${CDN_BASE}/sounds/junglebox.mp3`,
+  'zwitscherbox': `${CDN_BASE}/Sound/Zwitscherbox.mp3`,
+  'birdybox': `${CDN_BASE}/Sound/Zwitscherbox.mp3`,
+  'lakesidebox': `${CDN_BASE}/Sound/Lakesidebox.mp3`,
+  'oceanbox': `${CDN_BASE}/Sound/Oceanbox.mp3`,
+  'seabird': `${CDN_BASE}/Sound/Oceanbox.mp3`,
+  'junglebox': `${CDN_BASE}/Sound/Junglebox.mp3`,
 };
 
 const getRelaxoundSound = (productName) => {
