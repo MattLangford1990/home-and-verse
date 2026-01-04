@@ -16,6 +16,7 @@ import os
 import stripe
 from pathlib import Path
 from dotenv import load_dotenv
+from admin_routes import router as admin_router
 
 
 # Cache control middleware
@@ -58,6 +59,9 @@ RANKINGS_FILE = DATA_DIR / "rankings.json"
 BESTSELLERS_FILE = DATA_DIR / "bestsellers.json"
 
 app = FastAPI(title="Home & Verse API", version="1.0")
+
+# Include admin routes
+app.include_router(admin_router)
 
 # Add cache control middleware
 app.add_middleware(CacheControlMiddleware)
@@ -233,6 +237,15 @@ async def serve_frontend():
     if preview_html.exists():
         return FileResponse(preview_html, media_type="text/html")
     return {"status": "ok", "service": "Home & Verse API", "note": "No frontend found - run npm run build"}
+
+
+@app.get("/admin")
+async def serve_admin():
+    """Serve the admin dashboard (hidden from public)"""
+    admin_html = PUBLIC_DIR / "admin.html"
+    if admin_html.exists():
+        return FileResponse(admin_html, media_type="text/html")
+    raise HTTPException(status_code=404, detail="Admin page not found")
 
 
 

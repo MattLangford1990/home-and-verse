@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Dashboard | Home & Verse</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+    .login-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .login-box {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      max-width: 400px;
+      width: 100%;
+    }
+    .login-box h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1e293b;
+    }
+    .login-box p {
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 15px;
+      margin-bottom: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .login-box input:focus {
+      border-color: #8b2942;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #8b2942 0%, #b76e79 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .login-box button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(139, 41, 66, 0.3);
+    }
+    .error {
+      background: #fef2f2;
+      color: #dc2626;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      display: none;
+    }
+    
+    /* Dashboard styles */
+    .dashboard { display: none; }
+    header {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #8b2942 0%, #b76e79 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .logo h1 { font-size: 18px; }
+    .logo p { font-size: 12px; color: #64748b; }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      font-size: 14px;
+      color: #475569;
+      cursor: pointer;
+      outline: none;
+    }
+    main { padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .stat-card .label {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .stat-card .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .stat-card .change {
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    .change.positive { color: #10b981; }
+    .change.negative { color: #ef4444; }
+    
+    .charts-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      height: 200px;
+    }
+    .chart-bar {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .bar-container {
+      width: 100%;
+      background: #f1f5f9;
+      border-radius: 6px;
+      height: 160px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .bar {
+      width: 100%;
+      background: linear-gradient(180deg, #8b2942 0%, #b76e79 100%);
+      border-radius: 6px 6px 0 0;
+      transition: height 0.5s ease-out;
+    }
+    .chart-bar .day { font-size: 12px; color: #64748b; font-weight: 500; }
+    .chart-bar .amount { font-size: 11px; color: #94a3b8; }
+    
+    .orders-table {
+      width: 100%;
+    }
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .order-row:last-child { border-bottom: none; }
+    .order-info .order-id { font-weight: 600; font-size: 14px; }
+    .order-info .order-customer { font-size: 12px; color: #64748b; }
+    .order-total { font-weight: 600; font-size: 14px; }
+    .order-status {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+    .status-completed { background: #d1fae5; color: #047857; }
+    .status-processing { background: #fef3c7; color: #b45309; }
+    
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      color: #64748b;
+    }
+    
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .charts-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      header { padding: 16px; }
+      main { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div class="login-container" id="loginScreen">
+    <div class="login-box">
+      <h1>Admin Dashboard</h1>
+      <p>Enter your admin password to continue</p>
+      <div class="error" id="loginError">Invalid password</div>
+      <input type="password" id="passwordInput" placeholder="Admin password" autofocus>
+      <button onclick="login()">Sign In</button>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashboard">
+    <header>
+      <div class="logo">
+        <div class="logo-icon">H</div>
+        <div>
+          <h1>Home & Verse</h1>
+          <p>Admin Dashboard</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <select id="timeRange" onchange="loadStats()">
+          <option value="7">Last 7 days</option>
+          <option value="14">Last 14 days</option>
+          <option value="30">Last 30 days</option>
+          <option value="90">Last 90 days</option>
+        </select>
+        <button onclick="logout()" style="background: #f1f5f9; color: #64748b; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px;">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <div class="label">Revenue</div>
+          <div class="value" id="revenue">£0</div>
+          <div class="change" id="revenueChange">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Orders</div>
+          <div class="value" id="orders">0</div>
+          <div class="change" id="ordersChange">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Avg. Order Value</div>
+          <div class="value" id="avgOrder">£0</div>
+          <div class="change" id="avgOrderChange">-</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Newsletter Subscribers</div>
+          <div class="value" id="subscribers">0</div>
+          <div class="change" id="subscribersNew">-</div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="card">
+          <h3>Revenue This Week</h3>
+          <div class="chart-bars" id="revenueChart">
+            <div class="loading">Loading...</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Recent Orders</h3>
+          <div class="orders-table" id="ordersTable">
+            <div class="loading">Loading...</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    let adminSecret = localStorage.getItem('hv_admin_secret') || '';
+    
+    // Check if already logged in
+    if (adminSecret) {
+      showDashboard();
+    }
+    
+    // Enter key on password field
+    document.getElementById('passwordInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') login();
+    });
+    
+    async function login() {
+      const password = document.getElementById('passwordInput').value;
+      
+      // Test the password by making an API call
+      try {
+        const res = await fetch(`/api/admin/stats?secret=${encodeURIComponent(password)}&days=7`);
+        if (res.ok) {
+          adminSecret = password;
+          localStorage.setItem('hv_admin_secret', password);
+          showDashboard();
+        } else {
+          document.getElementById('loginError').style.display = 'block';
+        }
+      } catch (e) {
+        document.getElementById('loginError').style.display = 'block';
+      }
+    }
+    
+    function logout() {
+      adminSecret = '';
+      localStorage.removeItem('hv_admin_secret');
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('dashboard').style.display = 'none';
+    }
+    
+    function showDashboard() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      loadStats();
+    }
+    
+    async function loadStats() {
+      const days = document.getElementById('timeRange').value;
+      
+      try {
+        const res = await fetch(`/api/admin/stats?secret=${encodeURIComponent(adminSecret)}&days=${days}`);
+        
+        if (res.status === 401) {
+          logout();
+          return;
+        }
+        
+        const data = await res.json();
+        
+        // Update stats
+        document.getElementById('revenue').textContent = formatCurrency(data.revenue?.value || 0);
+        document.getElementById('revenueChange').textContent = formatChange(data.revenue?.change || 0);
+        document.getElementById('revenueChange').className = 'change ' + (data.revenue?.change >= 0 ? 'positive' : 'negative');
+        
+        document.getElementById('orders').textContent = data.orders?.value || 0;
+        document.getElementById('ordersChange').textContent = formatChange(data.orders?.change || 0);
+        document.getElementById('ordersChange').className = 'change ' + (data.orders?.change >= 0 ? 'positive' : 'negative');
+        
+        document.getElementById('avgOrder').textContent = formatCurrency(data.avg_order?.value || 0);
+        document.getElementById('avgOrderChange').textContent = formatChange(data.avg_order?.change || 0);
+        document.getElementById('avgOrderChange').className = 'change ' + (data.avg_order?.change >= 0 ? 'positive' : 'negative');
+        
+        // Newsletter - fetch separately
+        loadNewsletter();
+        
+        // Revenue chart
+        renderChart(data.revenue_chart || []);
+        
+        // Recent orders
+        renderOrders(data.recent_orders || []);
+        
+      } catch (e) {
+        console.error('Failed to load stats:', e);
+      }
+    }
+    
+    async function loadNewsletter() {
+      try {
+        const res = await fetch('/api/newsletter/subscribers');
+        const data = await res.json();
+        document.getElementById('subscribers').textContent = data.count || 0;
+        document.getElementById('subscribersNew').textContent = `Total subscribers`;
+      } catch (e) {
+        console.error('Failed to load newsletter:', e);
+      }
+    }
+    
+    function renderChart(chartData) {
+      const container = document.getElementById('revenueChart');
+      const maxValue = Math.max(...chartData.map(d => d.value), 1);
+      
+      container.innerHTML = chartData.map(d => `
+        <div class="chart-bar">
+          <div class="bar-container">
+            <div class="bar" style="height: ${(d.value / maxValue) * 100}%"></div>
+          </div>
+          <span class="day">${d.day}</span>
+          <span class="amount">£${d.value.toFixed(0)}</span>
+        </div>
+      `).join('');
+    }
+    
+    function renderOrders(orders) {
+      const container = document.getElementById('ordersTable');
+      
+      if (orders.length === 0) {
+        container.innerHTML = '<div class="loading">No orders yet</div>';
+        return;
+      }
+      
+      container.innerHTML = orders.map(order => `
+        <div class="order-row">
+          <div class="order-info">
+            <div class="order-id">${order.id}</div>
+            <div class="order-customer">${order.customer} • ${order.items} item${order.items !== 1 ? 's' : ''}</div>
+          </div>
+          <div style="text-align: right;">
+            <div class="order-total">${formatCurrency(order.total)}</div>
+            <span class="order-status status-${order.status}">${order.status}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function formatCurrency(val) {
+      return '£' + val.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    
+    function formatChange(val) {
+      const prefix = val >= 0 ? '+' : '';
+      return `${prefix}${val.toFixed(1)}% vs last period`;
+    }
+  </script>
+</body>
+</html>
