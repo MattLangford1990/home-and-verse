@@ -48,6 +48,11 @@ BRAND_MAP = {
     "elvang": "Elvang",
 }
 
+# SKUs to exclude from import (problematic products, discontinued, etc.)
+EXCLUDED_SKUS = {
+    "18367",  # Excluded product
+}
+
 # Category keywords - products can match multiple categories
 # New structure: Christmas, Candles & Fragrance, Lighting, Tableware, Home Décor, Gifts
 CATEGORY_KEYWORDS = {
@@ -532,6 +537,10 @@ async def import_products():
         
         sku = item.get("sku") or str(item.get("item_id"))
         name = item.get("name", sku)
+        
+        # Skip excluded SKUs
+        if sku in EXCLUDED_SKUS:
+            continue
         
         # Progress
         if (i + 1) % 100 == 0:
