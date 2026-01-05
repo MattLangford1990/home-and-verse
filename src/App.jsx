@@ -814,13 +814,14 @@ export default function App() {
   if (error && !allProducts.length) {
     return (
       <div style={{minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 40, background: THEME.cream}}>
-        <div style={{textAlign: 'center', maxWidth: 420}}>
-          <h1 style={{fontSize: 20, fontWeight: 500, marginBottom: 16, color: THEME.text}}>Home & Verse</h1>
-          <p style={{color: THEME.textLight, marginBottom: 20}}>Start the backend server to view products</p>
-          <code style={{display: 'block', background: THEME.blush, padding: 16, borderRadius: 4, fontSize: 12, textAlign: 'left', color: THEME.text}}>
-            cd ~/Desktop/home-and-verse/backend<br/>
-            python3 -m uvicorn main:app --port 8000
-          </code>
+        <div style={{textAlign: 'center', maxWidth: 600}}>
+          <h1 style={{fontSize: 28, fontWeight: 500, marginBottom: 16, color: THEME.text}}>Home & Verse</h1>
+          <h2 style={{fontSize: 18, fontWeight: 400, marginBottom: 20, color: THEME.textLight}}>Luxury European Homeware & Scandi Gifts UK</h2>
+          <p style={{color: THEME.textLight, marginBottom: 20, lineHeight: 1.6}}>
+            Shop luxury European homeware from Räder, Remember, My Flame, Relaxound & Elvang. 
+            German porcelain, Danish throws & Dutch candles. Free UK delivery over £30.
+          </p>
+          <p style={{color: THEME.textLight, fontSize: 14}}>Loading products...</p>
         </div>
       </div>
     );
