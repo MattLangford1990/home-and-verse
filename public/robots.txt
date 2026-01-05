@@ -13,7 +13,5 @@ Sitemap: https://homeandverse.co.uk/sitemap.xml
 # Crawl-delay (optional - be gentle on server)
 Crawl-delay: 1
 
-# Block admin/api paths (when you have them)
-Disallow: /api/
+# Block admin paths only
 Disallow: /admin/
-Disallow: /checkout/
