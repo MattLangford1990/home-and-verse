@@ -116,6 +116,13 @@ async def get_icon_192():
             return FileResponse(dir / "icon-192.png", media_type="image/png")
     raise HTTPException(status_code=404)
 
+@app.get("/logo.png")
+async def get_logo():
+    for dir in [DIST_DIR, PUBLIC_DIR]:
+        if (dir / "logo.png").exists():
+            return FileResponse(dir / "logo.png", media_type="image/png")
+    raise HTTPException(status_code=404)
+
 @app.get("/icon-512.png")
 async def get_icon_512():
     for dir in [DIST_DIR, PUBLIC_DIR]:
