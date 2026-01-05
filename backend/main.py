@@ -866,3 +866,36 @@ async def export_newsletter_subscribers():
         media_type="text/csv",
         headers={"Content-Disposition": "attachment; filename=newsletter_subscribers.csv"}
     )
+
+
+# ==========================================
+# ANALYTICS / PAGEVIEW TRACKING
+# ==========================================
+
+class PageviewRequest(BaseModel):
+    page: str
+    referrer: Optional[str] = None
+
+
+@app.post("/api/track/pageview")
+async def track_pageview_endpoint(request: PageviewRequest, req: Request):
+    """
+    Track a page view for analytics.
+    Called by the frontend on each page navigation.
+    """
+    try:
+        from analytics import track_pageview
+        
+        # Get client IP (handle proxies)
+        client_ip = req.headers.get("x-forwarded-for", req.client.host)
+        if client_ip and "," in client_ip:
+            client_ip = client_ip.split(",")[0].strip()
+        
+        user_agent = req.headers.get("user-agent", "")
+        
+        track_pageview(request.page, client_ip, user_agent)
+        
+        return {"success": True}
+    except Exception as e:
+        # Don't fail the request if tracking fails
+        return {"success": False, "error": str(e)}

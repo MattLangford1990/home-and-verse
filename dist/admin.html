@@ -128,7 +128,7 @@
     
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 16px;
       margin-bottom: 24px;
     }
@@ -156,6 +156,7 @@
     }
     .change.positive { color: #10b981; }
     .change.negative { color: #ef4444; }
+    .change.neutral { color: #64748b; }
     
     .charts-row {
       display: grid;
@@ -230,6 +231,47 @@
     .status-completed { background: #d1fae5; color: #047857; }
     .status-processing { background: #fef3c7; color: #b45309; }
     
+    /* Top Pages styles */
+    .top-pages-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .page-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .page-row:last-child { border-bottom: none; }
+    .page-name {
+      font-size: 14px;
+      color: #1e293b;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .page-views {
+      font-size: 14px;
+      font-weight: 600;
+      color: #8b2942;
+      margin-left: 12px;
+    }
+    .page-rank {
+      width: 24px;
+      height: 24px;
+      background: #f1f5f9;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748b;
+      margin-right: 12px;
+    }
+    
     .loading {
       display: flex;
       align-items: center;
@@ -238,9 +280,21 @@
       color: #64748b;
     }
     
+    .three-col-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    @media (max-width: 1200px) {
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+      .three-col-row { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 1024px) {
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .charts-row { grid-template-columns: 1fr; }
+      .three-col-row { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       .stats-grid { grid-template-columns: 1fr; }
@@ -300,9 +354,14 @@
           <div class="change" id="avgOrderChange">-</div>
         </div>
         <div class="stat-card">
+          <div class="label">Visitors</div>
+          <div class="value" id="visitors">0</div>
+          <div class="change" id="visitorsChange">-</div>
+        </div>
+        <div class="stat-card">
           <div class="label">Newsletter Subscribers</div>
           <div class="value" id="subscribers">0</div>
-          <div class="change" id="subscribersNew">-</div>
+          <div class="change neutral" id="subscribersNew">-</div>
         </div>
       </div>
 
@@ -316,6 +375,27 @@
         <div class="card">
           <h3>Recent Orders</h3>
           <div class="orders-table" id="ordersTable">
+            <div class="loading">Loading...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="three-col-row">
+        <div class="card">
+          <h3>Top Pages</h3>
+          <div class="top-pages-list" id="topPages">
+            <div class="loading">Loading...</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Visitors This Week</h3>
+          <div class="chart-bars" id="visitorsChart">
+            <div class="loading">Loading...</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Page Views This Week</h3>
+          <div class="chart-bars" id="pageviewsChart">
             <div class="loading">Loading...</div>
           </div>
         </div>
@@ -371,6 +451,7 @@
       const days = document.getElementById('timeRange').value;
       
       try {
+        // Load sales/orders stats
         const res = await fetch(`/api/admin/stats?secret=${encodeURIComponent(adminSecret)}&days=${days}`);
         
         if (res.status === 401) {
@@ -393,17 +474,53 @@
         document.getElementById('avgOrderChange').textContent = formatChange(data.avg_order?.change || 0);
         document.getElementById('avgOrderChange').className = 'change ' + (data.avg_order?.change >= 0 ? 'positive' : 'negative');
         
-        // Newsletter - fetch separately
-        loadNewsletter();
-        
         // Revenue chart
-        renderChart(data.revenue_chart || []);
+        renderChart(data.revenue_chart || [], 'revenueChart', true);
         
         // Recent orders
         renderOrders(data.recent_orders || []);
         
       } catch (e) {
         console.error('Failed to load stats:', e);
+      }
+      
+      // Load analytics (visitors, pageviews, top pages)
+      loadAnalytics(days);
+      
+      // Load newsletter separately
+      loadNewsletter();
+    }
+    
+    async function loadAnalytics(days) {
+      try {
+        const res = await fetch(`/api/admin/analytics?secret=${encodeURIComponent(adminSecret)}&days=${days}`);
+        const data = await res.json();
+        
+        // Update visitor count
+        document.getElementById('visitors').textContent = data.visitors?.value || 0;
+        document.getElementById('visitorsChange').textContent = formatChange(data.visitors?.change || 0);
+        document.getElementById('visitorsChange').className = 'change ' + (data.visitors?.change >= 0 ? 'positive' : 'negative');
+        
+        // Render top pages
+        renderTopPages(data.top_pages || []);
+        
+        // Render visitors chart
+        if (data.daily && data.daily.length > 0) {
+          renderChart(data.daily.map(d => ({ day: d.day, value: d.visitors })), 'visitorsChart', false);
+          renderChart(data.daily.map(d => ({ day: d.day, value: d.pageviews })), 'pageviewsChart', false);
+        } else {
+          document.getElementById('visitorsChart').innerHTML = '<div class="loading">No data yet</div>';
+          document.getElementById('pageviewsChart').innerHTML = '<div class="loading">No data yet</div>';
+        }
+        
+      } catch (e) {
+        console.error('Failed to load analytics:', e);
+        document.getElementById('visitors').textContent = '0';
+        document.getElementById('visitorsChange').textContent = 'No data';
+        document.getElementById('visitorsChange').className = 'change neutral';
+        document.getElementById('topPages').innerHTML = '<div class="loading">No analytics data yet</div>';
+        document.getElementById('visitorsChart').innerHTML = '<div class="loading">No data yet</div>';
+        document.getElementById('pageviewsChart').innerHTML = '<div class="loading">No data yet</div>';
       }
     }
     
@@ -418,8 +535,13 @@
       }
     }
     
-    function renderChart(chartData) {
-      const container = document.getElementById('revenueChart');
+    function renderChart(chartData, containerId, isCurrency) {
+      const container = document.getElementById(containerId);
+      if (!chartData || chartData.length === 0) {
+        container.innerHTML = '<div class="loading">No data yet</div>';
+        return;
+      }
+      
       const maxValue = Math.max(...chartData.map(d => d.value), 1);
       
       container.innerHTML = chartData.map(d => `
@@ -428,7 +550,7 @@
             <div class="bar" style="height: ${(d.value / maxValue) * 100}%"></div>
           </div>
           <span class="day">${d.day}</span>
-          <span class="amount">£${d.value.toFixed(0)}</span>
+          <span class="amount">${isCurrency ? '£' : ''}${d.value.toFixed(0)}</span>
         </div>
       `).join('');
     }
@@ -451,6 +573,23 @@
             <div class="order-total">${formatCurrency(order.total)}</div>
             <span class="order-status status-${order.status}">${order.status}</span>
           </div>
+        </div>
+      `).join('');
+    }
+    
+    function renderTopPages(pages) {
+      const container = document.getElementById('topPages');
+      
+      if (!pages || pages.length === 0) {
+        container.innerHTML = '<div class="loading">No page views yet</div>';
+        return;
+      }
+      
+      container.innerHTML = pages.slice(0, 10).map((page, index) => `
+        <div class="page-row">
+          <span class="page-rank">${index + 1}</span>
+          <span class="page-name" title="${page.path}">${page.name}</span>
+          <span class="page-views">${page.views.toLocaleString()}</span>
         </div>
       `).join('');
     }

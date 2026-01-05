@@ -137,6 +137,30 @@ async def get_admin_stats(secret: str, days: int = 7):
         raise HTTPException(status_code=500, detail=f"Stripe error: {str(e)}")
 
 
+@router.get("/analytics")
+async def get_admin_analytics(secret: str, days: int = 7):
+    """
+    Get visitor analytics for the admin dashboard.
+    Requires admin secret for access.
+    """
+    if not verify_admin(secret):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    
+    try:
+        from analytics import get_analytics_summary
+        return get_analytics_summary(days)
+    except Exception as e:
+        # Return empty data if analytics not available
+        return {
+            "period": f"Last {days} days",
+            "visitors": {"value": 0, "change": 0},
+            "pageviews": {"value": 0, "change": 0},
+            "daily": [],
+            "top_pages": [],
+            "error": str(e)
+        }
+
+
 @router.get("/orders")
 async def get_admin_orders(secret: str, limit: int = 50, status: str = None):
     """Get list of orders from Stripe"""

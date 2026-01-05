@@ -466,6 +466,25 @@ export default function App() {
     
   }, [view, selectedProduct, activeCategory, activeBrand]); // SEO: updates on view/product/category/brand changes
   
+  // Analytics: Track page views
+  useEffect(() => {
+    const trackPageView = async () => {
+      try {
+        let page = window.location.pathname + window.location.search;
+        if (!page || page === '') page = '/';
+        
+        await fetch(`${API_BASE}/api/track/pageview`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page, referrer: document.referrer })
+        });
+      } catch (e) {
+        // Silently ignore tracking errors
+      }
+    };
+    trackPageView();
+  }, [view, selectedProduct, activeCategory, activeBrand]);
+  
   // SEO: Product structured data
   const updateProductSchema = (product) => {
     removeProductSchema();
