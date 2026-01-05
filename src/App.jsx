@@ -1147,7 +1147,7 @@ export default function App() {
             </div>
           </div>
           <div className="footer-bottom" style={{borderTop: `1px solid ${THEME.rose}`, paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontSize: 12, color: THEME.textLight}}>
-            <span>© 2025 Home & Verse. DM Brands Ltd. <a href="/admin" style={{color: 'transparent', textDecoration: 'none', fontSize: 1, userSelect: 'none'}}>admin</a></span>
+            <span>© 2025 Home & Verse. DM Brands Ltd. <a href="/admin" style={{color: '#999', textDecoration: 'none', marginLeft: 8}}>•</a></span>
             <div style={{display: 'flex', gap: 20}}>
               <span onClick={() => navigate('privacy')} style={{cursor: 'pointer'}}>Privacy Policy</span>
               <span onClick={() => navigate('terms')} style={{cursor: 'pointer'}}>Terms & Conditions</span>
