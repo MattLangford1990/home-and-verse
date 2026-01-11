@@ -1,12 +1,13 @@
 """
 Simple Analytics for Home & Verse
 =================================
-Tracks page views and visitors. Stores data in JSON files.
+Tracks page views, visitors, and locations. Stores data in JSON files.
 Uses IP hashing for privacy (no raw IPs stored).
 """
 
 import json
 import hashlib
+import httpx
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional
@@ -20,6 +21,9 @@ PAGEVIEWS_FILE = DATA_DIR / "pageviews.json"
 _pageview_buffer = []
 _BUFFER_SIZE = 10  # Write to disk every 10 page views
 
+# Location cache to avoid repeated API calls for same IPs
+_location_cache = {}
+
 
 def _hash_ip(ip: str) -> str:
     """Hash IP address for privacy - creates a daily-rotating hash"""
@@ -28,19 +32,58 @@ def _hash_ip(ip: str) -> str:
     return hashlib.sha256(f"{ip}:{daily_salt}".encode()).hexdigest()[:16]
 
 
+def _get_location(ip: str) -> Optional[str]:
+    """Get location from IP using free geolocation API. Returns 'City, Country' or None."""
+    global _location_cache
+    
+    # Check cache first (use first 8 chars of IP as key for basic rate limiting)
+    ip_prefix = ip.split('.')[0] + '.' + ip.split('.')[1] if '.' in ip else ip[:8]
+    
+    if ip_prefix in _location_cache:
+        return _location_cache[ip_prefix]
+    
+    # Skip private/local IPs
+    if ip.startswith(('127.', '10.', '192.168.', '172.')) or ip == 'localhost':
+        return None
+    
+    try:
+        # Use ip-api.com (free, no key needed, 45 requests/minute limit)
+        response = httpx.get(f"http://ip-api.com/json/{ip}?fields=status,city,country", timeout=2.0)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('status') == 'success':
+                city = data.get('city', '')
+                country = data.get('country', '')
+                location = f"{city}, {country}" if city else country
+                _location_cache[ip_prefix] = location
+                return location
+    except Exception:
+        pass  # Don't fail tracking if geolocation fails
+    
+    return None
+
+
 def _load_analytics() -> dict:
     """Load analytics data from file"""
     if not ANALYTICS_FILE.exists():
         return {
             "daily": {},  # date -> {visitors: set, pageviews: int}
             "pages": {},  # page_path -> view_count
+            "products": {},  # product_sku -> view_count (for top products)
+            "locations": {},  # location_string -> visitor_count
             "updated_at": None
         }
     try:
         with open(ANALYTICS_FILE) as f:
-            return json.load(f)
+            data = json.load(f)
+            # Ensure new fields exist for backward compatibility
+            if "products" not in data:
+                data["products"] = {}
+            if "locations" not in data:
+                data["locations"] = {}
+            return data
     except:
-        return {"daily": {}, "pages": {}, "updated_at": None}
+        return {"daily": {}, "pages": {}, "products": {}, "locations": {}, "updated_at": None}
 
 
 def _save_analytics(data: dict):
@@ -76,18 +119,30 @@ def track_pageview(page_path: str, ip_address: str, user_agent: Optional[str] = 
     if not page_path or page_path == "":
         page_path = "/"
     
-    # Clean up product URLs for aggregation
+    # Extract product SKU if this is a product page
+    product_sku = None
     if page_path.startswith("/product/"):
-        # Keep product SKU for tracking popular products
-        pass
-    elif "?" in page_path:
-        # Remove query params for cleaner grouping
+        product_sku = page_path.replace("/product/", "").split("?")[0]
+    elif "?product=" in page_path:
+        # Handle query param style URLs
+        import re
+        match = re.search(r'[?&]product=([^&]+)', page_path)
+        if match:
+            product_sku = match.group(1)
+    
+    # Clean up for page grouping
+    if "?" in page_path and not page_path.startswith("/product/"):
         page_path = page_path.split("?")[0]
+    
+    # Get visitor location (async-friendly, non-blocking with cache)
+    location = _get_location(ip_address)
     
     _pageview_buffer.append({
         "date": today,
         "visitor": visitor_hash,
         "page": page_path,
+        "product_sku": product_sku,
+        "location": location,
         "timestamp": datetime.utcnow().isoformat()
     })
     
@@ -105,10 +160,15 @@ def _flush_buffer():
     
     data = _load_analytics()
     
+    # Track unique visitors per location (to avoid counting same visitor multiple times)
+    visitors_by_location = defaultdict(set)
+    
     for pv in _pageview_buffer:
         date = pv["date"]
         visitor = pv["visitor"]
         page = pv["page"]
+        product_sku = pv.get("product_sku")
+        location = pv.get("location")
         
         # Initialize date if needed
         if date not in data["daily"]:
@@ -125,6 +185,22 @@ def _flush_buffer():
         if page not in data["pages"]:
             data["pages"][page] = 0
         data["pages"][page] += 1
+        
+        # Track product views (separate from pages for cleaner product stats)
+        if product_sku:
+            if product_sku not in data["products"]:
+                data["products"][product_sku] = 0
+            data["products"][product_sku] += 1
+        
+        # Track location (only count unique visitors per location)
+        if location:
+            visitors_by_location[location].add(visitor)
+    
+    # Update location counts with unique visitors
+    for location, visitors in visitors_by_location.items():
+        if location not in data["locations"]:
+            data["locations"][location] = 0
+        data["locations"][location] += len(visitors)
     
     _save_analytics(data)
     _pageview_buffer = []
@@ -202,6 +278,14 @@ def get_analytics_summary(days: int = 7) -> dict:
             "views": views
         })
     
+    # Get top products (for dedicated product views section)
+    all_products = data.get("products", {})
+    top_products = sorted(all_products.items(), key=lambda x: x[1], reverse=True)[:10]
+    
+    # Get top locations
+    all_locations = data.get("locations", {})
+    top_locations = sorted(all_locations.items(), key=lambda x: x[1], reverse=True)[:5]
+    
     # Calculate previous period for comparison
     prev_start = start_date - timedelta(days=days)
     prev_visitors = set()
@@ -236,6 +320,8 @@ def get_analytics_summary(days: int = 7) -> dict:
         },
         "daily": daily_stats[-7:],  # Last 7 days for chart
         "top_pages": formatted_pages,
+        "top_products": [{"sku": sku, "views": views} for sku, views in top_products],
+        "top_locations": [{"location": loc, "visitors": count} for loc, count in top_locations],
         "updated_at": data.get("updated_at")
     }
 

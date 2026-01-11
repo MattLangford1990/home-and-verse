@@ -287,9 +287,89 @@
       margin-bottom: 24px;
     }
     
+    .two-col-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    /* Location bar styles */
+    .location-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .location-row:last-child { border-bottom: none; }
+    .location-name {
+      font-size: 14px;
+      color: #1e293b;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .location-flag {
+      font-size: 16px;
+    }
+    .location-visitors {
+      font-size: 14px;
+      font-weight: 600;
+      color: #8b2942;
+      margin-left: 12px;
+    }
+    .location-bar {
+      height: 6px;
+      background: linear-gradient(90deg, #8b2942 0%, #b76e79 100%);
+      border-radius: 3px;
+      margin-top: 6px;
+      transition: width 0.5s ease-out;
+    }
+    .location-bar-container {
+      width: 100%;
+      height: 6px;
+      background: #f1f5f9;
+      border-radius: 3px;
+      margin-top: 6px;
+    }
+    
+    /* Product row styles */
+    .product-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .product-row:last-child { border-bottom: none; }
+    .product-info {
+      flex: 1;
+      overflow: hidden;
+    }
+    .product-name {
+      font-size: 14px;
+      color: #1e293b;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .product-sku {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+    .product-views {
+      font-size: 14px;
+      font-weight: 600;
+      color: #8b2942;
+      margin-left: 12px;
+    }
+    
     @media (max-width: 1200px) {
       .stats-grid { grid-template-columns: repeat(3, 1fr); }
       .three-col-row { grid-template-columns: 1fr 1fr; }
+      .two-col-row { grid-template-columns: 1fr; }
     }
     @media (max-width: 1024px) {
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -375,6 +455,21 @@
         <div class="card">
           <h3>Recent Orders</h3>
           <div class="orders-table" id="ordersTable">
+            <div class="loading">Loading...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="two-col-row">
+        <div class="card">
+          <h3>🔥 Top 10 Most Viewed Products</h3>
+          <div class="top-pages-list" id="topProducts">
+            <div class="loading">Loading...</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🌍 Top 5 Visitor Locations</h3>
+          <div class="top-pages-list" id="topLocations">
             <div class="loading">Loading...</div>
           </div>
         </div>
@@ -491,6 +586,31 @@
       loadNewsletter();
     }
     
+    // Cache for product names
+    let productNamesCache = {};
+    
+    async function fetchProductNames(products) {
+      const skus = products.map(p => p.sku);
+      const unknownSkus = skus.filter(sku => !productNamesCache[sku]);
+      
+      if (unknownSkus.length > 0) {
+        try {
+          // Fetch product details for unknown SKUs
+          const res = await fetch('/api/products');
+          if (res.ok) {
+            const data = await res.json();
+            for (const product of data.products || []) {
+              productNamesCache[product.sku] = product.name;
+            }
+          }
+        } catch (e) {
+          console.error('Failed to fetch product names:', e);
+        }
+      }
+      
+      renderTopProducts(products, productNamesCache);
+    }
+    
     async function loadAnalytics(days) {
       try {
         const res = await fetch(`/api/admin/analytics?secret=${encodeURIComponent(adminSecret)}&days=${days}`);
@@ -503,6 +623,16 @@
         
         // Render top pages
         renderTopPages(data.top_pages || []);
+        
+        // Render top products (need to fetch product names)
+        if (data.top_products && data.top_products.length > 0) {
+          await fetchProductNames(data.top_products);
+        } else {
+          document.getElementById('topProducts').innerHTML = '<div class="loading">No product views yet</div>';
+        }
+        
+        // Render top locations
+        renderTopLocations(data.top_locations || []);
         
         // Render visitors chart
         if (data.daily && data.daily.length > 0) {
@@ -592,6 +722,90 @@
           <span class="page-views">${page.views.toLocaleString()}</span>
         </div>
       `).join('');
+    }
+    
+    function renderTopProducts(products, productNames) {
+      const container = document.getElementById('topProducts');
+      
+      if (!products || products.length === 0) {
+        container.innerHTML = '<div class="loading">No product views yet</div>';
+        return;
+      }
+      
+      container.innerHTML = products.slice(0, 10).map((product, index) => {
+        const name = productNames[product.sku] || product.sku;
+        return `
+          <div class="product-row">
+            <span class="page-rank">${index + 1}</span>
+            <div class="product-info">
+              <div class="product-name" title="${name}">${name}</div>
+              <div class="product-sku">SKU: ${product.sku}</div>
+            </div>
+            <span class="product-views">${product.views.toLocaleString()} views</span>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    function renderTopLocations(locations) {
+      const container = document.getElementById('topLocations');
+      
+      if (!locations || locations.length === 0) {
+        container.innerHTML = '<div class="loading">No location data yet</div>';
+        return;
+      }
+      
+      const maxVisitors = Math.max(...locations.map(l => l.visitors), 1);
+      
+      container.innerHTML = locations.slice(0, 5).map((loc, index) => {
+        const barWidth = (loc.visitors / maxVisitors) * 100;
+        // Try to get country flag emoji from location
+        const country = loc.location.split(', ').pop();
+        const flag = getCountryFlag(country);
+        return `
+          <div class="location-row">
+            <span class="page-rank">${index + 1}</span>
+            <div style="flex: 1;">
+              <div class="location-name">
+                <span class="location-flag">${flag}</span>
+                ${loc.location}
+              </div>
+              <div class="location-bar-container">
+                <div class="location-bar" style="width: ${barWidth}%"></div>
+              </div>
+            </div>
+            <span class="location-visitors">${loc.visitors.toLocaleString()}</span>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    function getCountryFlag(country) {
+      // Simple country to flag emoji mapping
+      const flags = {
+        'United Kingdom': '🇬🇧',
+        'United States': '🇺🇸',
+        'Germany': '🇩🇪',
+        'France': '🇫🇷',
+        'Netherlands': '🇳🇱',
+        'Ireland': '🇮🇪',
+        'Spain': '🇪🇸',
+        'Italy': '🇮🇹',
+        'Australia': '🇦🇺',
+        'Canada': '🇨🇦',
+        'Denmark': '🇩🇰',
+        'Sweden': '🇸🇪',
+        'Norway': '🇳🇴',
+        'Belgium': '🇧🇪',
+        'Switzerland': '🇨🇭',
+        'Austria': '🇦🇹',
+        'Poland': '🇵🇱',
+        'Portugal': '🇵🇹',
+        'Japan': '🇯🇵',
+        'China': '🇨🇳',
+        'India': '🇮🇳',
+      };
+      return flags[country] || '🌍';
     }
     
     function formatCurrency(val) {
