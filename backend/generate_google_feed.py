@@ -103,6 +103,7 @@ def get_optimized_title(product):
 def extract_colour(product):
     """Extract colour from product name/description"""
     text = f"{product.get('name', '')} {product.get('description', '')}".lower()
+    brand = product.get('brand', '')
     
     colours = {
         'white': 'White', 'black': 'Black', 'grey': 'Grey', 'gray': 'Grey',
@@ -118,7 +119,16 @@ def extract_colour(product):
     for key, value in colours.items():
         if key in text:
             return value
-    return ''
+    
+    # Default by brand
+    if brand == 'Räder':
+        return 'White'
+    if brand == 'Elvang':
+        return 'Natural'
+    if brand == 'My Flame':
+        return 'White'
+    
+    return 'Multicolour'
 
 
 def extract_material(product):
@@ -146,6 +156,57 @@ def extract_material(product):
         if m in text:
             return m.capitalize()
     return ''
+
+
+def get_google_product_category(product):
+    """Map product to appropriate Google Product Category"""
+    name = product.get('name', '').lower()
+    description = product.get('description', '').lower()
+    categories = product.get('categories', [])
+    brand = product.get('brand', '')
+    text = f"{name} {description}"
+    
+    # Candles
+    if 'candle' in text or brand == 'My Flame':
+        return 'Home & Garden > Decor > Candles'
+    
+    # Diffusers
+    if 'diffuser' in text:
+        return 'Home & Garden > Decor > Home Fragrances > Fragrance Diffusers'
+    
+    # Sound boxes
+    if brand == 'Relaxound' or 'sound' in text or 'birdsong' in text:
+        return 'Home & Garden > Decor > Decorative Accents'
+    
+    # Textiles
+    if brand == 'Elvang' or any(x in text for x in ['throw', 'blanket', 'cushion', 'pillow']):
+        return 'Home & Garden > Linens & Bedding > Bedding > Blankets & Throws'
+    
+    # Porcelain/ceramics
+    if any(x in text for x in ['vase', 'porcelain', 'ceramic']):
+        return 'Home & Garden > Decor > Vases'
+    
+    if any(x in text for x in ['bowl', 'plate', 'dish', 'cup', 'mug']):
+        return 'Home & Garden > Kitchen & Dining > Tableware > Serveware'
+    
+    # Christmas
+    if 'Christmas' in categories or any(x in text for x in ['christmas', 'advent', 'santa']):
+        return 'Home & Garden > Decor > Seasonal & Holiday Decorations > Christmas Decorations'
+    
+    # Easter
+    if 'Easter' in categories or 'easter' in text:
+        return 'Home & Garden > Decor > Seasonal & Holiday Decorations > Easter Decorations'
+    
+    # Games/puzzles
+    if any(x in text for x in ['game', 'puzzle', 'memo']):
+        return 'Toys & Games > Puzzles'
+    
+    # Lamps/lighting
+    if any(x in text for x in ['lamp', 'light', 'lantern', 'tealight']):
+        return 'Home & Garden > Lighting > Lamps'
+    
+    # Default
+    return 'Home & Garden > Decor > Decorative Accents'
 
 
 def estimate_weight(product):
@@ -196,7 +257,7 @@ def estimate_weight(product):
 
 
 def get_image_url(product):
-    """Get optimized image URL (1200px instead of 800px)"""
+    """Get optimized image URL"""
     sku = product.get('sku', '')
     brand = product.get('brand', '')
     
@@ -216,11 +277,12 @@ def get_image_url(product):
 def generate_csv(products):
     """Generate Google Merchant CSV feed"""
     
-    # CSV columns - now includes color and material
+    # CSV columns - includes all required attributes
     fieldnames = [
         'id', 'title', 'description', 'link', 'image_link', 'availability',
-        'price', 'brand', 'gtin', 'condition', 'product_type', 'shipping_weight',
-        'color', 'material'
+        'price', 'brand', 'gtin', 'identifier_exists', 'condition', 
+        'google_product_category', 'product_type', 'age_group', 'gender',
+        'color', 'material', 'shipping_weight'
     ]
     
     with open(OUTPUT_CSV, 'w', newline='', encoding='utf-8') as f:
@@ -235,6 +297,10 @@ def generate_csv(products):
             categories = product.get('categories', [])
             product_type = ' > '.join(['Home & Garden', 'Home Decor'] + categories[:2])
             
+            # Identifier exists - false if no EAN
+            ean = product.get('ean', '')
+            identifier_exists = 'yes' if ean else 'no'
+            
             row = {
                 'id': product.get('sku', ''),
                 'title': get_optimized_title(product),
@@ -244,12 +310,16 @@ def generate_csv(products):
                 'availability': 'in_stock' if product.get('in_stock') else 'out_of_stock',
                 'price': f"{product.get('price', 0):.2f} GBP",
                 'brand': product.get('brand', ''),
-                'gtin': product.get('ean', ''),
+                'gtin': ean,
+                'identifier_exists': identifier_exists,
                 'condition': 'new',
+                'google_product_category': get_google_product_category(product),
                 'product_type': product_type,
-                'shipping_weight': estimate_weight(product),
+                'age_group': 'adult',
+                'gender': 'unisex',
                 'color': extract_colour(product),
-                'material': extract_material(product)
+                'material': extract_material(product),
+                'shipping_weight': estimate_weight(product)
             }
             
             writer.writerow(row)
@@ -278,6 +348,8 @@ def generate_xml(products):
         product_type = ' > '.join(['Home & Garden', 'Home Decor'] + categories[:2])
         colour = extract_colour(product)
         material = extract_material(product)
+        ean = product.get('ean', '')
+        identifier_exists = 'yes' if ean else 'no'
         
         xml_lines.append('<item>')
         xml_lines.append(f"<g:id>{sku}</g:id>")
@@ -288,15 +360,18 @@ def generate_xml(products):
         xml_lines.append(f"<g:availability>{'in_stock' if product.get('in_stock') else 'out_of_stock'}</g:availability>")
         xml_lines.append(f"<g:price>{product.get('price', 0):.2f} GBP</g:price>")
         xml_lines.append(f"<g:brand>{product.get('brand', '')}</g:brand>")
-        if product.get('ean'):
-            xml_lines.append(f"<g:gtin>{product.get('ean')}</g:gtin>")
+        if ean:
+            xml_lines.append(f"<g:gtin>{ean}</g:gtin>")
+        xml_lines.append(f"<g:identifier_exists>{identifier_exists}</g:identifier_exists>")
         xml_lines.append("<g:condition>new</g:condition>")
+        xml_lines.append(f"<g:google_product_category><![CDATA[{get_google_product_category(product)}]]></g:google_product_category>")
         xml_lines.append(f"<g:product_type><![CDATA[{product_type}]]></g:product_type>")
-        xml_lines.append(f"<g:shipping_weight>{estimate_weight(product)}</g:shipping_weight>")
-        if colour:
-            xml_lines.append(f"<g:color>{colour}</g:color>")
+        xml_lines.append("<g:age_group>adult</g:age_group>")
+        xml_lines.append("<g:gender>unisex</g:gender>")
+        xml_lines.append(f"<g:color>{colour}</g:color>")
         if material:
             xml_lines.append(f"<g:material>{material}</g:material>")
+        xml_lines.append(f"<g:shipping_weight>{estimate_weight(product)}</g:shipping_weight>")
         xml_lines.append('</item>')
     
     xml_lines.append('</channel>')
