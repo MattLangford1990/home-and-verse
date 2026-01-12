@@ -20,7 +20,6 @@ def get_optimized_title(product):
     name = product.get('name', '')
     brand = product.get('brand', '')
     
-    # Clean up title
     title = re.sub(r'\s*\|\s*\w+(\s+\w+)?\s*$', '', name).strip()
     title = re.sub(rf'^{re.escape(brand)}\s+', '', title, flags=re.IGNORECASE).strip()
     title = re.sub(r'^Rader\s+', '', title, flags=re.IGNORECASE).strip()
@@ -166,46 +165,26 @@ def get_google_product_category(product):
     brand = product.get('brand', '')
     text = f"{name} {description}"
     
-    # Candles
     if 'candle' in text or brand == 'My Flame':
         return 'Home & Garden > Decor > Candles'
-    
-    # Diffusers
     if 'diffuser' in text:
         return 'Home & Garden > Decor > Home Fragrances > Fragrance Diffusers'
-    
-    # Sound boxes
     if brand == 'Relaxound' or 'sound' in text or 'birdsong' in text:
         return 'Home & Garden > Decor > Decorative Accents'
-    
-    # Textiles
     if brand == 'Elvang' or any(x in text for x in ['throw', 'blanket', 'cushion', 'pillow']):
         return 'Home & Garden > Linens & Bedding > Bedding > Blankets & Throws'
-    
-    # Porcelain/ceramics
     if any(x in text for x in ['vase', 'porcelain', 'ceramic']):
         return 'Home & Garden > Decor > Vases'
-    
     if any(x in text for x in ['bowl', 'plate', 'dish', 'cup', 'mug']):
         return 'Home & Garden > Kitchen & Dining > Tableware > Serveware'
-    
-    # Christmas
     if 'Christmas' in categories or any(x in text for x in ['christmas', 'advent', 'santa']):
         return 'Home & Garden > Decor > Seasonal & Holiday Decorations > Christmas Decorations'
-    
-    # Easter
     if 'Easter' in categories or 'easter' in text:
         return 'Home & Garden > Decor > Seasonal & Holiday Decorations > Easter Decorations'
-    
-    # Games/puzzles
     if any(x in text for x in ['game', 'puzzle', 'memo']):
         return 'Toys & Games > Puzzles'
-    
-    # Lamps/lighting
     if any(x in text for x in ['lamp', 'light', 'lantern', 'tealight']):
         return 'Home & Garden > Lighting > Lamps'
-    
-    # Default
     return 'Home & Garden > Decor > Decorative Accents'
 
 
@@ -224,10 +203,8 @@ def estimate_weight(product):
         if 'scarf' in name:
             return '0.2 kg'
         return '0.5 kg'
-    
     if brand == 'Relaxound':
         return '0.15 kg' if 'birdybox' in name else '0.3 kg'
-    
     if brand == 'Räder':
         if 'light house' in name and 'large' in name:
             return '0.8 kg'
@@ -236,7 +213,6 @@ def estimate_weight(product):
         if 'cup' in name or 'mug' in name:
             return '0.25 kg'
         return '0.3 kg'
-    
     if brand == 'My Flame':
         if 'outdoor' in name:
             return '0.8 kg'
@@ -245,14 +221,12 @@ def estimate_weight(product):
         if 'giftbox' in name or 'spa' in name:
             return '0.6 kg'
         return '0.35 kg'
-    
     if brand == 'Remember':
         if 'memo' in name or 'game' in name:
             return '0.8 kg'
         if 'lamp' in name:
             return '0.4 kg'
         return '0.3 kg'
-    
     return '0.5 kg'
 
 
@@ -260,24 +234,15 @@ def get_image_url(product):
     """Get optimized image URL"""
     sku = product.get('sku', '')
     brand = product.get('brand', '')
-    
-    # Use CDN for better performance
     cdn_base = 'https://cdn.appdmbrands.com'
-    
-    # Convert SKU to CDN format (dots -> underscores)
     cdn_sku = sku.replace('.', '_')
-    
-    # Elvang products use different path
     if brand == 'Elvang':
         return f"{cdn_base}/elvang/{sku}_1.jpg"
-    
     return f"{cdn_base}/products/{cdn_sku}.jpg"
 
 
 def generate_csv(products):
     """Generate Google Merchant CSV feed"""
-    
-    # CSV columns - includes all required attributes
     fieldnames = [
         'id', 'title', 'description', 'link', 'image_link', 'availability',
         'price', 'brand', 'gtin', 'identifier_exists', 'condition', 
@@ -293,11 +258,8 @@ def generate_csv(products):
             if not product.get('in_stock', False):
                 continue
             
-            # Build product type from categories
             categories = product.get('categories', [])
             product_type = ' > '.join(['Home & Garden', 'Home Decor'] + categories[:2])
-            
-            # Identifier exists - false if no EAN
             ean = product.get('ean', '')
             identifier_exists = 'yes' if ean else 'no'
             
@@ -307,7 +269,7 @@ def generate_csv(products):
                 'description': product.get('description', '')[:5000],
                 'link': f"https://www.homeandverse.co.uk/?product={product.get('sku', '')}",
                 'image_link': get_image_url(product),
-                'availability': 'in_stock' if product.get('in_stock') else 'out_of_stock',
+                'availability': 'in_stock',
                 'price': f"{product.get('price', 0):.2f} GBP",
                 'brand': product.get('brand', ''),
                 'gtin': ean,
@@ -321,7 +283,6 @@ def generate_csv(products):
                 'material': extract_material(product),
                 'shipping_weight': estimate_weight(product)
             }
-            
             writer.writerow(row)
     
     print(f"Generated {OUTPUT_CSV}")
@@ -329,14 +290,13 @@ def generate_csv(products):
 
 def generate_xml(products):
     """Generate Google Merchant XML feed"""
-    
     xml_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">',
         '<channel>',
         '<title>Home and Verse Products</title>',
         '<link>https://www.homeandverse.co.uk</link>',
-        '<description>Curated European homeware from Räder, Remember, My Flame, Relaxound and Elvang</description>'
+        '<description>Curated European homeware</description>'
     ]
     
     for product in products:
@@ -346,8 +306,6 @@ def generate_xml(products):
         sku = product.get('sku', '')
         categories = product.get('categories', [])
         product_type = ' > '.join(['Home & Garden', 'Home Decor'] + categories[:2])
-        colour = extract_colour(product)
-        material = extract_material(product)
         ean = product.get('ean', '')
         identifier_exists = 'yes' if ean else 'no'
         
@@ -357,7 +315,7 @@ def generate_xml(products):
         xml_lines.append(f"<g:description><![CDATA[{product.get('description', '')[:5000]}]]></g:description>")
         xml_lines.append(f"<g:link>https://www.homeandverse.co.uk/?product={sku}</g:link>")
         xml_lines.append(f"<g:image_link>{get_image_url(product)}</g:image_link>")
-        xml_lines.append(f"<g:availability>{'in_stock' if product.get('in_stock') else 'out_of_stock'}</g:availability>")
+        xml_lines.append("<g:availability>in_stock</g:availability>")
         xml_lines.append(f"<g:price>{product.get('price', 0):.2f} GBP</g:price>")
         xml_lines.append(f"<g:brand>{product.get('brand', '')}</g:brand>")
         if ean:
@@ -368,7 +326,8 @@ def generate_xml(products):
         xml_lines.append(f"<g:product_type><![CDATA[{product_type}]]></g:product_type>")
         xml_lines.append("<g:age_group>adult</g:age_group>")
         xml_lines.append("<g:gender>unisex</g:gender>")
-        xml_lines.append(f"<g:color>{colour}</g:color>")
+        xml_lines.append(f"<g:color>{extract_colour(product)}</g:color>")
+        material = extract_material(product)
         if material:
             xml_lines.append(f"<g:material>{material}</g:material>")
         xml_lines.append(f"<g:shipping_weight>{estimate_weight(product)}</g:shipping_weight>")
@@ -388,7 +347,6 @@ def main():
     print("GOOGLE MERCHANT FEED GENERATOR")
     print("=" * 50)
     
-    # Load products
     if not PRODUCTS_FILE.exists():
         print(f"ERROR: {PRODUCTS_FILE} not found!")
         return
@@ -402,7 +360,6 @@ def main():
     print(f"\nTotal products: {len(products)}")
     print(f"In stock: {len(in_stock)}")
     
-    # Generate feeds
     generate_csv(in_stock)
     generate_xml(in_stock)
     
