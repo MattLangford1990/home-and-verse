@@ -5,6 +5,7 @@ Generate Google Merchant Center product feed for Home & Verse
 
 import json
 import csv
+import re
 from pathlib import Path
 
 PRODUCTS_FILE = Path("/Users/matt/Desktop/home-and-verse/backend/data/products.json")
@@ -12,40 +13,104 @@ OUTPUT_FILE = Path("/Users/matt/Desktop/home-and-verse/public/google-products.xm
 OUTPUT_CSV = Path("/Users/matt/Desktop/home-and-verse/public/google-products.csv")
 
 SITE_URL = "https://www.homeandverse.co.uk"
-CLOUDINARY_BASE = "https://res.cloudinary.com/dcfbgveei/image/upload"
+CDN_BASE = "https://cdn.appdmbrands.com"
+
+# Color extraction patterns
+COLOR_PATTERNS = [
+    # Common colors
+    r'\b(white|black|grey|gray|blue|red|green|yellow|orange|purple|pink|brown|beige|cream|gold|silver|bronze|copper|navy|teal|turquoise|coral|mint|olive|burgundy|maroon|ivory|charcoal|natural|sand|stone|taupe|rose|blush|sage|terracotta|mustard|rust|ochre|indigo|lavender|lilac|violet|magenta|cyan|aqua)\b',
+    # Multi-word colors
+    r'\b(light blue|dark blue|light grey|dark grey|light green|dark green|rose gold|antique gold|brushed gold|matte black|matte white|off white|soft pink|dusty pink|dusty rose|forest green|ocean blue|sky blue|midnight blue)\b',
+]
+
+def extract_color(product):
+    """Extract color from product name or description"""
+    text = f"{product.get('name', '')} {product.get('description', '')}".lower()
+    
+    # Try multi-word patterns first
+    for pattern in reversed(COLOR_PATTERNS):
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            return match.group(1).title()
+    
+    # Default based on brand/category
+    brand = product.get('brand', '')
+    categories = product.get('categories', [])
+    
+    if brand == 'Räder':
+        return 'White'  # Most Räder is white porcelain
+    if brand == 'Elvang':
+        return 'Natural'  # Textiles
+    if 'candle' in text or brand == 'My Flame':
+        return 'White'
+    
+    return 'Multicolour'  # Safe default for homeware
+
+def get_google_product_category(product):
+    """Map product to appropriate Google Product Category"""
+    name = product.get('name', '').lower()
+    description = product.get('description', '').lower()
+    categories = product.get('categories', [])
+    brand = product.get('brand', '')
+    text = f"{name} {description}"
+    
+    # Candles
+    if 'candle' in text or brand == 'My Flame':
+        return 'Home & Garden > Decor > Candles'
+    
+    # Diffusers
+    if 'diffuser' in text:
+        return 'Home & Garden > Decor > Home Fragrances > Fragrance Diffusers'
+    
+    # Sound boxes
+    if brand == 'Relaxound' or 'sound' in text or 'birdsong' in text:
+        return 'Home & Garden > Decor > Decorative Accents'
+    
+    # Textiles
+    if brand == 'Elvang' or any(x in text for x in ['throw', 'blanket', 'cushion', 'pillow']):
+        return 'Home & Garden > Linens & Bedding > Bedding > Blankets & Throws'
+    
+    # Porcelain/ceramics
+    if any(x in text for x in ['vase', 'porcelain', 'ceramic']):
+        return 'Home & Garden > Decor > Vases'
+    
+    if any(x in text for x in ['bowl', 'plate', 'dish', 'cup', 'mug']):
+        return 'Home & Garden > Kitchen & Dining > Tableware > Serveware'
+    
+    # Christmas
+    if 'Christmas' in categories or any(x in text for x in ['christmas', 'advent', 'santa']):
+        return 'Home & Garden > Decor > Seasonal & Holiday Decorations > Christmas Decorations'
+    
+    # Easter
+    if 'Easter' in categories or 'easter' in text:
+        return 'Home & Garden > Decor > Seasonal & Holiday Decorations > Easter Decorations'
+    
+    # Games/puzzles
+    if any(x in text for x in ['game', 'puzzle', 'memo']):
+        return 'Toys & Games > Puzzles'
+    
+    # Lamps/lighting
+    if any(x in text for x in ['lamp', 'light', 'lantern', 'tealight']):
+        return 'Home & Garden > Lighting > Lamps'
+    
+    # Default
+    return 'Home & Garden > Decor > Decorative Accents'
 
 def get_image_url(product):
-    """Get the correct image URL for a product, ensuring it's Google-compatible (JPG format)"""
+    """Get the correct image URL for a product from self-hosted CDN"""
     sku = product.get('sku', '')
     brand = product.get('brand', '')
     image_path = product.get('image_url', '')
     
-    # If it's already a full Cloudinary URL, use it but ensure JPG format
-    if image_path and 'cloudinary.com' in image_path:
-        # Replace any f_auto with f_jpg for Google compatibility
-        url = image_path.replace('f_auto', 'f_jpg')
-        # Add transforms if missing
-        if '/upload/' in url and 'w_' not in url:
-            url = url.replace('/upload/', '/upload/w_800,q_85,f_jpg/')
-        return url
-    
-    # Handle different brands with different folder structures
+    # Handle different brands
     if brand == 'Elvang':
-        # Elvang images are in elvang/ folder with _1 suffix
-        return f"{CLOUDINARY_BASE}/w_800,q_85,f_jpg/elvang/{sku}_1.jpg"
+        return f"{CDN_BASE}/products/elvang/{sku}_1.jpg"
     
-    # For products with local image paths like /images/SKU.jpg
-    if image_path:
-        # Extract filename and handle SKU variations (dots to underscores for My Flame etc)
-        filename = image_path.split('/')[-1]
-        # Remove extension and use as-is (already has correct format)
-        sku_part = filename.replace('.jpg', '').replace('.png', '')
-        return f"{CLOUDINARY_BASE}/w_800,q_85,f_jpg/products/{sku_part}.jpg"
+    if brand == 'Relaxound':
+        return f"{CDN_BASE}/products/relaxound/{sku}.jpg"
     
-    # Default fallback - construct from SKU
-    # Replace dots with underscores for SKUs like GL.CO.SA
-    safe_sku = sku.replace('.', '_')
-    return f"{CLOUDINARY_BASE}/w_800,q_85,f_jpg/products/{safe_sku}.jpg"
+    # Standard products folder
+    return f"{CDN_BASE}/products/{sku}.jpg"
 
 def generate_feed():
     # Load products
@@ -82,8 +147,13 @@ def generate_feed():
             'price',
             'brand',
             'gtin',
+            'identifier_exists',
             'condition',
+            'google_product_category',
             'product_type',
+            'age_group',
+            'gender',
+            'color',
             'shipping_weight'
         ])
         
@@ -99,11 +169,20 @@ def generate_feed():
             # Product URL - using SKU parameter
             product_url = f"{SITE_URL}/?product={sku}"
             
-            # Image URL - use correct URL based on product data
+            # Image URL from self-hosted CDN
             image_url = get_image_url(p)
             
-            # Category path for Google
+            # Google product category (official taxonomy)
+            google_category = get_google_product_category(p)
+            
+            # Custom product type path
             category_path = ' > '.join(['Home & Garden', 'Home Decor'] + categories[:2])
+            
+            # Extract color from product
+            color = extract_color(p)
+            
+            # Identifier exists - false if no EAN
+            identifier_exists = 'yes' if ean else 'no'
             
             writer.writerow([
                 sku,                                    # id
@@ -115,15 +194,20 @@ def generate_feed():
                 f"{price:.2f} GBP",                     # price
                 brand,                                  # brand
                 ean if ean else '',                     # gtin (EAN)
+                identifier_exists,                      # identifier_exists
                 'new',                                  # condition
+                google_category,                        # google_product_category
                 category_path,                          # product_type
+                'adult',                                # age_group (required for some categories)
+                'unisex',                               # gender (required for some categories)
+                color,                                  # color
                 '0.5 kg'                                # shipping_weight (estimate)
             ])
     
     print(f"\n✅ Generated: {OUTPUT_CSV}")
     print(f"   Products in feed: {len(in_stock)}")
     
-    # Also generate XML feed (RSS 2.0 format)
+    # Also generate XML feed (RSS 2.0 format with Google namespace)
     xml_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">',
@@ -144,7 +228,10 @@ def generate_feed():
         
         product_url = f"{SITE_URL}/?product={sku}"
         image_url = get_image_url(p)
+        google_category = get_google_product_category(p).replace('&', '&amp;')
         category_path = ' &gt; '.join(['Home &amp; Garden', 'Home Decor'] + [c.replace('&', '&amp;') for c in categories[:2]])
+        color = extract_color(p)
+        identifier_exists = 'yes' if ean else 'no'
         
         xml_lines.append('<item>')
         xml_lines.append(f'  <g:id>{sku}</g:id>')
@@ -157,8 +244,13 @@ def generate_feed():
         xml_lines.append(f'  <g:brand>{brand}</g:brand>')
         if ean:
             xml_lines.append(f'  <g:gtin>{ean}</g:gtin>')
+        xml_lines.append(f'  <g:identifier_exists>{identifier_exists}</g:identifier_exists>')
         xml_lines.append(f'  <g:condition>new</g:condition>')
+        xml_lines.append(f'  <g:google_product_category>{google_category}</g:google_product_category>')
         xml_lines.append(f'  <g:product_type>{category_path}</g:product_type>')
+        xml_lines.append(f'  <g:age_group>adult</g:age_group>')
+        xml_lines.append(f'  <g:gender>unisex</g:gender>')
+        xml_lines.append(f'  <g:color>{color}</g:color>')
         xml_lines.append('</item>')
     
     xml_lines.append('</channel>')
