@@ -88,23 +88,45 @@ CACHE_TTL = timedelta(hours=1)  # Refresh from DB hourly
 
 
 def _load_items_from_db():
-    """Load items from the shared database cache (populated by dm-sales-app)"""
+    """Load items from shared database cache, or fall back to local products.json"""
     global _items_cache, _items_cache_loaded_at
     
-    try:
-        from database import SessionLocal, ProductCache
-        db = SessionLocal()
+    # Try database first (shared with dm-sales-app)
+    DATABASE_URL = os.getenv("DATABASE_URL", "")
+    if DATABASE_URL:
         try:
-            cache = db.query(ProductCache).filter(ProductCache.id == "main").first()
-            if cache and cache.items_json:
-                _items_cache = json.loads(cache.items_json)
-                _items_cache_loaded_at = datetime.utcnow()
-                print(f"CACHE: Loaded {len(_items_cache)} items from shared database")
-                return _items_cache
-        finally:
-            db.close()
+            from database import SessionLocal, ProductCache
+            db = SessionLocal()
+            try:
+                cache = db.query(ProductCache).filter(ProductCache.id == "main").first()
+                if cache and cache.items_json:
+                    _items_cache = json.loads(cache.items_json)
+                    _items_cache_loaded_at = datetime.utcnow()
+                    print(f"CACHE: Loaded {len(_items_cache)} items from shared database")
+                    return _items_cache
+            finally:
+                db.close()
+        except Exception as e:
+            print(f"CACHE: Database error: {e}")
+    
+    # Fallback: Load from local products.json (has SKU + Zoho item_id)
+    try:
+        from pathlib import Path
+        products_file = Path(__file__).parent / "data" / "products.json"
+        if products_file.exists():
+            with open(products_file) as f:
+                data = json.load(f)
+            products = data.get("products", [])
+            # Convert to Zoho-like format - 'id' field is the Zoho item_id
+            _items_cache = [
+                {"sku": p.get("sku"), "item_id": p.get("id"), "name": p.get("name")}
+                for p in products if p.get("sku") and p.get("id")
+            ]
+            _items_cache_loaded_at = datetime.utcnow()
+            print(f"CACHE: Loaded {len(_items_cache)} items from local products.json")
+            return _items_cache
     except Exception as e:
-        print(f"CACHE: Error loading from database: {e}")
+        print(f"CACHE: Error loading from products.json: {e}")
     
     return None
 
@@ -127,10 +149,9 @@ def _get_cached_items():
 
 async def get_item_by_sku(sku: str):
     """
-    Get item details by SKU - uses shared database cache.
-    Falls back to Zoho API only if cache is unavailable.
+    Get item details by SKU - uses shared database cache ONLY.
+    No Zoho API fallback - if cache unavailable, returns None.
     """
-    # Try cache first
     items = _get_cached_items()
     if items:
         for item in items:
@@ -140,16 +161,8 @@ async def get_item_by_sku(sku: str):
         print(f"CACHE: SKU {sku} not found in {len(items)} cached items")
         return None
     
-    # Fallback to Zoho API (should rarely happen)
-    print(f"CACHE: Database cache unavailable, falling back to Zoho API for SKU {sku}")
-    response = await zoho_request("GET", "items", params={"sku": sku})
-    
-    if response.status_code == 200:
-        data = response.json()
-        items = data.get("items", [])
-        if items:
-            return items[0]
-    
+    # No fallback to Zoho API - cache is required
+    print(f"CACHE: Database cache unavailable - cannot look up SKU {sku}")
     return None
 
 
