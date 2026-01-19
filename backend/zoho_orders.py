@@ -2,11 +2,13 @@
 Zoho Inventory Integration for Orders
 ======================================
 Creates Sales Orders, manages customers, and syncs with Zoho.
+Uses shared database cache for item lookups to minimize API calls.
 """
 
 import httpx
+import json
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -78,6 +80,81 @@ async def zoho_request(method: str, endpoint: str, data: dict = None, params: di
         return response
 
 
+# ============ SHARED CACHE (from dm-sales-app database) ============
+
+_items_cache = None
+_items_cache_loaded_at = None
+CACHE_TTL = timedelta(hours=1)  # Refresh from DB hourly
+
+
+def _load_items_from_db():
+    """Load items from the shared database cache (populated by dm-sales-app)"""
+    global _items_cache, _items_cache_loaded_at
+    
+    try:
+        from database import SessionLocal, ProductCache
+        db = SessionLocal()
+        try:
+            cache = db.query(ProductCache).filter(ProductCache.id == "main").first()
+            if cache and cache.items_json:
+                _items_cache = json.loads(cache.items_json)
+                _items_cache_loaded_at = datetime.utcnow()
+                print(f"CACHE: Loaded {len(_items_cache)} items from shared database")
+                return _items_cache
+        finally:
+            db.close()
+    except Exception as e:
+        print(f"CACHE: Error loading from database: {e}")
+    
+    return None
+
+
+def _get_cached_items():
+    """Get items from cache, refreshing from DB if needed"""
+    global _items_cache, _items_cache_loaded_at
+    
+    now = datetime.utcnow()
+    
+    # Check if cache is valid
+    if _items_cache and _items_cache_loaded_at:
+        age = now - _items_cache_loaded_at
+        if age < CACHE_TTL:
+            return _items_cache
+    
+    # Load from database
+    return _load_items_from_db()
+
+
+async def get_item_by_sku(sku: str):
+    """
+    Get item details by SKU - uses shared database cache.
+    Falls back to Zoho API only if cache is unavailable.
+    """
+    # Try cache first
+    items = _get_cached_items()
+    if items:
+        for item in items:
+            if item.get("sku") == sku:
+                return item
+        # SKU not found in cache
+        print(f"CACHE: SKU {sku} not found in {len(items)} cached items")
+        return None
+    
+    # Fallback to Zoho API (should rarely happen)
+    print(f"CACHE: Database cache unavailable, falling back to Zoho API for SKU {sku}")
+    response = await zoho_request("GET", "items", params={"sku": sku})
+    
+    if response.status_code == 200:
+        data = response.json()
+        items = data.get("items", [])
+        if items:
+            return items[0]
+    
+    return None
+
+
+# ============ CUSTOMER OPERATIONS (still use Zoho API) ============
+
 async def find_or_create_customer(email: str, name: str, phone: str = None, 
                                    billing_address: dict = None, shipping_address: dict = None):
     """Find existing customer by email or create new one"""
@@ -136,8 +213,6 @@ async def create_sales_order(customer_id: str, line_items: list,
         "notes": notes,
         "terms": "Payment processed via Home & Verse website",
         "is_inclusive_tax": True,  # Prices include VAT
-        # Note: Custom fields removed - add back if configured in Zoho
-        # "custom_fields": [{"label": "Sales Channel", "value": "Home & Verse Website"}]
     }
     
     if reference_number:
@@ -164,19 +239,6 @@ async def create_sales_order(customer_id: str, line_items: list,
         }
 
 
-async def get_item_by_sku(sku: str):
-    """Get item details from Zoho by SKU"""
-    response = await zoho_request("GET", "items", params={"sku": sku})
-    
-    if response.status_code == 200:
-        data = response.json()
-        items = data.get("items", [])
-        if items:
-            return items[0]
-    
-    return None
-
-
 async def create_order_from_cart(cart_items: list, customer_info: dict, 
                                   shipping_method: str = "standard",
                                   shipping_charge: float = 0,
@@ -184,7 +246,7 @@ async def create_order_from_cart(cart_items: list, customer_info: dict,
     """
     Full order creation flow:
     1. Find or create customer
-    2. Look up item IDs from SKUs
+    2. Look up item IDs from SKUs (uses cache)
     3. Create sales order
     
     cart_items format:
@@ -209,7 +271,7 @@ async def create_order_from_cart(cart_items: list, customer_info: dict,
     """
     
     try:
-        # 1. Find or create customer
+        # 1. Find or create customer (uses Zoho API - necessary for customers)
         customer_id, customer = await find_or_create_customer(
             email=customer_info["email"],
             name=customer_info["name"],
@@ -218,10 +280,10 @@ async def create_order_from_cart(cart_items: list, customer_info: dict,
             shipping_address=customer_info.get("shipping_address", customer_info.get("address"))
         )
         
-        # 2. Build line items with Zoho item IDs
+        # 2. Build line items with Zoho item IDs (uses CACHE - no API calls!)
         line_items = []
         for cart_item in cart_items:
-            # Look up item in Zoho
+            # Look up item in cache
             zoho_item = await get_item_by_sku(cart_item["sku"])
             
             if not zoho_item:
@@ -237,7 +299,7 @@ async def create_order_from_cart(cart_items: list, customer_info: dict,
                 "name": zoho_item.get("name", cart_item["sku"])
             })
         
-        # 3. Create sales order
+        # 3. Create sales order (uses Zoho API - necessary for orders)
         shipping_names = {
             "standard": "Royal Mail 2nd Class",
             "express": "Royal Mail 1st Class / UPS"
@@ -271,8 +333,13 @@ async def create_order_from_cart(cart_items: list, customer_info: dict,
 
 # Test function
 async def test_connection():
-    """Test Zoho connection"""
+    """Test Zoho connection and cache status"""
     try:
+        # Test cache
+        items = _get_cached_items()
+        cache_status = f"Cache: {len(items)} items" if items else "Cache: Not available"
+        
+        # Test Zoho connection
         token = await get_access_token()
         response = await zoho_request("GET", "organizations")
         
@@ -283,10 +350,11 @@ async def test_connection():
                 return {
                     "success": True,
                     "organization": orgs[0].get("name"),
-                    "org_id": orgs[0].get("organization_id")
+                    "org_id": orgs[0].get("organization_id"),
+                    "cache_status": cache_status
                 }
         
-        return {"success": False, "error": "No organizations found"}
+        return {"success": False, "error": "No organizations found", "cache_status": cache_status}
         
     except Exception as e:
         return {"success": False, "error": str(e)}

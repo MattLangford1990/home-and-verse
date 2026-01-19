@@ -4,3 +4,5 @@ python-dotenv
 stripe
 pydantic
 httpx
+sqlalchemy
+psycopg2-binary
