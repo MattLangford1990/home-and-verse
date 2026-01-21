@@ -2,11 +2,13 @@
 Admin Dashboard Routes for Home & Verse
 ========================================
 Provides statistics and order management endpoints.
+Tracks only website orders (not trade Stripe payments).
 """
 
 from fastapi import APIRouter, HTTPException
 from datetime import datetime, timedelta
-import stripe
+from pathlib import Path
+import json
 import os
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
@@ -14,99 +16,117 @@ router = APIRouter(prefix="/api/admin", tags=["admin"])
 # Simple admin auth - in production use proper auth
 ADMIN_SECRET = os.getenv("ADMIN_SECRET", "hv-admin-2024")
 
+# Orders storage
+DATA_DIR = Path(__file__).parent / "data"
+ORDERS_FILE = DATA_DIR / "orders.json"
+
 
 def verify_admin(secret: str) -> bool:
     """Simple admin verification"""
     return secret == ADMIN_SECRET
 
 
+def load_orders() -> list:
+    """Load orders from local JSON file"""
+    if not ORDERS_FILE.exists():
+        return []
+    try:
+        with open(ORDERS_FILE) as f:
+            data = json.load(f)
+        return data.get("orders", [])
+    except Exception as e:
+        print(f"Error loading orders: {e}")
+        return []
+
+
+def save_order(order: dict):
+    """Save a new order to the orders file"""
+    orders = load_orders()
+    orders.append(order)
+    
+    # Keep orders file manageable - retain last 1000 orders
+    if len(orders) > 1000:
+        orders = orders[-1000:]
+    
+    DATA_DIR.mkdir(exist_ok=True)
+    with open(ORDERS_FILE, "w") as f:
+        json.dump({"orders": orders, "updated_at": datetime.utcnow().isoformat()}, f, indent=2)
+
+
 @router.get("/stats")
 async def get_admin_stats(secret: str, days: int = 7):
     """
-    Get admin dashboard statistics from Stripe.
+    Get admin dashboard statistics from local orders.
+    Only tracks orders placed through the website checkout.
     Requires admin secret for access.
     """
     if not verify_admin(secret):
         raise HTTPException(status_code=401, detail="Unauthorized")
     
-    if not stripe.api_key:
-        raise HTTPException(status_code=500, detail="Stripe not configured")
-    
     try:
+        orders = load_orders()
+        
         # Calculate date range
         end_date = datetime.now()
         start_date = end_date - timedelta(days=days)
         previous_start = start_date - timedelta(days=days)
         
-        start_timestamp = int(start_date.timestamp())
-        end_timestamp = int(end_date.timestamp())
-        previous_start_timestamp = int(previous_start.timestamp())
+        # Filter orders by date
+        current_orders = []
+        previous_orders = []
         
-        # Get current period payments
-        current_payments = stripe.PaymentIntent.list(
-            created={"gte": start_timestamp, "lte": end_timestamp},
-            limit=100
-        )
-        
-        # Get previous period for comparison
-        previous_payments = stripe.PaymentIntent.list(
-            created={"gte": previous_start_timestamp, "lt": start_timestamp},
-            limit=100
-        )
+        for order in orders:
+            try:
+                order_date = datetime.fromisoformat(order.get("created_at", "").replace("Z", "+00:00"))
+                # Convert to naive datetime for comparison
+                order_date = order_date.replace(tzinfo=None)
+                
+                if start_date <= order_date <= end_date:
+                    current_orders.append(order)
+                elif previous_start <= order_date < start_date:
+                    previous_orders.append(order)
+            except (ValueError, TypeError):
+                continue
         
         # Calculate current period stats
-        current_revenue = sum(
-            p.amount_received / 100 
-            for p in current_payments.data 
-            if p.status == "succeeded"
-        )
-        current_orders = sum(
-            1 for p in current_payments.data 
-            if p.status == "succeeded"
-        )
+        current_revenue = sum(order.get("total", 0) for order in current_orders)
+        current_count = len(current_orders)
         
         # Calculate previous period stats
-        previous_revenue = sum(
-            p.amount_received / 100 
-            for p in previous_payments.data 
-            if p.status == "succeeded"
-        )
-        previous_orders = sum(
-            1 for p in previous_payments.data 
-            if p.status == "succeeded"
-        )
+        previous_revenue = sum(order.get("total", 0) for order in previous_orders)
+        previous_count = len(previous_orders)
         
         # Calculate changes
         revenue_change = ((current_revenue - previous_revenue) / previous_revenue * 100) if previous_revenue > 0 else 0
-        orders_change = ((current_orders - previous_orders) / previous_orders * 100) if previous_orders > 0 else 0
+        orders_change = ((current_count - previous_count) / previous_count * 100) if previous_count > 0 else 0
         
-        avg_order = current_revenue / current_orders if current_orders > 0 else 0
-        prev_avg_order = previous_revenue / previous_orders if previous_orders > 0 else 0
+        avg_order = current_revenue / current_count if current_count > 0 else 0
+        prev_avg_order = previous_revenue / previous_count if previous_count > 0 else 0
         avg_order_change = ((avg_order - prev_avg_order) / prev_avg_order * 100) if prev_avg_order > 0 else 0
         
-        # Get recent orders with details
+        # Get recent orders (most recent first)
+        sorted_current = sorted(current_orders, key=lambda x: x.get("created_at", ""), reverse=True)
         recent_orders = []
-        for payment in current_payments.data[:10]:
-            if payment.status == "succeeded":
-                customer_email = payment.receipt_email or "Unknown"
-                customer_name = payment.metadata.get("customer_name", customer_email.split("@")[0].title())
-                
-                recent_orders.append({
-                    "id": payment.metadata.get("order_number", payment.id[:12].upper()),
-                    "customer": customer_name,
-                    "email": customer_email,
-                    "total": payment.amount_received / 100,
-                    "status": "completed",
-                    "date": datetime.fromtimestamp(payment.created).strftime("%Y-%m-%d %H:%M"),
-                    "items": int(payment.metadata.get("item_count", 1))
-                })
+        for order in sorted_current[:10]:
+            recent_orders.append({
+                "id": order.get("order_number", order.get("zoho_order_id", "N/A")),
+                "customer": order.get("customer_name", "Unknown"),
+                "email": order.get("customer_email", "Unknown"),
+                "total": order.get("total", 0),
+                "status": order.get("status", "completed"),
+                "date": order.get("created_at", "")[:16].replace("T", " "),
+                "items": order.get("item_count", 1)
+            })
         
         # Daily revenue for chart
         daily_revenue = {}
-        for payment in current_payments.data:
-            if payment.status == "succeeded":
-                day = datetime.fromtimestamp(payment.created).strftime("%a")
-                daily_revenue[day] = daily_revenue.get(day, 0) + payment.amount_received / 100
+        for order in current_orders:
+            try:
+                order_date = datetime.fromisoformat(order.get("created_at", "").replace("Z", "+00:00"))
+                day = order_date.strftime("%a")
+                daily_revenue[day] = daily_revenue.get(day, 0) + order.get("total", 0)
+            except (ValueError, TypeError):
+                continue
         
         # Ensure all days of week are present
         days_order = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -122,7 +142,7 @@ async def get_admin_stats(secret: str, days: int = 7):
                 "change": round(revenue_change, 1)
             },
             "orders": {
-                "value": current_orders,
+                "value": current_count,
                 "change": round(orders_change, 1)
             },
             "avg_order": {
@@ -133,8 +153,8 @@ async def get_admin_stats(secret: str, days: int = 7):
             "revenue_chart": revenue_chart
         }
         
-    except stripe.error.StripeError as e:
-        raise HTTPException(status_code=500, detail=f"Stripe error: {str(e)}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading stats: {str(e)}")
 
 
 @router.get("/analytics")
@@ -163,38 +183,39 @@ async def get_admin_analytics(secret: str, days: int = 7):
 
 @router.get("/orders")
 async def get_admin_orders(secret: str, limit: int = 50, status: str = None):
-    """Get list of orders from Stripe"""
+    """Get list of orders from local storage"""
     if not verify_admin(secret):
         raise HTTPException(status_code=401, detail="Unauthorized")
     
-    if not stripe.api_key:
-        raise HTTPException(status_code=500, detail="Stripe not configured")
-    
     try:
-        payments = stripe.PaymentIntent.list(limit=limit)
+        orders = load_orders()
         
-        orders = []
-        for payment in payments.data:
-            order_status = "completed" if payment.status == "succeeded" else payment.status
-            
-            if status and order_status != status:
-                continue
-            
-            customer_email = payment.receipt_email or "Unknown"
-            customer_name = payment.metadata.get("customer_name", customer_email.split("@")[0].title())
-            
-            orders.append({
-                "id": payment.metadata.get("order_number", payment.id[:12].upper()),
-                "stripe_id": payment.id,
-                "customer": customer_name,
-                "email": customer_email,
-                "total": payment.amount_received / 100 if payment.status == "succeeded" else payment.amount / 100,
-                "status": order_status,
-                "date": datetime.fromtimestamp(payment.created).strftime("%Y-%m-%d %H:%M"),
-                "items": int(payment.metadata.get("item_count", 1))
+        # Sort by date (newest first)
+        orders = sorted(orders, key=lambda x: x.get("created_at", ""), reverse=True)
+        
+        # Filter by status if specified
+        if status:
+            orders = [o for o in orders if o.get("status") == status]
+        
+        # Apply limit
+        orders = orders[:limit]
+        
+        # Format for response
+        formatted_orders = []
+        for order in orders:
+            formatted_orders.append({
+                "id": order.get("order_number", order.get("zoho_order_id", "N/A")),
+                "zoho_id": order.get("zoho_order_id"),
+                "stripe_id": order.get("payment_intent_id"),
+                "customer": order.get("customer_name", "Unknown"),
+                "email": order.get("customer_email", "Unknown"),
+                "total": order.get("total", 0),
+                "status": order.get("status", "completed"),
+                "date": order.get("created_at", "")[:16].replace("T", " "),
+                "items": order.get("item_count", 1)
             })
         
-        return {"orders": orders, "count": len(orders)}
+        return {"orders": formatted_orders, "count": len(formatted_orders)}
         
-    except stripe.error.StripeError as e:
-        raise HTTPException(status_code=500, detail=f"Stripe error: {str(e)}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading orders: {str(e)}")

@@ -577,6 +577,8 @@ async def get_shipping_options(order_total: float = 0):
 # ==========================================
 
 from zoho_orders import create_order_from_cart, test_connection as zoho_test
+from admin_routes import save_order
+from datetime import datetime
 
 
 class CartItem(BaseModel):
@@ -700,6 +702,25 @@ async def place_order(request: CheckoutRequest):
     
     if not result.get("success"):
         raise HTTPException(status_code=500, detail=result.get("error", "Failed to create order"))
+    
+    # Save order to local storage for admin dashboard tracking
+    order_record = {
+        "order_number": result.get("salesorder_number"),
+        "zoho_order_id": result.get("salesorder_id"),
+        "payment_intent_id": request.payment_intent_id,
+        "customer_name": request.customer.name,
+        "customer_email": request.customer.email,
+        "customer_phone": request.customer.phone,
+        "subtotal": subtotal,
+        "shipping": shipping_charge,
+        "total": total,
+        "item_count": sum(item.quantity for item in request.items),
+        "items": [item.dict() for item in request.items],
+        "shipping_method": request.shipping_method,
+        "status": "completed",
+        "created_at": datetime.utcnow().isoformat() + "Z"
+    }
+    save_order(order_record)
     
     return {
         "success": True,
