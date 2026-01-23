@@ -572,8 +572,8 @@
         "Christmas"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/90042.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -811,8 +811,8 @@
         "Candles & Fragrance"
       ],
       "ean": "4260479652360",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/KSK01.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -1052,8 +1052,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4260479652629",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/KBR01.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -1069,8 +1069,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4260479653305",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/KBR02.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -1264,8 +1264,8 @@
         "Tableware"
       ],
       "ean": "4260479650960",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/PS03.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -2111,8 +2111,8 @@
         "Tableware"
       ],
       "ean": "4045289516220",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/51622.jpg",
       "in_stock": true,
       "stock": 12
     },
@@ -3031,8 +3031,8 @@
         "Candles & Fragrance"
       ],
       "ean": "4260479650991",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SK22.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -3116,8 +3116,8 @@
         "Candles & Fragrance"
       ],
       "ean": "4260479650922",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SK23.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -4757,8 +4757,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/36022.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6595,8 +6595,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33273.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6612,8 +6612,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33263.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6629,8 +6629,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33253.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6646,8 +6646,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33274.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6663,8 +6663,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33264.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6680,8 +6680,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33254.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6697,8 +6697,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33275.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6714,8 +6714,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33265.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6731,8 +6731,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33255.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6748,8 +6748,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33272.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6765,8 +6765,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33262.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -6782,8 +6782,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33252.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -7086,8 +7086,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35165.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -7103,8 +7103,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35163.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -7120,8 +7120,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35155.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -7137,8 +7137,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35164.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -7154,8 +7154,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35162.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -7171,8 +7171,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35154.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -7222,8 +7222,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33457.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -7239,8 +7239,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33456.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -8303,8 +8303,8 @@
         "Gifts"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/30123.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -8660,8 +8660,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38253.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -8677,8 +8677,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38273.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -8694,8 +8694,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38263.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -8711,8 +8711,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38252.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -8728,8 +8728,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38272.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -8745,8 +8745,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38262.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -9949,8 +9949,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35283.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -9967,8 +9967,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35281.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -9985,8 +9985,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35282.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10003,8 +10003,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35293.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10021,8 +10021,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35291.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10039,8 +10039,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35292.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10286,8 +10286,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35141.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10303,8 +10303,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35140.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10320,8 +10320,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35142.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10337,8 +10337,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35143.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10354,8 +10354,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35191.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10371,8 +10371,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35190.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10388,8 +10388,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35192.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10405,8 +10405,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35193.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10422,8 +10422,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33476.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -10935,8 +10935,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/29413.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11056,8 +11056,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34100.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11073,8 +11073,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34108.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11091,8 +11091,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34103.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11109,8 +11109,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34104.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11128,8 +11128,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34102.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11145,8 +11145,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34101.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11179,8 +11179,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34105.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11419,8 +11419,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35330.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11436,8 +11436,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35335.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11453,8 +11453,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35331.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11508,8 +11508,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34120.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11529,8 +11529,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34122.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11548,8 +11548,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34126.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11567,8 +11567,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34125.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11586,8 +11586,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/34121.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11773,8 +11773,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/666080100.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -11824,8 +11824,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/666080500.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -12790,8 +12790,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32548.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -12807,8 +12807,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32541.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -12824,8 +12824,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32543.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -12841,8 +12841,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32545.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -12858,8 +12858,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32549.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -12875,8 +12875,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32540.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -12909,8 +12909,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32551.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -13980,8 +13980,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/30146.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -13997,8 +13997,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/30147.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14014,8 +14014,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32751.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14031,8 +14031,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32748.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14048,8 +14048,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32743.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14065,8 +14065,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32745.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14082,8 +14082,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32749.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14099,8 +14099,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32750.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14116,8 +14116,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32768.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14133,8 +14133,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32761.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14150,8 +14150,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32763.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14167,8 +14167,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32760.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14184,8 +14184,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32765.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14201,8 +14201,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32779.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14218,8 +14218,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32769.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14235,8 +14235,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32788.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14252,8 +14252,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32781.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14269,8 +14269,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32780.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14286,8 +14286,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32787.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -14303,8 +14303,8 @@
         "Candles & Fragrance"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/32799.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -15962,8 +15962,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38353.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -15979,8 +15979,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38363.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -15996,8 +15996,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38373.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16013,8 +16013,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38354.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16030,8 +16030,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38364.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16047,8 +16047,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38374.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16064,8 +16064,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38355.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16081,8 +16081,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38365.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16098,8 +16098,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38375.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16115,8 +16115,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38352.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16132,8 +16132,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38362.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16149,8 +16149,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38372.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16166,8 +16166,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38464.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16183,8 +16183,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38454.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16200,8 +16200,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38474.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16217,8 +16217,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38465.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16234,8 +16234,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38455.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16251,8 +16251,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38475.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16268,8 +16268,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38462.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16285,8 +16285,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38452.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16302,8 +16302,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38472.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16319,8 +16319,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38463.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16336,8 +16336,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38453.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16353,8 +16353,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38473.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16421,8 +16421,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/33742.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16574,8 +16574,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38466.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16591,8 +16591,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38467.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16608,8 +16608,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38468.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16625,8 +16625,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38469.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16642,8 +16642,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38292.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16659,8 +16659,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38282.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16676,8 +16676,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38293.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16693,8 +16693,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38283.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16710,8 +16710,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38294.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16727,8 +16727,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38284.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16744,8 +16744,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38291.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16761,8 +16761,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38281.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16778,8 +16778,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38456.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16795,8 +16795,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38457.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16812,8 +16812,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38458.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16829,8 +16829,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38459.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16897,8 +16897,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38423.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16914,8 +16914,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38433.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16931,8 +16931,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38424.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16948,8 +16948,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38434.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16965,8 +16965,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38421.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16982,8 +16982,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38431.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -16999,8 +16999,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38422.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -17016,8 +17016,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38432.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -17033,8 +17033,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38445.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -17051,8 +17051,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38444.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -17068,8 +17068,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38443.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -17085,8 +17085,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38442.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -17102,8 +17102,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38441.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -18593,8 +18593,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35111.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -18610,8 +18610,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35102.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -18644,8 +18644,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35103.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -18678,8 +18678,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35104.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -18695,8 +18695,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35114.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -18729,8 +18729,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35115.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -19086,8 +19086,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/30189.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -19664,8 +19664,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35090.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -19682,8 +19682,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35091.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -19699,8 +19699,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35092.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -19716,8 +19716,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35093.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20159,8 +20159,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38358.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20176,8 +20176,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38368.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20193,8 +20193,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38378.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20210,8 +20210,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38357.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20227,8 +20227,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38367.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20244,8 +20244,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/38377.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20397,8 +20397,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35414.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20414,8 +20414,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35413.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20431,8 +20431,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35412.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20448,8 +20448,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35404.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20465,8 +20465,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35403.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20482,8 +20482,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35402.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20499,8 +20499,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35065.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -20516,8 +20516,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35055.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21536,8 +21536,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35063.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21553,8 +21553,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35053.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21570,8 +21570,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35052.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21587,8 +21587,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35062.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21740,8 +21740,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35424.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21757,8 +21757,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35423.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21774,8 +21774,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35422.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21792,8 +21792,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35263.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21810,8 +21810,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35261.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21828,8 +21828,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35262.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21846,8 +21846,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35273.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21864,8 +21864,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35271.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -21882,8 +21882,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/35272.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -22323,8 +22323,8 @@
         "Lighting"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/30128.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -22374,8 +22374,8 @@
         "Lighting"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/30126.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -22391,8 +22391,8 @@
         "Lighting"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/30127.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -22425,8 +22425,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/19305.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -22442,8 +22442,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/19302.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -22459,8 +22459,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/19309.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -22476,8 +22476,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/19301.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -22493,8 +22493,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/19307.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -22510,8 +22510,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/19303.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -22527,8 +22527,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/19330.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -22765,8 +22765,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/30154.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -23189,8 +23189,8 @@
         "Tableware"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/29385.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -23411,8 +23411,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/29384.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -25703,7 +25703,7 @@
       ],
       "ean": "8719481030636",
       "has_image": true,
-      "image_url": "/images/KC_030_06.jpg",
+      "image_url": "/images/KC.030.06.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -25721,7 +25721,7 @@
       ],
       "ean": "8719481030650",
       "has_image": true,
-      "image_url": "/images/KC_030_01.jpg",
+      "image_url": "/images/KC.030.01.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -25739,7 +25739,7 @@
       ],
       "ean": "8719325002515",
       "has_image": true,
-      "image_url": "/images/KC_030_07.jpg",
+      "image_url": "/images/KC.030.07.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -25757,7 +25757,7 @@
       ],
       "ean": "8719481030643",
       "has_image": true,
-      "image_url": "/images/KC_030_04.jpg",
+      "image_url": "/images/KC.030.04.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -25775,7 +25775,7 @@
       ],
       "ean": "8719481030667",
       "has_image": true,
-      "image_url": "/images/KC_030_02.jpg",
+      "image_url": "/images/KC.030.02.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -25793,7 +25793,7 @@
       ],
       "ean": "8719325002546",
       "has_image": true,
-      "image_url": "/images/KC_030_08.jpg",
+      "image_url": "/images/KC.030.08.jpg",
       "in_stock": true,
       "stock": 1
     },
@@ -25950,7 +25950,7 @@
       ],
       "ean": "8719481030278",
       "has_image": true,
-      "image_url": "/images/SO_GB350_LGRY.jpg",
+      "image_url": "/images/SO.GB350.LGRY.jpg",
       "in_stock": true,
       "stock": 20
     },
@@ -25969,7 +25969,7 @@
       ],
       "ean": "8719481036119",
       "has_image": true,
-      "image_url": "/images/SO_GB350_SND.jpg",
+      "image_url": "/images/SO.GB350.SND.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -25986,7 +25986,7 @@
       ],
       "ean": "8719481036980",
       "has_image": true,
-      "image_url": "/images/OUT_8850_WH.jpg",
+      "image_url": "/images/OUT.8850.WH.jpg",
       "in_stock": true,
       "stock": 1
     },
@@ -26003,7 +26003,7 @@
       ],
       "ean": "8719481038021",
       "has_image": true,
-      "image_url": "/images/OUT_L_004_02.jpg",
+      "image_url": "/images/OUT.L.004.02.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -26020,7 +26020,7 @@
       ],
       "ean": "8719481036942",
       "has_image": true,
-      "image_url": "/images/OUT_8850_LGRY.jpg",
+      "image_url": "/images/OUT.8850.LGRY.jpg",
       "in_stock": true,
       "stock": 9
     },
@@ -26037,7 +26037,7 @@
       ],
       "ean": "8719481038038",
       "has_image": true,
-      "image_url": "/images/OUT_L_004_03.jpg",
+      "image_url": "/images/OUT.L.004.03.jpg",
       "in_stock": true,
       "stock": 11
     },
@@ -26054,7 +26054,7 @@
       ],
       "ean": "8719481038946",
       "has_image": true,
-      "image_url": "/images/OUT_008_02.jpg",
+      "image_url": "/images/OUT.008.02.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -26071,7 +26071,7 @@
       ],
       "ean": "8719481038984",
       "has_image": true,
-      "image_url": "/images/OUT_008_06.jpg",
+      "image_url": "/images/OUT.008.06.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -26088,7 +26088,7 @@
       ],
       "ean": "8719481038977",
       "has_image": true,
-      "image_url": "/images/OUT_008_05.jpg",
+      "image_url": "/images/OUT.008.05.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -26361,7 +26361,7 @@
       ],
       "ean": "8719481033873",
       "has_image": true,
-      "image_url": "/images/GL_RND_PI.jpg",
+      "image_url": "/images/GL.RND.PI.jpg",
       "in_stock": true,
       "stock": 9
     },
@@ -26439,7 +26439,7 @@
       ],
       "ean": "8719481030803",
       "has_image": true,
-      "image_url": "/images/GL_SQ_BL.jpg",
+      "image_url": "/images/GL.SQ.BL.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -26477,7 +26477,7 @@
       ],
       "ean": "8719481030421",
       "has_image": true,
-      "image_url": "/images/GL_RND_GRN.jpg",
+      "image_url": "/images/GL.RND.GRN.jpg",
       "in_stock": true,
       "stock": 5
     },
@@ -26515,7 +26515,7 @@
       ],
       "ean": "8719481031381",
       "has_image": true,
-      "image_url": "/images/GL_MOCK_BL.jpg",
+      "image_url": "/images/GL.MOCK.BL.jpg",
       "in_stock": true,
       "stock": 8
     },
@@ -26534,7 +26534,7 @@
       ],
       "ean": "8719481036669",
       "has_image": true,
-      "image_url": "/images/GL_MOCK_SND.jpg",
+      "image_url": "/images/GL.MOCK.SND.jpg",
       "in_stock": true,
       "stock": 9
     },
@@ -26553,7 +26553,7 @@
       ],
       "ean": "8719481033798",
       "has_image": true,
-      "image_url": "/images/GL_XL_PI.jpg",
+      "image_url": "/images/GL.XL.PI.jpg",
       "in_stock": true,
       "stock": 1
     },
@@ -26611,7 +26611,7 @@
       ],
       "ean": "8719481033057",
       "has_image": true,
-      "image_url": "/images/GL_XL_GRN.jpg",
+      "image_url": "/images/GL.XL.GRN.jpg",
       "in_stock": true,
       "stock": 5
     },
@@ -26631,7 +26631,7 @@
       ],
       "ean": "8719481036638",
       "has_image": true,
-      "image_url": "/images/GL_SQ_SND.jpg",
+      "image_url": "/images/GL.SQ.SND.jpg",
       "in_stock": true,
       "stock": 5
     },
@@ -26650,7 +26650,7 @@
       ],
       "ean": "8719481030452",
       "has_image": true,
-      "image_url": "/images/GL_SQ_WH.jpg",
+      "image_url": "/images/GL.SQ.WH.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -26688,7 +26688,7 @@
       ],
       "ean": "8719481031121",
       "has_image": true,
-      "image_url": "/images/GL_RND_WH.jpg",
+      "image_url": "/images/GL.RND.WH.jpg",
       "in_stock": true,
       "stock": 10
     },
@@ -26707,7 +26707,7 @@
       ],
       "ean": "8719481039554",
       "has_image": true,
-      "image_url": "/images/GL_8090_MAN.jpg",
+      "image_url": "/images/GL.8090.MAN.jpg",
       "in_stock": true,
       "stock": 1
     },
@@ -26783,7 +26783,7 @@
       ],
       "ean": "8719481030810",
       "has_image": true,
-      "image_url": "/images/GL_MOCK_PI.jpg",
+      "image_url": "/images/GL.MOCK.PI.jpg",
       "in_stock": true,
       "stock": 8
     },
@@ -26802,7 +26802,7 @@
       ],
       "ean": "8719481034641",
       "has_image": true,
-      "image_url": "/images/TIN_XL_DGRY.jpg",
+      "image_url": "/images/TIN.XL.DGRY.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -26840,7 +26840,7 @@
       ],
       "ean": "8719481034320",
       "has_image": true,
-      "image_url": "/images/TIN_M_GRN_HAPPYON.jpg",
+      "image_url": "/images/TIN.M.GRN.HAPPYON.jpg",
       "in_stock": true,
       "stock": 1
     },
@@ -26859,7 +26859,7 @@
       ],
       "ean": "8719481034313",
       "has_image": true,
-      "image_url": "/images/TIN_M_BL_HAPPYALWAYS.jpg",
+      "image_url": "/images/TIN.M.BL.HAPPYALWAYS.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27044,7 +27044,7 @@
       ],
       "ean": "8719481036195",
       "has_image": true,
-      "image_url": "/images/SO_BP_PI.jpg",
+      "image_url": "/images/SO.BP.PI.jpg",
       "in_stock": true,
       "stock": 27
     },
@@ -27064,7 +27064,7 @@
       ],
       "ean": "8719481036171",
       "has_image": true,
-      "image_url": "/images/SO_BP_WH.jpg",
+      "image_url": "/images/SO.BP.WH.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -27084,7 +27084,7 @@
       ],
       "ean": "8719481036201",
       "has_image": true,
-      "image_url": "/images/SO_BP_GRN.jpg",
+      "image_url": "/images/SO.BP.GRN.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -27104,7 +27104,7 @@
       ],
       "ean": "8719481036188",
       "has_image": true,
-      "image_url": "/images/SO_BP_LGRY.jpg",
+      "image_url": "/images/SO.BP.LGRY.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -27124,7 +27124,7 @@
       ],
       "ean": "8719481036218",
       "has_image": true,
-      "image_url": "/images/SO_BP_SND.jpg",
+      "image_url": "/images/SO.BP.SND.jpg",
       "in_stock": true,
       "stock": 11
     },
@@ -27144,7 +27144,7 @@
       ],
       "ean": "8719481037420",
       "has_image": true,
-      "image_url": "/images/SO_BS_02_GRN.jpg",
+      "image_url": "/images/SO.BS.02.GRN.jpg",
       "in_stock": true,
       "stock": 29
     },
@@ -27184,7 +27184,7 @@
       ],
       "ean": "8719481037451",
       "has_image": true,
-      "image_url": "/images/SO_BS_04_SND.jpg",
+      "image_url": "/images/SO.BS.04.SND.jpg",
       "in_stock": true,
       "stock": 40
     },
@@ -27220,7 +27220,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/GL_DWF_022_07.jpg",
+      "image_url": "/images/GL.DWF.022.07.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -27237,7 +27237,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/GL_DWF_022_04.jpg",
+      "image_url": "/images/GL.DWF.022.04.jpg",
       "in_stock": true,
       "stock": 22
     },
@@ -27310,7 +27310,7 @@
       ],
       "ean": "8719325002591",
       "has_image": true,
-      "image_url": "/images/WY_GBSH_021_02.jpg",
+      "image_url": "/images/WY.GBSH.021.02.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -27329,7 +27329,7 @@
       ],
       "ean": "8719325002577",
       "has_image": true,
-      "image_url": "/images/WY_GBSH_021_06.jpg",
+      "image_url": "/images/WY.GBSH.021.06.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27348,7 +27348,7 @@
       ],
       "ean": "8719325002584",
       "has_image": true,
-      "image_url": "/images/WY_GBSH_021_03.jpg",
+      "image_url": "/images/WY.GBSH.021.03.jpg",
       "in_stock": true,
       "stock": 7
     },
@@ -27404,7 +27404,7 @@
       ],
       "ean": "8719481039165",
       "has_image": true,
-      "image_url": "/images/HC_009_04.jpg",
+      "image_url": "/images/HC.009.04.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27423,7 +27423,7 @@
       ],
       "ean": "8719481039691",
       "has_image": true,
-      "image_url": "/images/HC_009_XMAS.jpg",
+      "image_url": "/images/HC.009.XMAS.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27443,7 +27443,7 @@
       ],
       "ean": "8719481034818",
       "has_image": true,
-      "image_url": "/images/SO_PI_05.jpg",
+      "image_url": "/images/SO.PI.05.jpg",
       "in_stock": true,
       "stock": 6
     },
@@ -27463,7 +27463,7 @@
       ],
       "ean": "8719481034795",
       "has_image": true,
-      "image_url": "/images/SO_SND_04.jpg",
+      "image_url": "/images/SO.SND.04.jpg",
       "in_stock": true,
       "stock": 13
     },
@@ -27483,7 +27483,7 @@
       ],
       "ean": "8719481034757",
       "has_image": true,
-      "image_url": "/images/SO_LGRY_06.jpg",
+      "image_url": "/images/SO.LGRY.06.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27503,7 +27503,7 @@
       ],
       "ean": "8719481034733",
       "has_image": true,
-      "image_url": "/images/SO_WH_01.jpg",
+      "image_url": "/images/SO.WH.01.jpg",
       "in_stock": true,
       "stock": 1
     },
@@ -27523,7 +27523,7 @@
       ],
       "ean": "8719481034771",
       "has_image": true,
-      "image_url": "/images/SO_GRN_03.jpg",
+      "image_url": "/images/SO.GRN.03.jpg",
       "in_stock": true,
       "stock": 11
     },
@@ -27561,7 +27561,7 @@
       ],
       "ean": "8719481036102",
       "has_image": true,
-      "image_url": "/images/SO_GB350_GRN.jpg",
+      "image_url": "/images/SO.GB350.GRN.jpg",
       "in_stock": true,
       "stock": 22
     },
@@ -27599,7 +27599,7 @@
       ],
       "ean": "8719481036072",
       "has_image": true,
-      "image_url": "/images/SO_GB350_WH.jpg",
+      "image_url": "/images/SO.GB350.WH.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -27619,7 +27619,7 @@
       ],
       "ean": "8719481038397",
       "has_image": true,
-      "image_url": "/images/SO_GB350_XMAS.jpg",
+      "image_url": "/images/SO.GB350.XMAS.jpg",
       "in_stock": true,
       "stock": 1
     },
@@ -27656,7 +27656,7 @@
       ],
       "ean": "8719481039080",
       "has_image": true,
-      "image_url": "/images/LB_010_06.jpg",
+      "image_url": "/images/LB.010.06.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27674,7 +27674,7 @@
       ],
       "ean": "8719481039059",
       "has_image": true,
-      "image_url": "/images/LB_010_02.jpg",
+      "image_url": "/images/LB.010.02.jpg",
       "in_stock": true,
       "stock": 14
     },
@@ -27692,7 +27692,7 @@
       ],
       "ean": "8719481039042",
       "has_image": true,
-      "image_url": "/images/LB_010_03.jpg",
+      "image_url": "/images/LB.010.03.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27710,7 +27710,7 @@
       ],
       "ean": "8719481039066",
       "has_image": true,
-      "image_url": "/images/LB_010_04.jpg",
+      "image_url": "/images/LB.010.04.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27729,7 +27729,7 @@
       ],
       "ean": "8719481039684",
       "has_image": true,
-      "image_url": "/images/LB_010_XMAS.jpg",
+      "image_url": "/images/LB.010.XMAS.jpg",
       "in_stock": true,
       "stock": 16
     },
@@ -27747,7 +27747,7 @@
       ],
       "ean": "8719481039493",
       "has_image": true,
-      "image_url": "/images/MA_016_06A.jpg",
+      "image_url": "/images/MA.016.06A.jpg",
       "in_stock": true,
       "stock": 6
     },
@@ -27765,7 +27765,7 @@
       ],
       "ean": "8719481039509",
       "has_image": true,
-      "image_url": "/images/MA_016_06B.jpg",
+      "image_url": "/images/MA.016.06B.jpg",
       "in_stock": true,
       "stock": 12
     },
@@ -27783,7 +27783,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/MA_016_06D.jpg",
+      "image_url": "/images/MA.016.06D.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27802,7 +27802,7 @@
       ],
       "ean": "8719481032999",
       "has_image": true,
-      "image_url": "/images/MTCH_WH.jpg",
+      "image_url": "/images/MTCH.WH.jpg",
       "in_stock": true,
       "stock": 8
     },
@@ -27821,7 +27821,7 @@
       ],
       "ean": "8719481032982",
       "has_image": true,
-      "image_url": "/images/MTCH_BL.jpg",
+      "image_url": "/images/MTCH.BL.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27840,7 +27840,7 @@
       ],
       "ean": "8719481033026",
       "has_image": true,
-      "image_url": "/images/MTCH_SND.jpg",
+      "image_url": "/images/MTCH.SND.jpg",
       "in_stock": true,
       "stock": 76
     },
@@ -27859,7 +27859,7 @@
       ],
       "ean": "8719481037864",
       "has_image": true,
-      "image_url": "/images/MTCH_GLD.jpg",
+      "image_url": "/images/MTCH.GLD.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -27897,7 +27897,7 @@
       ],
       "ean": "8719481033002",
       "has_image": true,
-      "image_url": "/images/MTCH_GRN.jpg",
+      "image_url": "/images/MTCH.GRN.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -27914,7 +27914,7 @@
       ],
       "ean": "8719481038014",
       "has_image": true,
-      "image_url": "/images/OUT_L_004_01.jpg",
+      "image_url": "/images/OUT.L.004.01.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -27931,7 +27931,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/OUT_027_03.jpg",
+      "image_url": "/images/OUT.027.03.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27965,7 +27965,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/OUT_027_02.jpg",
+      "image_url": "/images/OUT.027.02.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27982,7 +27982,7 @@
       ],
       "ean": "8719481038052",
       "has_image": true,
-      "image_url": "/images/OUT_L_004_05.jpg",
+      "image_url": "/images/OUT.L.004.05.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -27999,7 +27999,7 @@
       ],
       "ean": "8719481038953",
       "has_image": true,
-      "image_url": "/images/OUT_008_03.jpg",
+      "image_url": "/images/OUT.008.03.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -28016,7 +28016,7 @@
       ],
       "ean": "8719481038960",
       "has_image": true,
-      "image_url": "/images/OUT_008_04.jpg",
+      "image_url": "/images/OUT.008.04.jpg",
       "in_stock": true,
       "stock": 1
     },
@@ -28033,7 +28033,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/OUT_027_05.jpg",
+      "image_url": "/images/OUT.027.05.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -28050,7 +28050,7 @@
       ],
       "ean": "8719481036973",
       "has_image": true,
-      "image_url": "/images/OUT_8850_SND.jpg",
+      "image_url": "/images/OUT.8850.SND.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -28067,7 +28067,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/OUT_027_04.jpg",
+      "image_url": "/images/OUT.027.04.jpg",
       "in_stock": true,
       "stock": 14
     },
@@ -28215,7 +28215,7 @@
       ],
       "ean": "8719481035402",
       "has_image": true,
-      "image_url": "/images/GL_1010_GRN.jpg",
+      "image_url": "/images/GL.1010.GRN.jpg",
       "in_stock": true,
       "stock": 5
     },
@@ -28293,7 +28293,7 @@
       ],
       "ean": "8719481035419",
       "has_image": true,
-      "image_url": "/images/GL_1010_LGRY.jpg",
+      "image_url": "/images/GL.1010.LGRY.jpg",
       "in_stock": true,
       "stock": 21
     },
@@ -28312,7 +28312,7 @@
       ],
       "ean": "8719481037369",
       "has_image": true,
-      "image_url": "/images/GL_MTC_XL_SND.jpg",
+      "image_url": "/images/GL.MTC.XL.SND.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -28331,7 +28331,7 @@
       ],
       "ean": "8719481036782",
       "has_image": true,
-      "image_url": "/images/XBG_1012_MGO6.jpg",
+      "image_url": "/images/XBG.1012.MGO6.jpg",
       "in_stock": true,
       "stock": 6
     },
@@ -28369,7 +28369,7 @@
       ],
       "ean": "8719481031398",
       "has_image": true,
-      "image_url": "/images/GL_MOCK_GRN.jpg",
+      "image_url": "/images/GL.MOCK.GRN.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -28388,7 +28388,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/XC_CFS_021_06.jpg",
+      "image_url": "/images/XC.CFS.021.06.jpg",
       "in_stock": true,
       "stock": 16
     },
@@ -28407,7 +28407,7 @@
       ],
       "ean": "8719481030469",
       "has_image": true,
-      "image_url": "/images/GL_SQ_LG.jpg",
+      "image_url": "/images/GL.SQ.LG.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -28426,7 +28426,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/XC_CFS_021_03.jpg",
+      "image_url": "/images/XC.CFS.021.03.jpg",
       "in_stock": true,
       "stock": 16
     },
@@ -28445,7 +28445,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/XC_CFS_021_01.jpg",
+      "image_url": "/images/XC.CFS.021.01.jpg",
       "in_stock": true,
       "stock": 8
     },
@@ -28464,7 +28464,7 @@
       ],
       "ean": "8719481036614",
       "has_image": true,
-      "image_url": "/images/GL_1010_SND.jpg",
+      "image_url": "/images/GL.1010.SND.jpg",
       "in_stock": true,
       "stock": 9
     },
@@ -28483,7 +28483,7 @@
       ],
       "ean": "8719481036799",
       "has_image": true,
-      "image_url": "/images/XBG_1012_SBL7.jpg",
+      "image_url": "/images/XBG.1012.SBL7.jpg",
       "in_stock": true,
       "stock": 10
     },
@@ -28502,7 +28502,7 @@
       ],
       "ean": "8719481036805",
       "has_image": true,
-      "image_url": "/images/XBG_1012_SGO8.jpg",
+      "image_url": "/images/XBG.1012.SGO8.jpg",
       "in_stock": true,
       "stock": 10
     },
@@ -28521,7 +28521,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/XC_CFS_021_02.jpg",
+      "image_url": "/images/XC.CFS.021.02.jpg",
       "in_stock": true,
       "stock": 32
     },
@@ -28540,7 +28540,7 @@
       ],
       "ean": "8719481036751",
       "has_image": true,
-      "image_url": "/images/XBG_9010_SBL3.jpg",
+      "image_url": "/images/XBG.9010.SBL3.jpg",
       "in_stock": true,
       "stock": 8
     },
@@ -28559,7 +28559,7 @@
       ],
       "ean": "8719481037376",
       "has_image": true,
-      "image_url": "/images/GL_MTC_XL_BL.jpg",
+      "image_url": "/images/GL.MTC.XL.BL.jpg",
       "in_stock": true,
       "stock": 5
     },
@@ -28578,7 +28578,7 @@
       ],
       "ean": "8719481037352",
       "has_image": true,
-      "image_url": "/images/GL_MTC_XL_PI.jpg",
+      "image_url": "/images/GL.MTC.XL.PI.jpg",
       "in_stock": true,
       "stock": 10
     },
@@ -28597,7 +28597,7 @@
       ],
       "ean": "8719481035433",
       "has_image": true,
-      "image_url": "/images/GL_1010_WH.jpg",
+      "image_url": "/images/GL.1010.WH.jpg",
       "in_stock": true,
       "stock": 11
     },
@@ -28654,7 +28654,7 @@
       ],
       "ean": "8719481039547",
       "has_image": true,
-      "image_url": "/images/GL_MTC_XL_WH-1.jpg",
+      "image_url": "/images/GL.MTC.XL.WH-1.jpg",
       "in_stock": true,
       "stock": 17
     },
@@ -28673,7 +28673,7 @@
       ],
       "ean": "8719481036768",
       "has_image": true,
-      "image_url": "/images/XBG_9010_SGO4.jpg",
+      "image_url": "/images/XBG.9010.SGO4.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -28731,7 +28731,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/XC_CFS_021_05.jpg",
+      "image_url": "/images/XC.CFS.021.05.jpg",
       "in_stock": true,
       "stock": 8
     },
@@ -28750,7 +28750,7 @@
       ],
       "ean": "8719481036744",
       "has_image": true,
-      "image_url": "/images/XBG_9010_MGO2.jpg",
+      "image_url": "/images/XBG.9010.MGO2.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -28770,7 +28770,7 @@
       ],
       "ean": "8719481036737",
       "has_image": true,
-      "image_url": "/images/XBG_9010_MBL1.jpg",
+      "image_url": "/images/XBG.9010.MBL1.jpg",
       "in_stock": true,
       "stock": 22
     },
@@ -28789,7 +28789,7 @@
       ],
       "ean": "8719481035396",
       "has_image": true,
-      "image_url": "/images/GL_1010_BL.jpg",
+      "image_url": "/images/GL.1010.BL.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -28808,7 +28808,7 @@
       ],
       "ean": "8719481035426",
       "has_image": true,
-      "image_url": "/images/GL_1010_PI.jpg",
+      "image_url": "/images/GL.1010.PI.jpg",
       "in_stock": true,
       "stock": 6
     },
@@ -28827,7 +28827,7 @@
       ],
       "ean": "8719481037765",
       "has_image": true,
-      "image_url": "/images/GL_BE_002_06A.jpg",
+      "image_url": "/images/GL.BE.002.06A.jpg",
       "in_stock": true,
       "stock": 16
     },
@@ -28846,7 +28846,7 @@
       ],
       "ean": "8719481037758",
       "has_image": true,
-      "image_url": "/images/GL_BE_002_01B.jpg",
+      "image_url": "/images/GL.BE.002.01B.jpg",
       "in_stock": true,
       "stock": 9
     },
@@ -28865,7 +28865,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/GL_BE_002_06B-1.jpg",
+      "image_url": "/images/GL.BE.002.06B-1.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -28884,7 +28884,7 @@
       ],
       "ean": "8719481037741",
       "has_image": true,
-      "image_url": "/images/GL_BE_002_01A.jpg",
+      "image_url": "/images/GL.BE.002.01A.jpg",
       "in_stock": true,
       "stock": 13
     },
@@ -28903,7 +28903,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/GL_BE_002_06C-1.jpg",
+      "image_url": "/images/GL.BE.002.06C-1.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -28941,7 +28941,7 @@
       ],
       "ean": "8719481039790",
       "has_image": true,
-      "image_url": "/images/CH_017_02.jpg",
+      "image_url": "/images/CH.017.02.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -28960,7 +28960,7 @@
       ],
       "ean": "8719481039820",
       "has_image": true,
-      "image_url": "/images/CH_017_05.jpg",
+      "image_url": "/images/CH.017.05.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -28979,7 +28979,7 @@
       ],
       "ean": "8719481039813",
       "has_image": true,
-      "image_url": "/images/CH_017_04.jpg",
+      "image_url": "/images/CH.017.04.jpg",
       "in_stock": true,
       "stock": 1
     },
@@ -28998,7 +28998,7 @@
       ],
       "ean": "8719481039837",
       "has_image": true,
-      "image_url": "/images/CH_017_06.jpg",
+      "image_url": "/images/CH.017.06.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -29017,7 +29017,7 @@
       ],
       "ean": "8719481039806",
       "has_image": true,
-      "image_url": "/images/CH_017_03.jpg",
+      "image_url": "/images/CH.017.03.jpg",
       "in_stock": true,
       "stock": 10
     },
@@ -29036,7 +29036,7 @@
       ],
       "ean": "8719481039844",
       "has_image": true,
-      "image_url": "/images/CH_017_07.jpg",
+      "image_url": "/images/CH.017.07.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -29055,7 +29055,7 @@
       ],
       "ean": "8719481037659",
       "has_image": true,
-      "image_url": "/images/GL_CR_001_04.jpg",
+      "image_url": "/images/GL.CR.001.04.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -29074,7 +29074,7 @@
       ],
       "ean": "8719481037635",
       "has_image": true,
-      "image_url": "/images/GL_CR_001_02.jpg",
+      "image_url": "/images/GL.CR.001.02.jpg",
       "in_stock": true,
       "stock": 5
     },
@@ -29093,7 +29093,7 @@
       ],
       "ean": "8719481037642",
       "has_image": true,
-      "image_url": "/images/GL_CR_001_03.jpg",
+      "image_url": "/images/GL.CR.001.03.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -29112,7 +29112,7 @@
       ],
       "ean": "8719481037666",
       "has_image": true,
-      "image_url": "/images/GL_CR_001_05.jpg",
+      "image_url": "/images/GL.CR.001.05.jpg",
       "in_stock": true,
       "stock": 16
     },
@@ -29131,7 +29131,7 @@
       ],
       "ean": "8719481037628",
       "has_image": true,
-      "image_url": "/images/GL_CR_001_01.jpg",
+      "image_url": "/images/GL.CR.001.01.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -29169,7 +29169,7 @@
       ],
       "ean": "8719481038144",
       "has_image": true,
-      "image_url": "/images/GL_MB_003_04.jpg",
+      "image_url": "/images/GL.MB.003.04.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -29188,7 +29188,7 @@
       ],
       "ean": "8719481038151",
       "has_image": true,
-      "image_url": "/images/GL_MB_003_05.jpg",
+      "image_url": "/images/GL.MB.003.05.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -29207,7 +29207,7 @@
       ],
       "ean": "8719481038168",
       "has_image": true,
-      "image_url": "/images/GL_MB_003_06.jpg",
+      "image_url": "/images/GL.MB.003.06.jpg",
       "in_stock": true,
       "stock": 18
     },
@@ -29226,7 +29226,7 @@
       ],
       "ean": "8719481038137",
       "has_image": true,
-      "image_url": "/images/GL_MB_003_03.jpg",
+      "image_url": "/images/GL.MB.003.03.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -29245,7 +29245,7 @@
       ],
       "ean": "8719481038113",
       "has_image": true,
-      "image_url": "/images/GL_MB_003_01.jpg",
+      "image_url": "/images/GL.MB.003.01.jpg",
       "in_stock": true,
       "stock": 24
     },
@@ -29284,7 +29284,7 @@
       ],
       "ean": "8719481033224",
       "has_image": true,
-      "image_url": "/images/GL_MTC_XS_GRN.jpg",
+      "image_url": "/images/GL.MTC.XS.GRN.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -29303,7 +29303,7 @@
       ],
       "ean": "8719481033040",
       "has_image": true,
-      "image_url": "/images/GL_MTC_SD.jpg",
+      "image_url": "/images/GL.MTC.SD.jpg",
       "in_stock": true,
       "stock": 9
     },
@@ -29322,7 +29322,7 @@
       ],
       "ean": "8719481033859",
       "has_image": true,
-      "image_url": "/images/GL_WW_GRN.jpg",
+      "image_url": "/images/GL.WW.GRN.jpg",
       "in_stock": true,
       "stock": 19
     },
@@ -29341,7 +29341,7 @@
       ],
       "ean": "8719481032517",
       "has_image": true,
-      "image_url": "/images/GL_CO_GRN.jpg",
+      "image_url": "/images/GL.CO.GRN.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -29360,7 +29360,7 @@
       ],
       "ean": "8719481037185",
       "has_image": true,
-      "image_url": "/images/GL_MTC_XS_WH.jpg",
+      "image_url": "/images/GL.MTC.XS.WH.jpg",
       "in_stock": true,
       "stock": 12
     },
@@ -29379,7 +29379,7 @@
       ],
       "ean": "8719481036652",
       "has_image": true,
-      "image_url": "/images/GL_WW_SND.jpg",
+      "image_url": "/images/GL.WW.SND.jpg",
       "in_stock": true,
       "stock": 8
     },
@@ -29398,7 +29398,7 @@
       ],
       "ean": "8719481033248",
       "has_image": true,
-      "image_url": "/images/GL_MTC_XS_PI.jpg",
+      "image_url": "/images/GL.MTC.XS.PI.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -29417,7 +29417,7 @@
       ],
       "ean": "8719481031312",
       "has_image": true,
-      "image_url": "/images/GL_WW_PI.jpg",
+      "image_url": "/images/GL.WW.PI.jpg",
       "in_stock": true,
       "stock": 25
     },
@@ -29436,7 +29436,7 @@
       ],
       "ean": "8719481037208",
       "has_image": true,
-      "image_url": "/images/GL_CO_WH-1.jpg",
+      "image_url": "/images/GL.CO.WH-1.jpg",
       "in_stock": true,
       "stock": 13
     },
@@ -29456,7 +29456,7 @@
       ],
       "ean": "8719481032500",
       "has_image": true,
-      "image_url": "/images/GL_CO_SA.jpg",
+      "image_url": "/images/GL.CO.SA.jpg",
       "in_stock": true,
       "stock": 14
     },
@@ -29475,7 +29475,7 @@
       ],
       "ean": "8719481033200",
       "has_image": true,
-      "image_url": "/images/GL_MTC_XS_BLK.jpg",
+      "image_url": "/images/GL.MTC.XS.BLK.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -29494,7 +29494,7 @@
       ],
       "ean": "8719481036676",
       "has_image": true,
-      "image_url": "/images/GL_CO_LGRY.jpg",
+      "image_url": "/images/GL.CO.LGRY.jpg",
       "in_stock": true,
       "stock": 17
     },
@@ -29513,7 +29513,7 @@
       ],
       "ean": "8719481033033",
       "has_image": true,
-      "image_url": "/images/GL_MTC_PI.jpg",
+      "image_url": "/images/GL.MTC.PI.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -29532,7 +29532,7 @@
       ],
       "ean": "8719481032722",
       "has_image": true,
-      "image_url": "/images/GL_MTC_GRN.jpg",
+      "image_url": "/images/GL.MTC.GRN.jpg",
       "in_stock": true,
       "stock": 12
     },
@@ -29551,7 +29551,7 @@
       ],
       "ean": "8719481031282",
       "has_image": true,
-      "image_url": "/images/GL_WW_BL.jpg",
+      "image_url": "/images/GL.WW.BL.jpg",
       "in_stock": true,
       "stock": 8
     },
@@ -29570,7 +29570,7 @@
       ],
       "ean": "8719481037161",
       "has_image": true,
-      "image_url": "/images/GL_MTC_WH.jpg",
+      "image_url": "/images/GL.MTC.WH.jpg",
       "in_stock": true,
       "stock": 9
     },
@@ -29589,7 +29589,7 @@
       ],
       "ean": "8719481033217",
       "has_image": true,
-      "image_url": "/images/GL_MTC_XS_SND.jpg",
+      "image_url": "/images/GL.MTC.XS.SND.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -29608,7 +29608,7 @@
       ],
       "ean": "8719481033835",
       "has_image": true,
-      "image_url": "/images/GL_CO_PI.jpg",
+      "image_url": "/images/GL.CO.PI.jpg",
       "in_stock": true,
       "stock": 23
     },
@@ -29627,7 +29627,7 @@
       ],
       "ean": "8719481032524",
       "has_image": true,
-      "image_url": "/images/GL_CO_BL.jpg",
+      "image_url": "/images/GL.CO.BL.jpg",
       "in_stock": true,
       "stock": 20
     },
@@ -29722,7 +29722,7 @@
       ],
       "ean": "8719481031305",
       "has_image": true,
-      "image_url": "/images/GL_WW_GRY.jpg",
+      "image_url": "/images/GL.WW.GRY.jpg",
       "in_stock": true,
       "stock": 10
     },
@@ -29741,7 +29741,7 @@
       ],
       "ean": "8719481031268",
       "has_image": true,
-      "image_url": "/images/GL_MTC_GRY.jpg",
+      "image_url": "/images/GL.MTC.GRY.jpg",
       "in_stock": true,
       "stock": 8
     },
@@ -29760,7 +29760,7 @@
       ],
       "ean": "8719481031251",
       "has_image": true,
-      "image_url": "/images/GL_MTC_BL.jpg",
+      "image_url": "/images/GL.MTC.BL.jpg",
       "in_stock": true,
       "stock": 17
     },
@@ -29779,7 +29779,7 @@
       ],
       "ean": "8719481038007",
       "has_image": true,
-      "image_url": "/images/GL_MTC_XL_GRN.jpg",
+      "image_url": "/images/GL.MTC.XL.GRN.jpg",
       "in_stock": true,
       "stock": 12
     },
@@ -29798,7 +29798,7 @@
       ],
       "ean": "8719481036775",
       "has_image": true,
-      "image_url": "/images/XBG_1012_MBL5.jpg",
+      "image_url": "/images/XBG.1012.MBL5.jpg",
       "in_stock": true,
       "stock": 8
     },
@@ -29817,7 +29817,7 @@
       ],
       "ean": "",
       "has_image": true,
-      "image_url": "/images/XC_CFS_021_04.jpg",
+      "image_url": "/images/XC.CFS.021.04.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -29835,7 +29835,7 @@
       ],
       "ean": "8719481038793",
       "has_image": true,
-      "image_url": "/images/WBR_006_04.jpg",
+      "image_url": "/images/WBR.006.04.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -29853,7 +29853,7 @@
       ],
       "ean": "8719481038809",
       "has_image": true,
-      "image_url": "/images/WBR_006_05.jpg",
+      "image_url": "/images/WBR.006.05.jpg",
       "in_stock": true,
       "stock": 32
     },
@@ -29871,7 +29871,7 @@
       ],
       "ean": "8719481038762",
       "has_image": true,
-      "image_url": "/images/WBR_006_01.jpg",
+      "image_url": "/images/WBR.006.01.jpg",
       "in_stock": true,
       "stock": 6
     },
@@ -29889,7 +29889,7 @@
       ],
       "ean": "8719481038779",
       "has_image": true,
-      "image_url": "/images/WBR_006_02.jpg",
+      "image_url": "/images/WBR.006.02.jpg",
       "in_stock": true,
       "stock": 9
     },
@@ -29909,7 +29909,7 @@
       ],
       "ean": "8719481038816",
       "has_image": true,
-      "image_url": "/images/WBR_006_06.jpg",
+      "image_url": "/images/WBR.006.06.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -29928,7 +29928,7 @@
       ],
       "ean": "8719481033088",
       "has_image": true,
-      "image_url": "/images/mini_3_goodluck_wh.jpg",
+      "image_url": "/images/mini.3.goodluck.wh.jpg",
       "in_stock": true,
       "stock": 11
     },
@@ -29947,7 +29947,7 @@
       ],
       "ean": "8719481033101",
       "has_image": true,
-      "image_url": "/images/mini_5_hooray_grn.jpg",
+      "image_url": "/images/mini.5.hooray.grn.jpg",
       "in_stock": true,
       "stock": 11
     },
@@ -29966,7 +29966,7 @@
       ],
       "ean": "8719481033118",
       "has_image": true,
-      "image_url": "/images/mini_6_hug_snd.jpg",
+      "image_url": "/images/mini.6.hug.snd.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -29985,7 +29985,7 @@
       ],
       "ean": "8719481033095",
       "has_image": true,
-      "image_url": "/images/mini_4_love_lg.jpg",
+      "image_url": "/images/mini.4.love.lg.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -30004,7 +30004,7 @@
       ],
       "ean": "8719481033064",
       "has_image": true,
-      "image_url": "/images/mini_1_thx_dg.jpg",
+      "image_url": "/images/mini.1.thx.dg.jpg",
       "in_stock": true,
       "stock": 10
     },
@@ -30023,7 +30023,7 @@
       ],
       "ean": "8719481033071",
       "has_image": true,
-      "image_url": "/images/mini_2_xxx_pi.jpg",
+      "image_url": "/images/mini.2.xxx.pi.jpg",
       "in_stock": true,
       "stock": 24
     },
@@ -30042,7 +30042,7 @@
       ],
       "ean": "8719481033910",
       "has_image": true,
-      "image_url": "/images/miniT_2_beau_pi.jpg",
+      "image_url": "/images/miniT.2.beau.pi.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -30061,7 +30061,7 @@
       ],
       "ean": "8719481033941",
       "has_image": true,
-      "image_url": "/images/miniT_5_cheers_grn.jpg",
+      "image_url": "/images/miniT.5.cheers.grn.jpg",
       "in_stock": true,
       "stock": 10
     },
@@ -30080,7 +30080,7 @@
       ],
       "ean": "8719481033934",
       "has_image": true,
-      "image_url": "/images/miniT_4_joy_lg.jpg",
+      "image_url": "/images/miniT.4.joy.lg.jpg",
       "in_stock": true,
       "stock": 14
     },
@@ -30099,7 +30099,7 @@
       ],
       "ean": "8719481033958",
       "has_image": true,
-      "image_url": "/images/miniT_6_strength_snd.jpg",
+      "image_url": "/images/miniT.6.strength.snd.jpg",
       "in_stock": true,
       "stock": 33
     },
@@ -30118,7 +30118,7 @@
       ],
       "ean": "8719481033927",
       "has_image": true,
-      "image_url": "/images/miniT_3_unplug_wh.jpg",
+      "image_url": "/images/miniT.3.unplug.wh.jpg",
       "in_stock": true,
       "stock": 34
     },
@@ -30137,7 +30137,7 @@
       ],
       "ean": "8719481033903",
       "has_image": true,
-      "image_url": "/images/miniT_1_wow_dg.jpg",
+      "image_url": "/images/miniT.1.wow.dg.jpg",
       "in_stock": true,
       "stock": 20
     },
@@ -30156,7 +30156,7 @@
       ],
       "ean": "8719481033309",
       "has_image": true,
-      "image_url": "/images/TIN_XL_SND.jpg",
+      "image_url": "/images/TIN.XL.SND.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -30194,7 +30194,7 @@
       ],
       "ean": "8719481032944",
       "has_image": true,
-      "image_url": "/images/TIN_XL_GRN.jpg",
+      "image_url": "/images/TIN.XL.GRN.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -30251,7 +30251,7 @@
       ],
       "ean": "8719481039714",
       "has_image": true,
-      "image_url": "/images/TIN_XS_SND-1.jpg",
+      "image_url": "/images/TIN.XS.SND-1.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -30270,7 +30270,7 @@
       ],
       "ean": "8719481032920",
       "has_image": true,
-      "image_url": "/images/TIN_XL_BL_HOME.jpg",
+      "image_url": "/images/TIN.XL.BL.HOME.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -30308,7 +30308,7 @@
       ],
       "ean": "8719481034375",
       "has_image": true,
-      "image_url": "/images/TIN_XS_PI.jpg",
+      "image_url": "/images/TIN.XS.PI.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -30384,7 +30384,7 @@
       ],
       "ean": "8719481037987",
       "has_image": true,
-      "image_url": "/images/TIN_XS_WH-1.jpg",
+      "image_url": "/images/TIN.XS.WH-1.jpg",
       "in_stock": true,
       "stock": 10
     },
@@ -30443,7 +30443,7 @@
       ],
       "ean": "8719481039707",
       "has_image": true,
-      "image_url": "/images/TIN_XS_PI-1.jpg",
+      "image_url": "/images/TIN.XS.PI-1.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -30461,7 +30461,7 @@
       ],
       "ean": "8719481038885",
       "has_image": true,
-      "image_url": "/images/GL_WI_007_01.jpg",
+      "image_url": "/images/GL.WI.007.01.jpg",
       "in_stock": true,
       "stock": 5
     },
@@ -30497,7 +30497,7 @@
       ],
       "ean": "8719481034702",
       "has_image": true,
-      "image_url": "/images/GL_WI_L_BL.jpg",
+      "image_url": "/images/GL.WI.L.BL.jpg",
       "in_stock": true,
       "stock": 1
     },
@@ -30515,7 +30515,7 @@
       ],
       "ean": "8719481038892",
       "has_image": true,
-      "image_url": "/images/GL_WI_007_06.jpg",
+      "image_url": "/images/GL.WI.007.06.jpg",
       "in_stock": true,
       "stock": 12
     },
@@ -30533,7 +30533,7 @@
       ],
       "ean": "8719481039868",
       "has_image": true,
-      "image_url": "/images/GL_WI_GLD.jpg",
+      "image_url": "/images/GL.WI.GLD.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -30551,7 +30551,7 @@
       ],
       "ean": "8719481034689",
       "has_image": true,
-      "image_url": "/images/GL_WI_L_WH.jpg",
+      "image_url": "/images/GL.WI.L.WH.jpg",
       "in_stock": true,
       "stock": 6
     },
@@ -30569,7 +30569,7 @@
       ],
       "ean": "8719481033583",
       "has_image": true,
-      "image_url": "/images/GL_WI_WH_FLY.jpg",
+      "image_url": "/images/GL.WI.WH.FLY.jpg",
       "in_stock": true,
       "stock": 22
     },
@@ -30607,7 +30607,7 @@
       ],
       "ean": "8719481038908",
       "has_image": true,
-      "image_url": "/images/GL_WI_007_07.jpg",
+      "image_url": "/images/GL.WI.007.07.jpg",
       "in_stock": true,
       "stock": 8
     },
@@ -30773,7 +30773,7 @@
       ],
       "ean": "8719481037505",
       "has_image": true,
-      "image_url": "/images/SO_BS_GB_09_SND.jpg",
+      "image_url": "/images/SO.BS.GB.09.SND.jpg",
       "in_stock": true,
       "stock": 43
     },
@@ -30790,7 +30790,7 @@
       ],
       "ean": "8719481039370",
       "has_image": true,
-      "image_url": "/images/WSS_012_05.jpg",
+      "image_url": "/images/WSS.012.05.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -30807,7 +30807,7 @@
       ],
       "ean": "8719481039349",
       "has_image": true,
-      "image_url": "/images/WSS_012_02.jpg",
+      "image_url": "/images/WSS.012.02.jpg",
       "in_stock": true,
       "stock": 6
     },
@@ -30857,8 +30857,8 @@
         "Candles & Fragrance"
       ],
       "ean": "8719325002072",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SBC.026.02.jpg",
       "in_stock": true,
       "stock": 15
     },
@@ -30875,8 +30875,8 @@
         "Gifts"
       ],
       "ean": "8719325002089",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SBC.026.06.jpg",
       "in_stock": true,
       "stock": 7
     },
@@ -30892,8 +30892,8 @@
         "Candles & Fragrance"
       ],
       "ean": "8719325002102",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SBC.026.05.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -30909,8 +30909,8 @@
         "Candles & Fragrance"
       ],
       "ean": "8719325002096",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SBC.026.04.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -30927,8 +30927,8 @@
         "Gifts"
       ],
       "ean": "8718868976918",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SBW.025.02.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -30945,8 +30945,8 @@
         "Gifts"
       ],
       "ean": "8718868976925",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SBW.025.06.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -30963,8 +30963,8 @@
         "Gifts"
       ],
       "ean": "8718868976949",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SBW.025.05.jpg",
       "in_stock": true,
       "stock": 3
     },
@@ -30981,8 +30981,8 @@
         "Gifts"
       ],
       "ean": "8718868976932",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SBW.025.04.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -31001,8 +31001,8 @@
         "Tableware"
       ],
       "ean": "8719325002720",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SO.WP.08.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31020,8 +31020,8 @@
         "Gifts"
       ],
       "ean": "8719325002744",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/XMAS.031.01D.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31037,8 +31037,8 @@
         "Candles & Fragrance"
       ],
       "ean": "8719325002010",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SC.028.02.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31054,8 +31054,8 @@
         "Candles & Fragrance"
       ],
       "ean": "8718868976444",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SC.028.04.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31071,8 +31071,8 @@
         "Candles & Fragrance"
       ],
       "ean": "8718868976437",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SC.028.07.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31088,8 +31088,8 @@
         "Candles & Fragrance"
       ],
       "ean": "8719325002003",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SC.028.05.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31105,8 +31105,8 @@
         "Candles & Fragrance"
       ],
       "ean": "8719325002027",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SC.028.06.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31123,7 +31123,7 @@
       ],
       "ean": "8718868976994",
       "has_image": true,
-      "image_url": "/images/SC_028_01.jpg",
+      "image_url": "/images/SC.028.01.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31161,8 +31161,8 @@
         "Tableware"
       ],
       "ean": "8718868976321",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/XMAS.031.07A.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31181,8 +31181,8 @@
         "Tableware"
       ],
       "ean": "8718868976307",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/XMAS.031.01A.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31201,7 +31201,7 @@
       ],
       "ean": "8718868976420",
       "has_image": true,
-      "image_url": "/images/GL_DCH_029_01.jpg",
+      "image_url": "/images/GL.DCH.029.01.jpg",
       "in_stock": true,
       "stock": 2
     },
@@ -31220,7 +31220,7 @@
       ],
       "ean": "8718868976963",
       "has_image": true,
-      "image_url": "/images/GL_DCH_029_04.jpg",
+      "image_url": "/images/GL.DCH.029.04.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31238,8 +31238,8 @@
         "Tableware"
       ],
       "ean": "8718868976987",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/GL.DCH.029.02.jpg",
       "in_stock": true,
       "stock": 1
     },
@@ -31258,7 +31258,7 @@
       ],
       "ean": "8719481030384",
       "has_image": true,
-      "image_url": "/images/GL_DCH_029_07.jpg",
+      "image_url": "/images/GL.DCH.029.07.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31390,8 +31390,8 @@
         "Tableware"
       ],
       "ean": "8719325002676",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/MINI.4.LOVE.GLD.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31482,8 +31482,8 @@
         "Candles & Fragrance"
       ],
       "ean": "8718868976673",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SB.033.04B.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31499,8 +31499,8 @@
         "Candles & Fragrance"
       ],
       "ean": "8718868976666",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SB.033.02A.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31516,8 +31516,8 @@
         "Candles & Fragrance"
       ],
       "ean": "8718868976680",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/SB.033.04A.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31535,7 +31535,7 @@
       ],
       "ean": "8719481030575",
       "has_image": true,
-      "image_url": "/images/RD_019_01.jpg",
+      "image_url": "/images/RD.019.01.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31553,7 +31553,7 @@
       ],
       "ean": "8719481030186",
       "has_image": true,
-      "image_url": "/images/RD_019_02.jpg",
+      "image_url": "/images/RD.019.02.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31571,7 +31571,7 @@
       ],
       "ean": "8719481030193",
       "has_image": true,
-      "image_url": "/images/RD_019_05.jpg",
+      "image_url": "/images/RD.019.05.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31589,7 +31589,7 @@
       ],
       "ean": "8719481030483",
       "has_image": true,
-      "image_url": "/images/RD_019_06.jpg",
+      "image_url": "/images/RD.019.06.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31607,7 +31607,7 @@
       ],
       "ean": "8719481030230",
       "has_image": true,
-      "image_url": "/images/RD_019_07.jpg",
+      "image_url": "/images/RD.019.07.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31625,7 +31625,7 @@
       ],
       "ean": "8718868976604",
       "has_image": true,
-      "image_url": "/images/RS_018_01.jpg",
+      "image_url": "/images/RS.018.01.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31643,7 +31643,7 @@
       ],
       "ean": "8719481030605",
       "has_image": true,
-      "image_url": "/images/RS_018_02.jpg",
+      "image_url": "/images/RS.018.02.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31661,7 +31661,7 @@
       ],
       "ean": "8719481030582",
       "has_image": true,
-      "image_url": "/images/RS_018_05.jpg",
+      "image_url": "/images/RS.018.05.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31679,7 +31679,7 @@
       ],
       "ean": "8719481030568",
       "has_image": true,
-      "image_url": "/images/RS_018_06.jpg",
+      "image_url": "/images/RS.018.06.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -31697,7 +31697,7 @@
       ],
       "ean": "8719481030551",
       "has_image": true,
-      "image_url": "/images/RS_018_07.jpg",
+      "image_url": "/images/RS.018.07.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -32976,8 +32976,8 @@
         "Gifts"
       ],
       "ean": "4260479653152",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/PU37.jpg",
       "in_stock": true,
       "stock": 11
     },
@@ -33010,8 +33010,8 @@
         "Gifts"
       ],
       "ean": "4260479653145",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/PU36.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -43358,8 +43358,8 @@
         "Candles & Fragrance"
       ],
       "ean": "4045289922373",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/92237.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -45779,8 +45779,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4045289922366",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/92236.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -60788,8 +60788,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4260479651059",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/WKM34.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -60856,8 +60856,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4260479651042",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/WKS34.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -61964,8 +61964,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/LO06.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -61981,8 +61981,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/LO05.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -63819,8 +63819,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4260479652940",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/TR24.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -64133,8 +64133,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4260479652698",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/BV03.jpg",
       "in_stock": true,
       "stock": 10
     },
@@ -64204,8 +64204,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4260608094986",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/WBS01.jpg",
       "in_stock": true,
       "stock": 4
     },
@@ -64221,8 +64221,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4260608094993",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/WBS02.jpg",
       "in_stock": true,
       "stock": 5
     },
@@ -65092,8 +65092,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4260479651011",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/WKM32.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -65143,8 +65143,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4260479651028",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/WKS33.jpg",
       "in_stock": false,
       "stock": 0
     },
@@ -65177,8 +65177,8 @@
         "Home D\u00e9cor"
       ],
       "ean": "4260479651004",
-      "has_image": false,
-      "image_url": null,
+      "has_image": true,
+      "image_url": "/images/WKS32.jpg",
       "in_stock": false,
       "stock": 0
     },

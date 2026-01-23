@@ -188,7 +188,7 @@ const estimateWeight = (product) => {
 // Convert SKU to CDN format (dots -> underscores for My Flame products)
 const skuToCdnId = (sku) => {
   if (!sku) return null;
-  return sku.replace(/\./g, '_');
+  return sku;
 };
 
 const getImageUrl = (imagePath, size = 'medium', extension = 'jpg') => {
