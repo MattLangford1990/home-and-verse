@@ -2496,7 +2496,7 @@ function PrivacyPolicyPage({ onBack }) {
       <h1 style={{fontSize: 32, fontWeight: 400, marginBottom: 40, textAlign: 'center'}}>Privacy Policy</h1>
       
       <div style={{fontSize: 15, lineHeight: 1.8, color: '#444'}}>
-        <p style={{marginBottom: 24, fontStyle: 'italic', color: '#666'}}>Last updated: December 2024</p>
+        <p style={{marginBottom: 24, fontStyle: 'italic', color: '#666'}}>Last updated: January 2025</p>
         
         <p style={{marginBottom: 24}}>
           Home & Verse ("we", "our", or "us") is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your personal information when you use our website homeandverse.co.uk.
@@ -2591,7 +2591,7 @@ function TermsPage({ onBack }) {
       <h1 style={{fontSize: 32, fontWeight: 400, marginBottom: 40, textAlign: 'center'}}>Terms & Conditions</h1>
       
       <div style={{fontSize: 15, lineHeight: 1.8, color: '#444'}}>
-        <p style={{marginBottom: 24, fontStyle: 'italic', color: '#666'}}>Last updated: December 2024</p>
+        <p style={{marginBottom: 24, fontStyle: 'italic', color: '#666'}}>Last updated: January 2025</p>
         
         <h2 style={{fontSize: 20, fontWeight: 500, marginTop: 48, marginBottom: 20, color: '#222'}}>1. About Us</h2>
         <p style={{marginBottom: 16}}>
@@ -2689,7 +2689,7 @@ function CookiePolicyPage({ onBack }) {
       <h1 style={{fontSize: 32, fontWeight: 400, marginBottom: 40, textAlign: 'center'}}>Cookie Policy</h1>
       
       <div style={{fontSize: 15, lineHeight: 1.8, color: '#444'}}>
-        <p style={{marginBottom: 24, fontStyle: 'italic', color: '#666'}}>Last updated: December 2024</p>
+        <p style={{marginBottom: 24, fontStyle: 'italic', color: '#666'}}>Last updated: January 2025</p>
         
         <p style={{marginBottom: 24}}>
           This policy explains how Home & Verse uses cookies and similar technologies on our website.

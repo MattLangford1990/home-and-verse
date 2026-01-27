@@ -1156,12 +1156,46 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div className="footer-bottom" style={{borderTop: `1px solid ${THEME.rose}`, paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontSize: 12, color: THEME.textLight}}>
-            <span>© 2025 Home & Verse. DM Brands Ltd. <a href="/admin" style={{color: '#999', textDecoration: 'none', marginLeft: 8}}>•</a></span>
-            <div style={{display: 'flex', gap: 20}}>
+          {/* Business Details Section - GMC Compliance */}
+          <div style={{borderTop: `1px solid ${THEME.rose}`, paddingTop: 24, marginBottom: 24}}>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 20, fontSize: 12, color: THEME.textLight}}>
+              <div>
+                <h5 style={{fontWeight: 600, marginBottom: 8, color: THEME.text, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.5px'}}>Contact</h5>
+                <p style={{marginBottom: 4}}><a href="mailto:hello@homeandverse.co.uk" style={{color: THEME.textLight, textDecoration: 'none'}}>hello@homeandverse.co.uk</a></p>
+                <p><a href="tel:+441905616006" style={{color: THEME.textLight, textDecoration: 'none'}}>01905 616006</a></p>
+              </div>
+              <div>
+                <h5 style={{fontWeight: 600, marginBottom: 8, color: THEME.text, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.5px'}}>Address</h5>
+                <p style={{lineHeight: 1.4}}>DM Brands Ltd<br/>79 Waterworks Road<br/>Worcester, WR1 3EZ</p>
+              </div>
+              <div>
+                <h5 style={{fontWeight: 600, marginBottom: 8, color: THEME.text, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.5px'}}>Company Info</h5>
+                <p style={{marginBottom: 4}}>Company No: 07517652</p>
+                <p>VAT No: GB 851 815 128</p>
+              </div>
+              <div>
+                <h5 style={{fontWeight: 600, marginBottom: 8, color: THEME.text, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.5px'}}>Secure Payments</h5>
+                <div style={{display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center'}}>
+                  <span style={{background: '#fff', padding: '4px 8px', borderRadius: 3, fontSize: 10, fontWeight: 600, color: '#1a1f71'}}>VISA</span>
+                  <span style={{background: '#fff', padding: '4px 8px', borderRadius: 3, fontSize: 10, fontWeight: 600, color: '#eb001b'}}>MC</span>
+                  <span style={{background: '#006fcf', padding: '4px 8px', borderRadius: 3, fontSize: 10, fontWeight: 600, color: '#fff'}}>AMEX</span>
+                  <span style={{display: 'flex', alignItems: 'center', gap: 4, fontSize: 10}}>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    Secure
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="footer-bottom" style={{borderTop: `1px solid ${THEME.rose}`, paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontSize: 12, color: THEME.textLight, flexWrap: 'wrap', gap: 12}}>
+            <span>© 2025 Home & Verse. DM Brands Ltd. All rights reserved. <a href="/admin" style={{color: '#999', textDecoration: 'none', marginLeft: 8}}>•</a></span>
+            <div style={{display: 'flex', gap: 16, flexWrap: 'wrap'}}>
               <span onClick={() => navigate('privacy')} style={{cursor: 'pointer'}}>Privacy Policy</span>
               <span onClick={() => navigate('terms')} style={{cursor: 'pointer'}}>Terms & Conditions</span>
               <span onClick={() => navigate('cookies')} style={{cursor: 'pointer'}}>Cookie Policy</span>
+              <span onClick={() => navigate('delivery')} style={{cursor: 'pointer'}}>Shipping</span>
+              <span onClick={() => navigate('returns')} style={{cursor: 'pointer'}}>Returns</span>
             </div>
           </div>
         </div>
@@ -2470,11 +2504,18 @@ function PrivacyPolicyPage({ onBack }) {
         
         <h2 style={{fontSize: 20, fontWeight: 500, marginTop: 48, marginBottom: 20, color: '#222'}}>Who We Are</h2>
         <p style={{marginBottom: 24}}>
-          Home & Verse is a trading name of DM Brands Ltd, a company registered in England and Wales. We are the data controller responsible for your personal data.
+          Home & Verse is a trading name of DM Brands Ltd, a company registered in England and Wales (Company No. 07517652). We are the data controller responsible for your personal data.
         </p>
-        <p style={{marginBottom: 24}}>
-          <strong>Contact:</strong> hello@homeandverse.co.uk
+        <p style={{marginBottom: 16}}>
+          <strong>Registered Address:</strong><br/>
+          DM Brands Ltd<br/>
+          79 Waterworks Road<br/>
+          Worcester, WR1 3EZ<br/>
+          United Kingdom
         </p>
+        <p style={{marginBottom: 8}}><strong>Email:</strong> hello@homeandverse.co.uk</p>
+        <p style={{marginBottom: 8}}><strong>Phone:</strong> 01905 616006</p>
+        <p style={{marginBottom: 24}}><strong>VAT Number:</strong> GB 851 815 128</p>
         
         <h2 style={{fontSize: 20, fontWeight: 500, marginTop: 48, marginBottom: 20, color: '#222'}}>Information We Collect</h2>
         <p style={{marginBottom: 16}}>We collect information that you provide directly to us:</p>
@@ -2553,8 +2594,12 @@ function TermsPage({ onBack }) {
         <p style={{marginBottom: 24, fontStyle: 'italic', color: '#666'}}>Last updated: December 2024</p>
         
         <h2 style={{fontSize: 20, fontWeight: 500, marginTop: 48, marginBottom: 20, color: '#222'}}>1. About Us</h2>
+        <p style={{marginBottom: 16}}>
+          Home & Verse is a trading name of DM Brands Ltd, a company registered in England and Wales (Company No. 07517652, VAT No. GB 851 815 128). These terms govern your use of homeandverse.co.uk and any purchases you make.
+        </p>
         <p style={{marginBottom: 24}}>
-          Home & Verse is a trading name of DM Brands Ltd, a company registered in England and Wales. These terms govern your use of homeandverse.co.uk and any purchases you make.
+          <strong>Registered Address:</strong> 79 Waterworks Road, Worcester, WR1 3EZ, United Kingdom<br/>
+          <strong>Email:</strong> hello@homeandverse.co.uk | <strong>Phone:</strong> 01905 616006
         </p>
         
         <h2 style={{fontSize: 20, fontWeight: 500, marginTop: 48, marginBottom: 20, color: '#222'}}>2. Ordering</h2>
