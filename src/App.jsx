@@ -1380,9 +1380,9 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
           }}>
             {NAV_CATEGORIES.map((cat, i) => {
               const categoryImages = {
-                "Valentine's": `${CDN_BASE}/products/13145_500.jpg`,
-                "Mother's Day": `${CDN_BASE}/products/WZ_MOTH_023_06B.png`,
-                "Easter": `${CDN_BASE}/products/WX_EGG_014_08.png`,
+                "Valentine's": `${CDN_BASE}/products/15349.jpg`,
+                "Mother's Day": `${CDN_BASE}/products/WZ.MOTH.023.06B.png`,
+                "Easter": `${CDN_BASE}/products/17477.jpg`,
                 'Candles & Fragrance': `${CDN_BASE}/mood/candles_1.jpg`,
                 'Lighting': `${CDN_BASE}/heroes/hero-lighting.jpg`,
                 'Tableware': `${CDN_BASE}/heroes/hero-tableware.jpg`,
