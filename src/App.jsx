@@ -1391,14 +1391,21 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
               };
               // Custom object-position for each tile to focus on key content
               const imagePositions = {
-                "Valentine's": 'center 40%',
-                "Mother's Day": 'center 60%',
-                "Easter": 'center 55%',
+                "Valentine's": 'center center',
+                "Mother's Day": 'center center',
+                "Easter": 'center center',
                 'Candles & Fragrance': 'center center',
                 'Lighting': 'center center',
                 'Tableware': 'center center',
                 'Home Décor': 'center center',
                 'Gifts': 'center center'
+              };
+              // Use contain for product images, cover for lifestyle/hero images
+              const useContain = ["Valentine's", "Mother's Day", "Easter"].includes(cat.name);
+              const tileBgColors = {
+                "Valentine's": '#f5f0ed',
+                "Mother's Day": '#f0e8e5',
+                "Easter": '#f5f3f0',
               };
               return (
                 <button 
@@ -1407,7 +1414,7 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
                   style={{
                     position: 'relative',
                     aspectRatio: '4/3',
-                    background: THEME.blush,
+                    background: tileBgColors[cat.name] || THEME.blush,
                     border: 'none',
                     cursor: 'pointer',
                     overflow: 'hidden'
@@ -1421,9 +1428,10 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
                       inset: 0,
                       width: '100%',
                       height: '100%',
-                      objectFit: 'cover',
+                      objectFit: useContain ? 'contain' : 'cover',
                       objectPosition: imagePositions[cat.name] || 'center center',
-                      transition: 'transform 0.6s ease'
+                      transition: 'transform 0.6s ease',
+                      padding: useContain ? '20px' : 0
                     }}
                     onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
                     onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
