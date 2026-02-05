@@ -658,6 +658,16 @@ export default function App() {
         setBestsellers(bestsellersData.bestsellers || []);
       }
       
+      // Handle pending product from URL (e.g. Google Shopping links)
+      if (window._pendingProductSku) {
+        const pendingProduct = productsData.products.find(p => p.sku === window._pendingProductSku);
+        if (pendingProduct) {
+          setSelectedProduct(pendingProduct);
+          setView('product');
+        }
+        delete window._pendingProductSku;
+      }
+      
       setError(null);
     } catch (err) {
       setError('Unable to connect');
