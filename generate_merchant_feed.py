@@ -245,6 +245,29 @@ def get_image_url(product):
     return f"{CDN_BASE}/products/{sku}.jpg"
 
 
+def get_additional_image_urls(product, max_images=10):
+    """Get additional image URLs from verified extras"""
+    extras_file = Path(__file__).parent / "backend" / "data" / "verified_image_extras.json"
+    if not hasattr(get_additional_image_urls, '_cache'):
+        try:
+            with open(extras_file, 'r') as f:
+                get_additional_image_urls._cache = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            get_additional_image_urls._cache = {}
+    
+    sku = product.get('sku', '')
+    brand = product.get('brand', '')
+    suffixes = get_additional_image_urls._cache.get(sku, [])
+    
+    urls = []
+    for suffix in suffixes[:max_images]:
+        if brand == 'Elvang':
+            urls.append(f"{CDN_BASE}/products/elvang/{suffix}.jpg")
+        else:
+            urls.append(f"{CDN_BASE}/products/{suffix}.jpg")
+    return urls
+
+
 def generate_feed():
     with open(PRODUCTS_FILE, 'r', encoding='utf-8') as f:
         data = json.load(f)
@@ -280,6 +303,7 @@ def generate_feed():
         
         writer.writerow([
             'id', 'title', 'description', 'link', 'image_link',
+            'additional_image_link',
             'availability', 'price', 'brand', 'gtin', 'identifier_exists',
             'condition', 'google_product_category', 'product_type',
             'age_group', 'gender', 'color', 'shipping_weight'
@@ -301,9 +325,12 @@ def generate_feed():
             category_path = ' > '.join(['Home & Garden', 'Home Decor'] + categories[:2])
             color = extract_color(p)
             identifier_exists = 'yes' if ean else 'no'
+            additional_images = get_additional_image_urls(p)
+            additional_image_str = ','.join(additional_images) if additional_images else ''
             
             writer.writerow([
                 sku, title, description[:5000], product_url, image_url,
+                additional_image_str,
                 'in_stock', f"{price:.2f} GBP", brand,
                 ean if ean else '', identifier_exists, 'new',
                 google_category_id, category_path,
@@ -348,6 +375,8 @@ def generate_feed():
         xml_lines.append(f'  <g:description>{description[:5000]}</g:description>')
         xml_lines.append(f'  <g:link>{product_url}</g:link>')
         xml_lines.append(f'  <g:image_link>{image_url}</g:image_link>')
+        for extra_url in get_additional_image_urls(p):
+            xml_lines.append(f'  <g:additional_image_link>{extra_url}</g:additional_image_link>')
         xml_lines.append(f'  <g:availability>in_stock</g:availability>')
         xml_lines.append(f'  <g:price>{price:.2f} GBP</g:price>')
         xml_lines.append(f'  <g:brand>{brand}</g:brand>')
@@ -368,7 +397,11 @@ def generate_feed():
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         f.write('\n'.join(xml_lines))
     
+    # Count products with additional images
+    extras_count = sum(1 for p in in_stock if get_additional_image_urls(p))
+    total_extras = sum(len(get_additional_image_urls(p)) for p in in_stock)
     print(f"\u2705 Generated: {OUTPUT_FILE}")
+    print(f"\n\U0001f5bc\ufe0f  Additional images: {extras_count} products with {total_extras} extra images")
 
 
 if __name__ == "__main__":

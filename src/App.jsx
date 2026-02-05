@@ -2898,16 +2898,22 @@ function ProductCard({ product, onClick, onAdd }) {
   );
 }
 
-function ImageLightbox({ src, alt, onClose }) {
+function ImageLightbox({ images, selectedIndex, alt, onClose, onChangeIndex }) {
   useEffect(() => {
-    const handleEscape = (e) => { if (e.key === 'Escape') onClose(); };
-    document.addEventListener('keydown', handleEscape);
+    const handleKey = (e) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowRight' && selectedIndex < images.length - 1) onChangeIndex(selectedIndex + 1);
+      if (e.key === 'ArrowLeft' && selectedIndex > 0) onChangeIndex(selectedIndex - 1);
+    };
+    document.addEventListener('keydown', handleKey);
     document.body.style.overflow = 'hidden';
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('keydown', handleKey);
       document.body.style.overflow = '';
     };
-  }, [onClose]);
+  }, [onClose, selectedIndex, images.length, onChangeIndex]);
+
+  const src = images[selectedIndex] ? getImageUrl(images[selectedIndex], 'large') : null;
 
   return (
     <div onClick={onClose} style={{
@@ -2918,12 +2924,31 @@ function ImageLightbox({ src, alt, onClose }) {
         position: 'absolute', top: 20, right: 20, background: 'none', border: 'none',
         color: '#fff', fontSize: 32, cursor: 'pointer', zIndex: 301
       }}>×</button>
-      <img 
+      {images.length > 1 && selectedIndex > 0 && (
+        <button onClick={(e) => { e.stopPropagation(); onChangeIndex(selectedIndex - 1); }} style={{
+          position: 'absolute', left: 20, top: '50%', transform: 'translateY(-50%)',
+          background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff',
+          width: 48, height: 48, borderRadius: '50%', fontSize: 24, cursor: 'pointer', zIndex: 301
+        }}>‹</button>
+      )}
+      {images.length > 1 && selectedIndex < images.length - 1 && (
+        <button onClick={(e) => { e.stopPropagation(); onChangeIndex(selectedIndex + 1); }} style={{
+          position: 'absolute', right: 20, top: '50%', transform: 'translateY(-50%)',
+          background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff',
+          width: 48, height: 48, borderRadius: '50%', fontSize: 24, cursor: 'pointer', zIndex: 301
+        }}>›</button>
+      )}
+      {src && <img 
         src={src} 
         alt={alt} 
         onClick={(e) => e.stopPropagation()}
         style={{maxWidth: '90vw', maxHeight: '90vh', objectFit: 'contain', cursor: 'default'}} 
-      />
+      />}
+      {images.length > 1 && (
+        <div style={{position: 'absolute', bottom: 24, left: '50%', transform: 'translateX(-50%)', color: 'rgba(255,255,255,0.7)', fontSize: 13}}>
+          {selectedIndex + 1} / {images.length}
+        </div>
+      )}
     </div>
   );
 }
@@ -2956,7 +2981,6 @@ function ProductPage({ product, onBack, onAdd }) {
     }
   }, [product.sku]);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [extraImages, setExtraImages] = useState([]);
   
   // Get SKU from product for image lookups
   const sku = product.sku;
@@ -2964,62 +2988,32 @@ function ProductPage({ product, onBack, onAdd }) {
   // Main image URL
   const mainImage = product.image_url;
   
-  // Load extra images - try common patterns and show what works
-  useEffect(() => {
-    if (!sku) return;
-    
-    // Try loading variants _2 through _6 AND mood images
-    const possibleExtras = [];
-    for (let i = 2; i <= 6; i++) {
-      possibleExtras.push(`/images/${sku}_${i}.jpg`);
-    }
-    // Also check for mood images
-    for (let i = 1; i <= 4; i++) {
-      possibleExtras.push(`/images/${sku}_mood${i}.jpg`);
-    }
-    
-    // Test each one with an Image object (faster than fetch)
-    const validExtras = [];
-    let completed = 0;
-    
-    possibleExtras.forEach((path, idx) => {
-      const img = new Image();
-      img.onload = () => {
-        validExtras[idx] = path;
-        completed++;
-        if (completed === possibleExtras.length) {
-          setExtraImages(validExtras.filter(Boolean));
-        }
-      };
-      img.onerror = () => {
-        completed++;
-        if (completed === possibleExtras.length) {
-          setExtraImages(validExtras.filter(Boolean));
-        }
-      };
-      img.src = getImageUrl(path, 'thumb');
-    });
-  }, [sku]);
+  // Build images array from pre-verified IMAGE_EXTRAS manifest (instant, no network requests)
+  const extraSuffixes = IMAGE_EXTRAS[sku] || [];
+  const isElvang = product.brand === 'Elvang';
+  const extraPaths = extraSuffixes.map(suffix => 
+    isElvang ? `/products/elvang/${suffix}.jpg` : `/products/${suffix}.jpg`
+  );
+  
+  const images = mainImage 
+    ? [mainImage, ...extraPaths] 
+    : extraPaths;
   
   // Reset when product changes
   useEffect(() => {
     setSelectedImage(0);
-    setExtraImages([]);
   }, [product.sku]);
-  
-  // Combine main image + extras
-  const images = mainImage 
-    ? [mainImage, ...extraImages] 
-    : extraImages;
   
   return (
     <div style={{maxWidth: 1100, margin: '0 auto', padding: '30px 20px'}}>
       {/* Lightbox */}
       {lightboxOpen && images.length > 0 && (
         <ImageLightbox 
-          src={getImageUrl(images[selectedImage], 'large')} 
+          images={images}
+          selectedIndex={selectedImage}
           alt={`${product.name} by ${product.brand} - Shop at Home & Verse`} 
-          onClose={() => setLightboxOpen(false)} 
+          onClose={() => setLightboxOpen(false)}
+          onChangeIndex={setSelectedImage}
         />
       )}
       
