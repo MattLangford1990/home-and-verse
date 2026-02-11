@@ -15,7 +15,7 @@ PRODUCTS_FILE = Path("/Users/matt/Desktop/home-and-verse/backend/data/products.j
 OUTPUT_FILE = Path("/Users/matt/Desktop/home-and-verse/public/google-products.xml")
 OUTPUT_CSV = Path("/Users/matt/Desktop/home-and-verse/public/google-products.csv")
 
-SITE_URL = "https://www.homeandverse.co.uk"
+SITE_URL = "https://homeandverse.co.uk"
 CDN_BASE = "https://cdn.appdmbrands.com"
 
 # Google Product Category IDs (numeric) - these are the OFFICIAL IDs from Google's taxonomy

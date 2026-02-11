@@ -12,14 +12,14 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="geo.region" content="GB">
   <meta name="geo.placename" content="United Kingdom">
-  <link rel="canonical" href="https://www.homeandverse.co.uk/">
+  <link rel="canonical" href="https://homeandverse.co.uk/">
   
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.homeandverse.co.uk/">
+  <meta property="og:url" content="https://homeandverse.co.uk/">
   <meta property="og:title" content="Home & Verse | Luxury European Homeware & Scandi Gifts UK">
   <meta property="og:description" content="Shop luxury European homeware from Räder, Remember, My Flame, Relaxound, Ideas4Seasons & Elvang. German porcelain, Danish throws & Dutch candles. Free UK delivery over £30.">
-  <meta property="og:image" content="https://res.cloudinary.com/dcfbgveei/image/upload/v1/og/home-and-verse-og.jpg">
+  <meta property="og:image" content="https://homeandverse.co.uk/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="en_GB">
@@ -29,7 +29,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Home & Verse | Luxury European Homeware & Scandi Gifts UK">
   <meta name="twitter:description" content="Shop luxury European homeware from Räder, Remember, My Flame, Relaxound, Ideas4Seasons & Elvang. German porcelain, Danish throws & Dutch candles. Free UK delivery over £30.">
-  <meta name="twitter:image" content="https://res.cloudinary.com/dcfbgveei/image/upload/v1/og/home-and-verse-og.jpg">
+  <meta name="twitter:image" content="https://homeandverse.co.uk/og-image.png">
   <meta name="twitter:site" content="@homeandverse">
   <meta name="twitter:creator" content="@homeandverse">
   
@@ -43,7 +43,7 @@
   <!-- Preconnect to external resources (before fonts) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://res.cloudinary.com">
+  <link rel="preconnect" href="https://cdn.appdmbrands.com">
   
   <!-- Critical CSS - Inline for instant render -->
   <style>
@@ -69,23 +69,25 @@
     "@type": "HomeGoodsStore",
     "name": "Home & Verse",
     "legalName": "DM Brands Ltd",
-    "url": "https://www.homeandverse.co.uk",
-    "logo": "https://www.homeandverse.co.uk/logo.png",
-    "image": "https://res.cloudinary.com/dcfbgveei/image/upload/v1/og/home-and-verse-og.jpg",
+    "url": "https://homeandverse.co.uk",
+    "logo": "https://homeandverse.co.uk/logo.png",
+    "image": "https://homeandverse.co.uk/og-image.png",
     "description": "Luxury European homeware from Räder, Remember, My Flame, Relaxound, Ideas4Seasons and Elvang. German porcelain, Danish throws & Dutch candles. Official UK distributor.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Ross on Wye",
-      "addressLocality": "Herefordshire",
+      "streetAddress": "79 Waterworks Road",
+      "addressLocality": "Worcester",
+      "postalCode": "WR1 3EZ",
       "addressCountry": "GB"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 51.9144,
-      "longitude": -2.5833
+      "latitude": 52.1936,
+      "longitude": -2.2216
     },
     "contactPoint": {
       "@type": "ContactPoint",
+      "telephone": "+441905616006",
       "email": "hello@homeandverse.co.uk",
       "contactType": "customer service",
       "availableLanguage": "English"
@@ -113,10 +115,10 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Home & Verse",
-    "url": "https://www.homeandverse.co.uk",
+    "url": "https://homeandverse.co.uk",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://www.homeandverse.co.uk/search?q={search_term_string}",
+      "target": "https://homeandverse.co.uk/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }
@@ -154,9 +156,10 @@
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', 'XXXXXXXXXXXXXXX');
-        fbq('track', 'PageView');
-      }, 2500); // Delay FB Pixel slightly after GA
+        // Facebook Pixel disabled - no pixel ID configured yet
+        // fbq('init', 'YOUR_PIXEL_ID');
+        // fbq('track', 'PageView');
+      }, 2500);
     });
   </script>
   <script type="module" crossorigin src="/assets/index-ME1moFU0.js"></script>
@@ -164,7 +167,7 @@
   <link rel="stylesheet" crossorigin href="/assets/index-BT2aK1UD.css">
 </head>
 <body>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
+  <!-- Facebook noscript pixel disabled - no pixel ID configured yet -->
   <div id="root"></div>
 </body>
 </html>

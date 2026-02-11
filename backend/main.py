@@ -888,7 +888,6 @@ async def export_newsletter_subscribers():
         headers={"Content-Disposition": "attachment; filename=newsletter_subscribers.csv"}
     )
 
-
 # ==========================================
 # ANALYTICS / PAGEVIEW TRACKING
 # ==========================================
@@ -920,3 +919,26 @@ async def track_pageview_endpoint(request: PageviewRequest, req: Request):
     except Exception as e:
         # Don't fail the request if tracking fails
         return {"success": False, "error": str(e)}
+
+
+# ==========================================
+# SPA CATCH-ALL - MUST BE LAST ROUTE
+# ==========================================
+# This serves index.html for all frontend routes (product pages, policy pages, etc.)
+# so React Router can handle client-side routing. Without this, any direct URL access
+# (e.g. /shipping, /privacy, /product/SKU) returns a 404 JSON response.
+# CRITICAL for Google Merchant Center: Google crawls product URLs and policy pages.
+# Without this route, they all return 404 JSON = misrepresentation flag.
+
+@app.get("/{path:path}")
+async def spa_catch_all(path: str):
+    """Serve index.html for all unmatched routes (SPA client-side routing)"""
+    # Don't catch API routes or static files
+    if path.startswith("api/") or path.startswith("images/") or path.startswith("assets/"):
+        raise HTTPException(status_code=404)
+    
+    # Serve the SPA index.html
+    dist_html = PROJECT_ROOT / "dist" / "index.html"
+    if dist_html.exists():
+        return FileResponse(dist_html, media_type="text/html")
+    raise HTTPException(status_code=404)

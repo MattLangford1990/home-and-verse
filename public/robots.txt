@@ -3,15 +3,8 @@
 
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
 
 # Sitemap location
 Sitemap: https://homeandverse.co.uk/sitemap.xml
-
-# LLMs.txt for AI systems
-# https://homeandverse.co.uk/llms.txt
-
-# Crawl-delay (optional - be gentle on server)
-Crawl-delay: 1
-
-# Block admin paths only
-Disallow: /admin/
