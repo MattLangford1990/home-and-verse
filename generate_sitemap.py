@@ -8,7 +8,7 @@ import json
 from datetime import datetime
 from urllib.parse import quote
 
-BASE_URL = "https://www.homeandverse.co.uk"
+BASE_URL = "https://homeandverse.co.uk"
 
 # Categories and brands to include
 CATEGORIES = [
