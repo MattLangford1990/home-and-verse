@@ -231,12 +231,17 @@ def estimate_weight(product):
 
 
 def get_image_url(product):
-    """Get image URL from product's actual image_url field"""
+    """Get image URL - must match frontend's getImageUrl logic.
+    products.json stores /images/SKU.jpg but CDN serves from /products/SKU.jpg
+    The frontend translates this at runtime; we must do the same."""
     image_url = product.get('image_url', '')
     if not image_url:
         return ''
     cdn_base = 'https://cdn.appdmbrands.com'
-    # image_url is like /images/KU2.jpg — prepend CDN base
+    # Extract SKU from /images/SKU.jpg path
+    if image_url.startswith('/images/'):
+        filename = image_url.replace('/images/', '')
+        return f"{cdn_base}/products/{filename}"
     return f"{cdn_base}{image_url}"
 
 
