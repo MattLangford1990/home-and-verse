@@ -25,7 +25,8 @@ BRANDS = [
     "Remember", 
     "My Flame",
     "Relaxound",
-    "Ideas4Seasons"
+    "Ideas4Seasons",
+    "Elvang Denmark"
 ]
 
 def generate_sitemap():
@@ -69,17 +70,17 @@ def generate_sitemap():
             'priority': '0.8'
         })
     
-    # Static pages
+    # Static pages - use clean URLs that match the SPA catch-all routes
     static_pages = [
-        ('/?view=about', '0.6', 'monthly'),
-        ('/?view=delivery', '0.5', 'monthly'),
-        ('/?view=returns', '0.5', 'monthly'),
-        ('/?view=faqs', '0.5', 'monthly'),
-        ('/?view=contact', '0.5', 'monthly'),
-        ('/?view=sustainability', '0.5', 'monthly'),
-        ('/?view=privacy', '0.3', 'yearly'),
-        ('/?view=terms', '0.3', 'yearly'),
-        ('/?view=cookies', '0.3', 'yearly'),
+        ('/about', '0.6', 'monthly'),
+        ('/delivery', '0.5', 'monthly'),
+        ('/returns', '0.5', 'monthly'),
+        ('/faqs', '0.5', 'monthly'),
+        ('/contact', '0.5', 'monthly'),
+        ('/sustainability', '0.5', 'monthly'),
+        ('/privacy', '0.3', 'yearly'),
+        ('/terms', '0.3', 'yearly'),
+        ('/cookies', '0.3', 'yearly'),
     ]
     
     for path, priority, changefreq in static_pages:
@@ -119,8 +120,10 @@ def generate_sitemap():
     
     # Write sitemap
     sitemap_content = '\n'.join(xml_lines)
-    with open('sitemap.xml', 'w') as f:
-        f.write(sitemap_content)
+    # Write to both locations
+    for path in ['sitemap.xml', 'public/sitemap.xml']:
+        with open(path, 'w') as f:
+            f.write(sitemap_content)
     
     print(f"✅ Sitemap generated with {len(urls)} URLs")
     print(f"   - 1 homepage")
@@ -128,7 +131,7 @@ def generate_sitemap():
     print(f"   - {len(BRANDS)} brand pages")
     print(f"   - {len(static_pages)} static pages")
     print(f"   - {len(in_stock_products)} product pages")
-    print(f"\nSaved to: sitemap.xml")
+    print(f"\nSaved to: sitemap.xml and public/sitemap.xml")
 
 if __name__ == '__main__':
     generate_sitemap()

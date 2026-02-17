@@ -310,11 +310,21 @@ export default function App() {
     if (params.get('category')) return { view: 'products', category: params.get('category') };
     if (params.get('brand')) return { view: 'products', brand: params.get('brand') };
     if (params.get('view')) return { view: params.get('view') };
+    // Support clean URL paths (e.g. /about, /privacy, /delivery)
+    // Critical for Google crawling policy pages and SEO
+    const path = window.location.pathname.replace(/^\//, '');
+    const validViews = ['about', 'delivery', 'returns', 'faqs', 'contact', 'sustainability', 'privacy', 'terms', 'cookies'];
+    if (path && validViews.includes(path)) return { view: path };
     return { view: 'home' };
   };
   
   // Build URL from state
   const buildUrl = (newView, options = {}) => {
+    // Use clean URL paths for static/policy pages (better for SEO and Google crawling)
+    const cleanUrlViews = ['about', 'delivery', 'returns', 'faqs', 'contact', 'sustainability', 'privacy', 'terms', 'cookies'];
+    if (cleanUrlViews.includes(newView)) {
+      return `/${newView}`;
+    }
     const params = new URLSearchParams();
     if (newView === 'product' && options.product) {
       params.set('product', options.product.sku);
@@ -1160,7 +1170,7 @@ export default function App() {
                 <a href="https://www.facebook.com/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{color: THEME.textLight}}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                 </a>
-                <a href="https://www.pinterest.co.uk/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" style={{color: THEME.textLight}}>
+                <a href="https://uk.pinterest.com/homeandverse" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" style={{color: THEME.textLight}}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M8 12a4 4 0 1 1 8 0c0 2.5-1.5 5-4 6.5"/><path d="M12 12v6.5"/><circle cx="12" cy="10" r="8"/></svg>
                 </a>
               </div>
@@ -1199,7 +1209,7 @@ export default function App() {
           </div>
           
           <div className="footer-bottom" style={{borderTop: `1px solid ${THEME.rose}`, paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontSize: 12, color: THEME.textLight, flexWrap: 'wrap', gap: 12}}>
-            <span>© 2025 Home & Verse. DM Brands Ltd. All rights reserved. <a href="/admin" style={{color: '#999', textDecoration: 'none', marginLeft: 8}}>•</a></span>
+            <span>© 2026 Home & Verse. DM Brands Ltd. All rights reserved. <a href="/admin" style={{color: '#999', textDecoration: 'none', marginLeft: 8}}>•</a></span>
             <div style={{display: 'flex', gap: 16, flexWrap: 'wrap'}}>
               <span onClick={() => navigate('privacy')} style={{cursor: 'pointer'}}>Privacy Policy</span>
               <span onClick={() => navigate('terms')} style={{cursor: 'pointer'}}>Terms & Conditions</span>
