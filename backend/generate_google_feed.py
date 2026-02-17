@@ -6,7 +6,9 @@ Run: python generate_google_feed.py
 import json
 import csv
 import re
+import requests
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Paths
 DATA_DIR = Path("data")
@@ -119,7 +121,6 @@ def extract_colour(product):
         if key in text:
             return value
     
-    # Default by brand
     if brand == 'Räder':
         return 'White'
     if brand == 'Elvang':
@@ -238,11 +239,67 @@ def get_image_url(product):
     if not image_url:
         return ''
     cdn_base = 'https://cdn.appdmbrands.com'
-    # Extract SKU from /images/SKU.jpg path
+    # Extract filename from /images/SKU.jpg path and use /products/ path
     if image_url.startswith('/images/'):
         filename = image_url.replace('/images/', '')
         return f"{cdn_base}/products/{filename}"
     return f"{cdn_base}{image_url}"
+
+
+def verify_images(products):
+    """Check which products have working images on CDN. Returns list of valid products."""
+    print(f"\nVerifying images on CDN for {len(products)} products...")
+    
+    def check(product):
+        url = get_image_url(product)
+        if not url:
+            return (product, False, url)
+        # Try .jpg
+        try:
+            r = requests.head(url, timeout=5, allow_redirects=True)
+            if r.status_code == 200:
+                return (product, True, url)
+        except:
+            pass
+        # Try .png fallback (matching frontend)
+        png_url = url.rsplit('.', 1)[0] + '.png'
+        try:
+            r = requests.head(png_url, timeout=5, allow_redirects=True)
+            if r.status_code == 200:
+                product['_png_image'] = png_url
+                return (product, True, png_url)
+        except:
+            pass
+        return (product, False, url)
+    
+    valid = []
+    broken_skus = []
+    with ThreadPoolExecutor(max_workers=15) as executor:
+        futures = [executor.submit(check, p) for p in products]
+        for i, future in enumerate(as_completed(futures)):
+            if (i + 1) % 100 == 0 or i + 1 == len(products):
+                print(f"  Checked {i+1}/{len(products)}...")
+            product, ok, url = future.result()
+            if ok:
+                valid.append(product)
+            else:
+                broken_skus.append(product.get('sku', '?'))
+    
+    if broken_skus:
+        print(f"  Excluded {len(broken_skus)} products with broken images")
+        for sku in broken_skus[:10]:
+            print(f"    -> {sku}")
+        if len(broken_skus) > 10:
+            print(f"    ... and {len(broken_skus) - 10} more")
+    print(f"  {len(valid)} products with verified images")
+    return valid
+
+
+def get_feed_image_url(product):
+    """Get the verified image URL for the feed"""
+    if '_png_image' in product:
+        return product['_png_image']
+    return get_image_url(product)
 
 
 def generate_csv(products):
@@ -259,11 +316,6 @@ def generate_csv(products):
         writer.writeheader()
         
         for product in products:
-            if not product.get('in_stock', False):
-                continue
-            if not product.get('has_image', False):
-                continue
-            
             categories = product.get('categories', [])
             product_type = ' > '.join(['Home & Garden', 'Home Decor'] + categories[:2])
             ean = product.get('ean', '')
@@ -274,7 +326,7 @@ def generate_csv(products):
                 'title': get_optimized_title(product),
                 'description': product.get('description', '')[:5000],
                 'link': f"https://www.homeandverse.co.uk/?product={product.get('sku', '')}",
-                'image_link': get_image_url(product),
+                'image_link': get_feed_image_url(product),
                 'availability': 'in_stock',
                 'price': f"{product.get('price', 0):.2f} GBP",
                 'brand': product.get('brand', ''),
@@ -306,11 +358,6 @@ def generate_xml(products):
     ]
     
     for product in products:
-        if not product.get('in_stock', False):
-            continue
-        if not product.get('has_image', False):
-            continue
-        
         sku = product.get('sku', '')
         categories = product.get('categories', [])
         product_type = ' > '.join(['Home & Garden', 'Home Decor'] + categories[:2])
@@ -322,7 +369,7 @@ def generate_xml(products):
         xml_lines.append(f"<g:title><![CDATA[{get_optimized_title(product)}]]></g:title>")
         xml_lines.append(f"<g:description><![CDATA[{product.get('description', '')[:5000]}]]></g:description>")
         xml_lines.append(f"<g:link>https://www.homeandverse.co.uk/?product={sku}</g:link>")
-        xml_lines.append(f"<g:image_link>{get_image_url(product)}</g:image_link>")
+        xml_lines.append(f"<g:image_link>{get_feed_image_url(product)}</g:image_link>")
         xml_lines.append("<g:availability>in_stock</g:availability>")
         xml_lines.append(f"<g:price>{product.get('price', 0):.2f} GBP</g:price>")
         xml_lines.append(f"<g:brand>{product.get('brand', '')}</g:brand>")
@@ -364,12 +411,18 @@ def main():
     
     products = data.get('products', [])
     in_stock = [p for p in products if p.get('in_stock', False)]
+    has_image = [p for p in in_stock if p.get('has_image', False)]
     
     print(f"\nTotal products: {len(products)}")
     print(f"In stock: {len(in_stock)}")
+    print(f"With images: {len(has_image)}")
     
-    generate_csv(in_stock)
-    generate_xml(in_stock)
+    # Verify every image actually exists on CDN before including in feed
+    verified = verify_images(has_image)
+    
+    print(f"\nGenerating feed with {len(verified)} verified products...")
+    generate_csv(verified)
+    generate_xml(verified)
     
     print("\n✅ Done!")
 

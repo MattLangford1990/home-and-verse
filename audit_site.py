@@ -587,7 +587,7 @@ def audit_merchant_feed():
         if p.get("identifier_exists") == "yes" and not p.get("gtin", "").strip():
             missing_gtin += 1
         link = p.get("link", "")
-        if link and not link.startswith(SITE_URL):
+        if link and not link.startswith(SITE_URL) and not link.startswith(SITE_URL.replace('https://', 'https://www.')):
             wrong_domain_links += 1
         avail = p.get("availability", "")
         if avail not in ("in_stock", "out_of_stock", "preorder", "backorder"):
