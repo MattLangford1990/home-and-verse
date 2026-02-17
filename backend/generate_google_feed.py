@@ -231,14 +231,13 @@ def estimate_weight(product):
 
 
 def get_image_url(product):
-    """Get optimized image URL"""
-    sku = product.get('sku', '')
-    brand = product.get('brand', '')
+    """Get image URL from product's actual image_url field"""
+    image_url = product.get('image_url', '')
+    if not image_url:
+        return ''
     cdn_base = 'https://cdn.appdmbrands.com'
-    cdn_sku = sku.replace('.', '_')
-    if brand == 'Elvang':
-        return f"{cdn_base}/elvang/{sku}_1.jpg"
-    return f"{cdn_base}/products/{cdn_sku}.jpg"
+    # image_url is like /images/KU2.jpg — prepend CDN base
+    return f"{cdn_base}{image_url}"
 
 
 def generate_csv(products):
@@ -256,6 +255,8 @@ def generate_csv(products):
         
         for product in products:
             if not product.get('in_stock', False):
+                continue
+            if not product.get('has_image', False):
                 continue
             
             categories = product.get('categories', [])
@@ -301,6 +302,8 @@ def generate_xml(products):
     
     for product in products:
         if not product.get('in_stock', False):
+            continue
+        if not product.get('has_image', False):
             continue
         
         sku = product.get('sku', '')
