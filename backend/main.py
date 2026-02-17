@@ -19,6 +19,21 @@ from dotenv import load_dotenv
 from admin_routes import router as admin_router
 
 
+# HEAD request middleware - converts HEAD to GET for SPA/static routes
+# Google and other crawlers send HEAD requests to check pages.
+# FastAPI @app.get() doesn't handle HEAD, returning 405.
+# This middleware converts HEAD→GET so all pages return 200.
+class HeadMethodMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        if request.method == "HEAD":
+            request.scope["method"] = "GET"
+            response = await call_next(request)
+            # HEAD responses must not include a body
+            response.body = b""
+            return response
+        return await call_next(request)
+
+
 # Cache control middleware
 class CacheControlMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
@@ -62,6 +77,9 @@ app = FastAPI(title="Home & Verse API", version="1.0")
 
 # Include admin routes
 app.include_router(admin_router)
+
+# Add HEAD method support (must be first - outermost middleware)
+app.add_middleware(HeadMethodMiddleware)
 
 # Add cache control middleware
 app.add_middleware(CacheControlMiddleware)
