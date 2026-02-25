@@ -194,7 +194,7 @@ async def get_sitemap():
 @app.get("/google-products.csv")
 async def get_google_products_csv():
     """Google Merchant Center product feed (CSV)"""
-    for dir in [DIST_DIR, PUBLIC_DIR]:
+    for dir in [PUBLIC_DIR, DIST_DIR]:
         if (dir / "google-products.csv").exists():
             return FileResponse(dir / "google-products.csv", media_type="text/csv")
     raise HTTPException(status_code=404)
@@ -202,7 +202,7 @@ async def get_google_products_csv():
 @app.get("/google-products.xml")
 async def get_google_products_xml():
     """Google Merchant Center product feed (XML)"""
-    for dir in [DIST_DIR, PUBLIC_DIR]:
+    for dir in [PUBLIC_DIR, DIST_DIR]:
         if (dir / "google-products.xml").exists():
             return FileResponse(dir / "google-products.xml", media_type="application/xml")
     raise HTTPException(status_code=404)
