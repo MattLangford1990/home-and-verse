@@ -325,7 +325,7 @@ def generate_csv(products):
                 'id': product.get('sku', ''),
                 'title': get_optimized_title(product),
                 'description': product.get('description', '')[:5000],
-                'link': f"https://www.homeandverse.co.uk/?product={product.get('sku', '')}",
+                'link': f"https://homeandverse.co.uk/product/{product.get('sku', '')}",
                 'image_link': get_feed_image_url(product),
                 'availability': 'in_stock',
                 'price': f"{product.get('price', 0):.2f} GBP",
@@ -353,7 +353,7 @@ def generate_xml(products):
         '<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">',
         '<channel>',
         '<title>Home and Verse Products</title>',
-        '<link>https://www.homeandverse.co.uk</link>',
+        '<link>https://homeandverse.co.uk</link>',
         '<description>Curated European homeware</description>'
     ]
     
@@ -368,7 +368,7 @@ def generate_xml(products):
         xml_lines.append(f"<g:id>{sku}</g:id>")
         xml_lines.append(f"<g:title><![CDATA[{get_optimized_title(product)}]]></g:title>")
         xml_lines.append(f"<g:description><![CDATA[{product.get('description', '')[:5000]}]]></g:description>")
-        xml_lines.append(f"<g:link>https://www.homeandverse.co.uk/?product={sku}</g:link>")
+        xml_lines.append(f"<g:link>https://homeandverse.co.uk/product/{sku}</g:link>")
         xml_lines.append(f"<g:image_link>{get_feed_image_url(product)}</g:image_link>")
         xml_lines.append("<g:availability>in_stock</g:availability>")
         xml_lines.append(f"<g:price>{product.get('price', 0):.2f} GBP</g:price>")
