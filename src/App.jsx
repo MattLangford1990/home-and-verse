@@ -266,9 +266,8 @@ const ProductImage = ({ src, alt, style, className, loading = 'lazy', onMouseEnt
   );
 };
 
-// Categories - Valentine's, Mother's Day and Easter are special filtered categories
+// Categories - Mother's Day and Easter are special filtered categories
 const NAV_CATEGORIES = [
-  { name: "Valentine's", slug: 'Valentines', isSpecial: true },
   { name: "Mother's Day", slug: 'MothersDay', isSpecial: true },
   { name: "Easter", slug: 'Easter', isSpecial: true },
   { name: 'Candles & Fragrance', slug: 'Candles & Fragrance' },
@@ -408,7 +407,6 @@ export default function App() {
       newTitle = `${catName} | ${baseTitle}`;
       // Category-specific SEO descriptions
       const catDescriptions = {
-        "Valentine's": "Shop Valentine's Day gifts featuring hearts & love. Romantic candles, heart decorations & thoughtful gifts for someone special. Free UK delivery over £30.",
         "Mother's Day": "Shop Mother's Day gifts for Mum. Heart decorations, love-themed candles & thoughtful gifts to show you care. Free UK delivery over £30.",
         "Easter": "Shop Easter decorations & spring gifts. Bunnies, eggs, chicks & seasonal homeware to celebrate Easter. Free UK delivery over £30.",
         'Candles & Fragrance': 'Luxury soy candles with hidden messages, fragrance diffusers & home scents. Hand-poured Dutch candles from My Flame. Free UK delivery over £30.',
@@ -688,14 +686,7 @@ export default function App() {
   const filterProducts = () => {
     let filtered = [...allProducts];
     if (activeCategory) {
-      // Check if it's the special Valentine's category
-      if (activeCategory === 'Valentines') {
-        // Filter for products with 'heart' or 'love' in the name
-        filtered = filtered.filter(p => {
-          const name = (p.name || '').toLowerCase();
-          return name.includes('heart') || name.includes('love');
-        });
-      } else if (activeCategory === 'MothersDay') {
+      if (activeCategory === 'MothersDay') {
         // Filter for products with 'heart', 'love', 'mum' or 'mom' in the name
         filtered = filtered.filter(p => {
           const name = (p.name || '').toLowerCase();
@@ -858,11 +849,6 @@ export default function App() {
 
   return (
     <div style={{minHeight: '100vh', display: 'flex', flexDirection: 'column', background: THEME.cream}}>
-      {/* Valentine's Banner */}
-      <div style={{background: THEME.burgundy, color: '#fff', padding: '10px 20px', fontSize: 13, textAlign: 'center'}}>
-        ❤️ Valentine's Day Gifts — Order by 10th February for guaranteed delivery ❤️
-      </div>
-      
       {/* Announcement Bar */}
       <div style={{background: THEME.rose, color: '#fff', padding: '8px 20px', fontSize: 12, textAlign: 'center'}}>
         Free UK delivery on orders over £30 · 30-day returns
@@ -1400,7 +1386,6 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
           }}>
             {NAV_CATEGORIES.map((cat, i) => {
               const categoryImages = {
-                "Valentine's": `${CDN_BASE}/products/15349.jpg`,
                 "Mother's Day": `${CDN_BASE}/products/WZ.MOTH.023.06B.png`,
                 "Easter": `${CDN_BASE}/products/17477.jpg`,
                 'Candles & Fragrance': `${CDN_BASE}/mood/candles_1.jpg`,
@@ -1411,7 +1396,6 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
               };
               // Custom object-position for each tile to focus on key content
               const imagePositions = {
-                "Valentine's": 'center center',
                 "Mother's Day": 'center center',
                 "Easter": 'center center',
                 'Candles & Fragrance': 'center center',
@@ -1421,9 +1405,8 @@ function HomePage({ products, bestsellers, onCategoryClick, onProductClick, onAd
                 'Gifts': 'center center'
               };
               // Use contain for product images, cover for lifestyle/hero images
-              const useContain = ["Valentine's", "Mother's Day", "Easter"].includes(cat.name);
+              const useContain = ["Mother's Day", "Easter"].includes(cat.name);
               const tileBgColors = {
-                "Valentine's": '#f5f0ed',
                 "Mother's Day": '#f0e8e5',
                 "Easter": '#f5f3f0',
               };
