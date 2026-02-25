@@ -17,6 +17,7 @@ import stripe
 from pathlib import Path
 from dotenv import load_dotenv
 from admin_routes import router as admin_router
+from prerender_routes import is_crawler, render_homepage, render_product_page, render_shop_page, render_policy_page
 
 
 # HEAD request middleware - converts HEAD to GET for SPA/static routes
@@ -251,13 +252,14 @@ def load_bestsellers() -> dict:
 
 
 @app.get("/")
-async def serve_frontend():
-    """Serve the main frontend from Vite dist"""
-    # Try dist/index.html first (production build)
+async def serve_frontend(request: Request):
+    """Serve the main frontend from Vite dist, or pre-rendered HTML for crawlers"""
+    if is_crawler(request):
+        return render_homepage()
+    # Normal users get the React SPA
     dist_html = PROJECT_ROOT / "dist" / "index.html"
     if dist_html.exists():
         return FileResponse(dist_html, media_type="text/html")
-    # Fallback to preview.html for legacy
     preview_html = PROJECT_ROOT / "preview.html"
     if preview_html.exists():
         return FileResponse(preview_html, media_type="text/html")
@@ -949,13 +951,33 @@ async def track_pageview_endpoint(request: PageviewRequest, req: Request):
 # Without this route, they all return 404 JSON = misrepresentation flag.
 
 @app.get("/{path:path}")
-async def spa_catch_all(path: str):
-    """Serve index.html for all unmatched routes (SPA client-side routing)"""
+async def spa_catch_all(path: str, request: Request):
+    """Serve index.html for all unmatched routes, or pre-rendered HTML for crawlers"""
     # Don't catch API routes or static files
     if path.startswith("api/") or path.startswith("images/") or path.startswith("assets/"):
         raise HTTPException(status_code=404)
-    
-    # Serve the SPA index.html
+
+    # Pre-render for crawlers
+    if is_crawler(request):
+        # Product pages: /product/SKU
+        if path.startswith("product/"):
+            sku = path.split("/", 1)[1]
+            result = render_product_page(sku)
+            if result:
+                return result
+        # Shop page
+        elif path == "shop":
+            return render_shop_page()
+        # Policy/info pages
+        elif path in ("shipping", "returns", "contact", "privacy", "terms", "cookies", "faq"):
+            result = render_policy_page(path)
+            if result:
+                return result
+        # Homepage variants
+        elif path in ("", "index.html"):
+            return render_homepage()
+
+    # Normal users (and unmatched crawler paths) get the React SPA
     dist_html = PROJECT_ROOT / "dist" / "index.html"
     if dist_html.exists():
         return FileResponse(dist_html, media_type="text/html")
