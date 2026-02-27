@@ -52,23 +52,8 @@ def generate_sitemap():
         'priority': '1.0'
     })
     
-    # Category pages
-    for cat in CATEGORIES:
-        urls.append({
-            'loc': f"{BASE_URL}/?category={quote(cat)}",
-            'lastmod': today,
-            'changefreq': 'daily',
-            'priority': '0.9'
-        })
-    
-    # Brand pages
-    for brand in BRANDS:
-        urls.append({
-            'loc': f"{BASE_URL}/?brand={quote(brand)}",
-            'lastmod': today,
-            'changefreq': 'weekly',
-            'priority': '0.8'
-        })
+    # Note: Category and brand pages (?category=X, ?brand=X) are React SPA routes
+    # and cannot be crawled by Googlebot, so they are excluded from the sitemap.
     
     # Static pages - use clean URLs that match the SPA catch-all routes
     static_pages = [
@@ -96,7 +81,7 @@ def generate_sitemap():
         sku = product.get('sku', '')
         if sku:
             urls.append({
-                'loc': f"{BASE_URL}/?product={quote(sku)}",
+                'loc': f"{BASE_URL}/product/{quote(sku)}",
                 'lastmod': today,
                 'changefreq': 'weekly',
                 'priority': '0.7'

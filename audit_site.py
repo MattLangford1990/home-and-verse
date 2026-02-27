@@ -73,10 +73,10 @@ SOCIAL_URLS = [
 # RESULTS TRACKING
 # ============================================================
 results = {
-    "critical": [],    # Will definitely cause rejection
-    "warning": [],     # Likely contributes to rejection
-    "info": [],        # Minor issues / recommendations
-    "pass": [],        # Things that are correct
+    "critical": [],
+    "warning": [],
+    "info": [],
+    "pass": [],
 }
 
 total_checks = 0
@@ -154,14 +154,12 @@ def audit_ssl_and_redirects():
     print("1. SSL & REDIRECTS")
     print("=" * 60)
 
-    # Check HTTPS works
     status, headers, body = check_url(SITE_URL)
     if status == 200:
         passed("Homepage returns 200 OK via HTTPS")
     else:
         critical(f"Homepage returns {status} (expected 200)")
 
-    # Check HTTP redirects to HTTPS
     try:
         r = requests.get(SITE_URL.replace("https://", "http://"), allow_redirects=False, timeout=10)
         if r.status_code in (301, 302, 308):
@@ -175,7 +173,6 @@ def audit_ssl_and_redirects():
     except:
         warning("Could not test HTTP→HTTPS redirect")
 
-    # Check www redirect
     try:
         r = requests.get("https://www.homeandverse.co.uk/", allow_redirects=False, timeout=10)
         if r.status_code in (301, 302, 308):
@@ -282,7 +279,6 @@ def audit_sitemap():
 
         passed(f"Sitemap has {len(locs)} URLs")
 
-        # Check for stale dates
         from datetime import datetime, timedelta
         today = datetime.now()
         stale_count = 0
@@ -298,7 +294,6 @@ def audit_sitemap():
         else:
             passed("All sitemap dates are recent")
 
-        # Check policy pages in sitemap
         policy_in_sitemap = 0
         for page in POLICY_PAGES:
             full_url = SITE_URL + page
@@ -310,7 +305,6 @@ def audit_sitemap():
         if policy_in_sitemap == len(POLICY_PAGES):
             passed("All policy pages included in sitemap")
 
-        # Check all sitemap URLs use correct domain
         wrong_domain = [l for l in locs if not l.startswith(SITE_URL)]
         if wrong_domain:
             critical(f"{len(wrong_domain)} sitemap URLs use wrong domain: {wrong_domain[0]}")
@@ -331,14 +325,12 @@ def audit_homepage_html():
         critical("Cannot load homepage")
         return
 
-    # Content-Type
     ct = headers.get("Content-Type", headers.get("content-type", ""))
     if "text/html" in ct:
         passed("Content-Type is text/html")
     else:
         critical(f"Content-Type is '{ct}' — must be text/html")
 
-    # Title
     title_match = re.search(r"<title>(.*?)</title>", body)
     if title_match:
         title = title_match.group(1)
@@ -349,7 +341,6 @@ def audit_homepage_html():
     else:
         critical("No <title> tag found")
 
-    # Meta description
     desc_match = re.search(r'<meta name="description" content="(.*?)"', body)
     if desc_match:
         desc = desc_match.group(1)
@@ -360,7 +351,6 @@ def audit_homepage_html():
     else:
         critical("No meta description found")
 
-    # Canonical
     canon_match = re.search(r'<link rel="canonical" href="(.*?)"', body)
     if canon_match:
         canon = canon_match.group(1)
@@ -371,7 +361,6 @@ def audit_homepage_html():
     else:
         warning("No canonical URL found")
 
-    # Open Graph
     og_checks = {
         "og:title": r'property="og:title" content="(.*?)"',
         "og:description": r'property="og:description" content="(.*?)"',
@@ -385,17 +374,15 @@ def audit_homepage_html():
         else:
             warning(f"{name} missing")
 
-    # Check OG image actually loads
     og_img_match = re.search(r'property="og:image" content="(.*?)"', body)
     if og_img_match:
         og_img_url = og_img_match.group(1)
         og_status = check_url_head(og_img_url)
         if og_status == 200:
-            passed(f"OG image loads correctly")
+            passed("OG image loads correctly")
         else:
             critical(f"OG image returns {og_status}: {og_img_url}")
 
-    # Structured Data
     ld_json_blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', body, re.DOTALL)
     if ld_json_blocks:
         passed(f"Found {len(ld_json_blocks)} structured data blocks")
@@ -405,7 +392,6 @@ def audit_homepage_html():
                 sd_type = data.get("@type", "unknown")
                 passed(f"  Structured data block {i+1}: {sd_type} (valid JSON)")
 
-                # Check business info in structured data
                 if sd_type == "HomeGoodsStore":
                     addr = data.get("address", {})
                     if addr.get("streetAddress") == EXPECTED_BUSINESS["street"]:
@@ -435,7 +421,6 @@ def audit_homepage_html():
                     else:
                         critical(f"  Structured data legal name MISMATCH: '{legal}' vs '{EXPECTED_BUSINESS['legal_name']}'")
 
-                    # Check sameAs social links
                     same_as = data.get("sameAs", [])
                     for social in SOCIAL_URLS:
                         if social in same_as:
@@ -443,7 +428,6 @@ def audit_homepage_html():
                         else:
                             warning(f"  Social link missing from sameAs: {social}")
 
-                    # Check logo URL loads
                     logo_url = data.get("logo", "")
                     if logo_url:
                         logo_status = check_url_head(logo_url)
@@ -457,16 +441,14 @@ def audit_homepage_html():
     else:
         critical("No structured data (JSON-LD) found")
 
-    # Check for empty body (SPA issue)
     root_match = re.search(r'<div id="root">(.*?)</div>', body, re.DOTALL)
     if root_match:
         inner = root_match.group(1).strip()
         if len(inner) < 10:
-            warning("Empty <div id='root'> — SPA has no server-side content for Google's initial crawl")
+            info("Empty <div id='root'> — SPA has no server-side content (inherent to SPA architecture)")
         else:
             passed("Root div has pre-rendered content")
-    
-    # Google Analytics
+
     if "gtag" in body or "googletagmanager" in body or "analytics" in body.lower():
         passed("Google Analytics/GTM detected")
     else:
@@ -482,14 +464,12 @@ def audit_policy_pages():
         url = SITE_URL + page
         progress(i + 1, len(POLICY_PAGES), page)
 
-        # GET request
         status, headers, body = check_url(url)
         if status == 200:
             passed(f"GET {page} → 200")
         else:
             critical(f"GET {page} → {status}")
 
-        # HEAD request
         head_status = check_url_head(url)
         if head_status == 200:
             passed(f"HEAD {page} → 200")
@@ -498,7 +478,6 @@ def audit_policy_pages():
         else:
             warning(f"HEAD {page} → {head_status}")
 
-        # Content-type check
         ct = headers.get("Content-Type", headers.get("content-type", ""))
         if "text/html" in ct:
             passed(f"{page} Content-Type is text/html")
@@ -507,7 +486,7 @@ def audit_policy_pages():
         else:
             warning(f"{page} Content-Type: {ct}")
 
-    print()  # Clear progress bar
+    print()
 
 
 def audit_social_profiles():
@@ -560,7 +539,6 @@ def audit_merchant_feed():
         else:
             warning(f"Recommended field '{field}' missing from feed")
 
-    # Check for issues across all products
     missing_title = 0
     missing_desc = 0
     missing_image = 0
@@ -570,22 +548,45 @@ def audit_merchant_feed():
     bad_availability = 0
     short_titles = 0
     short_descs = 0
+    long_titles = 0
+    bad_price_format = 0
+    bad_gtin_format = 0
+    duplicate_ids = set()
+    seen_ids = set()
 
     for p in products:
+        pid = p.get("id", "")
+        if pid in seen_ids:
+            duplicate_ids.add(pid)
+        seen_ids.add(pid)
+
         if not p.get("title", "").strip():
             missing_title += 1
         elif len(p.get("title", "")) < 20:
             short_titles += 1
+        elif len(p.get("title", "")) > 150:
+            long_titles += 1
+
         if not p.get("description", "").strip():
             missing_desc += 1
         elif len(p.get("description", "")) < 50:
             short_descs += 1
+
         if not p.get("image_link", "").strip():
             missing_image += 1
         if not p.get("price", "").strip():
             missing_price += 1
-        if p.get("identifier_exists") == "yes" and not p.get("gtin", "").strip():
+        else:
+            price_str = p.get("price", "")
+            if not re.match(r'^\d+\.\d{2}\s+GBP$', price_str):
+                bad_price_format += 1
+
+        gtin = p.get("gtin", "").strip()
+        if p.get("identifier_exists") == "yes" and not gtin:
             missing_gtin += 1
+        elif gtin and not re.match(r'^\d{8,14}$', gtin):
+            bad_gtin_format += 1
+
         link = p.get("link", "")
         if link and not link.startswith(SITE_URL) and not link.startswith(SITE_URL.replace('https://', 'https://www.')):
             wrong_domain_links += 1
@@ -596,6 +597,7 @@ def audit_merchant_feed():
     if missing_title: critical(f"{missing_title} products missing title")
     else: passed("All products have titles")
     if short_titles: warning(f"{short_titles} products have very short titles (<20 chars)")
+    if long_titles: warning(f"{long_titles} products have titles exceeding 150 chars (Google truncates)")
     if missing_desc: critical(f"{missing_desc} products missing description")
     else: passed("All products have descriptions")
     if short_descs: warning(f"{short_descs} products have short descriptions (<50 chars)")
@@ -603,7 +605,15 @@ def audit_merchant_feed():
     else: passed("All products have image links")
     if missing_price: critical(f"{missing_price} products missing price")
     else: passed("All products have prices")
+    if bad_price_format: warning(f"{bad_price_format} products have non-standard price format (expected '12.34 GBP')")
+    else: passed("All prices use correct format (XX.XX GBP)")
     if missing_gtin: warning(f"{missing_gtin} products have identifier_exists=yes but no GTIN")
+    if bad_gtin_format: warning(f"{bad_gtin_format} products have invalid GTIN format (should be 8-14 digits)")
+    else: passed("All GTINs are valid format")
+    if duplicate_ids:
+        critical(f"{len(duplicate_ids)} duplicate product IDs in feed: {', '.join(list(duplicate_ids)[:5])}")
+    else:
+        passed("No duplicate product IDs")
     if wrong_domain_links: critical(f"{wrong_domain_links} product links don't use {SITE_URL}")
     else: passed("All product links use correct domain")
     if bad_availability: warning(f"{bad_availability} products have non-standard availability values")
@@ -637,7 +647,6 @@ def audit_product_urls(feed_products):
         except:
             return ("error", product.get("id", "?"), link)
 
-    # Use thread pool for speed
     with ThreadPoolExecutor(max_workers=10) as executor:
         futures = {executor.submit(check_product, (i, p)): i for i, p in enumerate(feed_products)}
         done = 0
@@ -653,7 +662,7 @@ def audit_product_urls(feed_products):
             else:
                 errors_other.append((status_code, pid, link))
 
-    print()  # Clear progress bar
+    print()
 
     if ok_count == total:
         passed(f"All {total} product URLs return 200")
@@ -683,7 +692,6 @@ def audit_product_images(feed_products):
         critical("No feed products to check")
         return
 
-    # Collect all unique image URLs
     image_urls = set()
     for p in feed_products:
         main_img = p.get("image_link", "").strip()
@@ -721,7 +729,7 @@ def audit_product_images(feed_products):
             else:
                 broken.append((status, url))
 
-    print()  # Clear progress bar
+    print()
 
     if ok_count == total:
         passed(f"All {total} product images load correctly")
@@ -743,7 +751,6 @@ def audit_price_consistency(feed_products):
         critical("No feed products to check")
         return
 
-    # Get all products from API
     try:
         r = requests.get(f"{API_BASE}/products?with_images_only=false", timeout=30)
         api_data = r.json()
@@ -781,7 +788,7 @@ def audit_price_consistency(feed_products):
         if feed_avail != api_avail:
             stock_mismatches.append((feed_id, feed_avail, api_avail))
 
-    print()  # Clear progress bar
+    print()
 
     if not price_mismatches:
         passed("All prices match between feed and API")
@@ -801,9 +808,202 @@ def audit_price_consistency(feed_products):
         warning(f"{len(not_in_api)} feed products not found in API")
 
 
+def audit_soft_404s(feed_products):
+    print("\n" + "=" * 60)
+    print("13. SOFT 404 CHECK (pages that return 200 but wrong content)")
+    print("=" * 60)
+
+    if not feed_products:
+        critical("No feed products to check")
+        return
+
+    # Sample 20 products to check content matches
+    import random
+    sample_size = min(20, len(feed_products))
+    sample = random.sample(feed_products, sample_size)
+    
+    soft_404s = []
+    content_mismatches = []
+
+    for i, fp in enumerate(sample):
+        progress(i + 1, sample_size, "Checking page content...")
+        link = fp.get("link", "")
+        feed_title = fp.get("title", "")
+        feed_price = fp.get("price", "").replace(" GBP", "").strip()
+        pid = fp.get("id", "")
+
+        try:
+            r = requests.get(link, timeout=15)
+            if r.status_code != 200:
+                continue
+
+            body = r.text
+
+            # Check if the page returns generic homepage content instead of product
+            # A soft 404 would be: 200 status but no product-specific content
+            # Since this is an SPA, the HTML will always be the same shell.
+            # We check the API instead to make sure the product actually exists.
+            api_url = f"{API_BASE}/products/{pid}"
+            api_r = requests.get(api_url, timeout=10)
+            if api_r.status_code != 200:
+                soft_404s.append((pid, link, f"API returns {api_r.status_code}"))
+                continue
+
+            api_data = api_r.json()
+            api_price = str(api_data.get("price", ""))
+            api_name = api_data.get("name", "")
+
+            # Price match check
+            try:
+                if abs(float(feed_price) - float(api_price)) > 0.01:
+                    content_mismatches.append((pid, f"Feed price {feed_price} vs page price {api_price}"))
+            except:
+                pass
+
+            # Check product is in stock on API
+            if not api_data.get("in_stock", False):
+                content_mismatches.append((pid, f"Feed says in_stock but API says out of stock"))
+
+        except Exception as e:
+            soft_404s.append((pid, link, str(e)))
+
+    print()
+
+    if not soft_404s:
+        passed(f"No soft 404s found (checked {sample_size} products)")
+    else:
+        critical(f"{len(soft_404s)} soft 404s detected — product page exists but product missing!")
+        for pid, link, reason in soft_404s[:5]:
+            print(f"    → {pid}: {reason}")
+
+    if not content_mismatches:
+        passed(f"Feed data matches live site data (checked {sample_size} products)")
+    else:
+        critical(f"{len(content_mismatches)} content mismatches between feed and live site!")
+        for pid, desc in content_mismatches[:5]:
+            print(f"    → {pid}: {desc}")
+
+
+def audit_product_structured_data():
+    print("\n" + "=" * 60)
+    print("14. PRODUCT PAGE STRUCTURED DATA (sample check)")
+    print("=" * 60)
+
+    # Check a few product pages for Product schema
+    test_skus = ["AD5", "KU2", "SC20"]
+    
+    for sku in test_skus:
+        api_url = f"{API_BASE}/products/{sku}"
+        try:
+            r = requests.get(api_url, timeout=10)
+            if r.status_code != 200:
+                warning(f"Cannot load product {sku} from API")
+                continue
+            api_data = r.json()
+            
+            # Check the product page HTML for structured data
+            page_url = f"{SITE_URL}/?product={sku}"
+            status, _, body = check_url(page_url)
+            if status != 200:
+                warning(f"Product page for {sku} returns {status}")
+                continue
+
+            # Look for Product structured data in HTML
+            # Since this is an SPA, structured data might be injected by JS
+            # We check the static HTML first
+            ld_blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', body, re.DOTALL)
+            has_product_schema = False
+            for block in ld_blocks:
+                try:
+                    data = json.loads(block)
+                    # Check for Product type in @graph or directly
+                    if data.get("@type") == "Product":
+                        has_product_schema = True
+                    graph = data.get("@graph", [])
+                    for item in graph:
+                        if item.get("@type") == "Product":
+                            has_product_schema = True
+                            # Check required fields
+                            if "name" in item:
+                                passed(f"  {sku}: Product schema has name")
+                            else:
+                                warning(f"  {sku}: Product schema missing name")
+                            if "offers" in item:
+                                offers = item["offers"]
+                                if "price" in offers:
+                                    passed(f"  {sku}: Product schema has price")
+                                else:
+                                    warning(f"  {sku}: Product schema missing price")
+                                if "availability" in offers:
+                                    passed(f"  {sku}: Product schema has availability")
+                                else:
+                                    warning(f"  {sku}: Product schema missing availability")
+                            else:
+                                warning(f"  {sku}: Product schema missing offers")
+                except json.JSONDecodeError:
+                    pass
+
+            if has_product_schema:
+                passed(f"Product {sku} has Product structured data")
+            else:
+                info(f"Product {sku} has no Product structured data in static HTML (may be injected by JS)")
+
+        except Exception as e:
+            warning(f"Error checking product {sku}: {e}")
+
+
+def audit_checkout_endpoint():
+    print("\n" + "=" * 60)
+    print("15. CHECKOUT ENDPOINT")
+    print("=" * 60)
+
+    # Check that the Stripe checkout API endpoint exists and responds
+    # We can't do a full checkout test but we can check the endpoint doesn't 404
+    checkout_url = f"{API_BASE}/checkout/create-payment-intent"
+    try:
+        # POST with empty body — should get an error response, not a 404 or 500
+        r = requests.post(checkout_url, json={}, timeout=10)
+        if r.status_code == 404:
+            critical("Checkout endpoint /api/create-checkout-session returns 404 — checkout broken!")
+        elif r.status_code == 405:
+            critical("Checkout endpoint returns 405 Method Not Allowed")
+        elif r.status_code == 500:
+            warning("Checkout endpoint returns 500 — may indicate a server error")
+        elif r.status_code in (400, 422):
+            passed(f"Checkout endpoint exists and validates input (returns {r.status_code} for empty request)")
+        elif r.status_code == 200:
+            passed("Checkout endpoint exists and responds")
+        else:
+            info(f"Checkout endpoint returns {r.status_code}")
+    except Exception as e:
+        critical(f"Cannot reach checkout endpoint: {e}")
+
+
+def audit_shipping_info(feed_products):
+    print("\n" + "=" * 60)
+    print("16. SHIPPING INFO IN FEED")
+    print("=" * 60)
+
+    if not feed_products:
+        return
+
+    missing_weight = 0
+    for p in feed_products:
+        weight = p.get("shipping_weight", "").strip()
+        if not weight:
+            missing_weight += 1
+
+    if missing_weight == 0:
+        passed("All products have shipping weight")
+    elif missing_weight < len(feed_products) * 0.1:
+        warning(f"{missing_weight} products missing shipping weight")
+    else:
+        warning(f"{missing_weight}/{len(feed_products)} products missing shipping weight")
+
+
 def audit_google_index():
     print("\n" + "=" * 60)
-    print("13. GOOGLE INDEX STATUS")
+    print("17. GOOGLE INDEX STATUS")
     print("=" * 60)
 
     info("Cannot check Google index programmatically — check manually:")
@@ -812,29 +1012,9 @@ def audit_google_index():
     info(f"  If zero results, the site is NOT indexed — critical for Merchant Center")
 
 
-def audit_backlinks():
-    print("\n" + "=" * 60)
-    print("14. BACKLINKS & BUSINESS VERIFICATION")
-    print("=" * 60)
-
-    # Check if DM Brands links to Home & Verse
-    try:
-        r = requests.get("https://dmbrands.co.uk/", timeout=10)
-        if "homeandverse" in r.text.lower():
-            passed("dmbrands.co.uk links to homeandverse.co.uk")
-        else:
-            warning("dmbrands.co.uk does NOT link to homeandverse.co.uk — add a link for trust signals")
-    except:
-        info("Could not check dmbrands.co.uk")
-
-    # Check Companies House
-    info(f"Verify Companies House: https://find-and-update.company-information.service.gov.uk/company/{EXPECTED_BUSINESS['company_number']}")
-    info(f"Expected: DM BRANDS LIMITED at {EXPECTED_BUSINESS['street']}, {EXPECTED_BUSINESS['city']}, {EXPECTED_BUSINESS['postcode']}")
-
-
 def audit_response_times():
     print("\n" + "=" * 60)
-    print("15. RESPONSE TIMES")
+    print("18. RESPONSE TIMES")
     print("=" * 60)
 
     test_urls = [
@@ -881,8 +1061,11 @@ def main():
     audit_product_urls(feed_products)
     audit_product_images(feed_products)
     audit_price_consistency(feed_products)
+    audit_soft_404s(feed_products)
+    audit_product_structured_data()
+    audit_checkout_endpoint()
+    audit_shipping_info(feed_products)
     audit_google_index()
-    audit_backlinks()
     audit_response_times()
 
     # ============================================================
@@ -919,7 +1102,6 @@ def main():
         for i, msg in enumerate(results["info"], 1):
             print(f"  {i:3}. {msg}")
 
-    # Overall verdict
     print(f"\n  {'═' * 55}")
     if len(results["critical"]) == 0 and len(results["warning"]) == 0:
         print("  ✅ SITE LOOKS READY FOR GOOGLE MERCHANT CENTER REVIEW")

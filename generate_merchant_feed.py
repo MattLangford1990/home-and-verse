@@ -318,7 +318,7 @@ def generate_feed():
             categories = p.get('categories', [])
             
             title = optimise_title(p)
-            product_url = f"{SITE_URL}/?product={sku}"
+            product_url = f"{SITE_URL}/product/{sku}"
             image_url = get_image_url(p)
             google_category_id = get_google_product_category(p)
             category_counts[google_category_id] = category_counts.get(google_category_id, 0) + 1
@@ -362,7 +362,7 @@ def generate_feed():
         ean = p.get('ean', '')
         categories = p.get('categories', [])
         
-        product_url = f"{SITE_URL}/?product={sku}"
+        product_url = f"{SITE_URL}/product/{sku}"
         image_url = get_image_url(p)
         google_category_id = get_google_product_category(p)
         category_path = ' &gt; '.join(['Home &amp; Garden', 'Home Decor'] + [c.replace('&', '&amp;') for c in categories[:2]])
